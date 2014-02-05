@@ -38,3 +38,5 @@ fi
 
 run_rsync
 
+
+echo "Syncronization finished"
