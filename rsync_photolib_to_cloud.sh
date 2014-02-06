@@ -20,7 +20,8 @@ function is_process_running {
 APP_NAME="iPhoto"
 RES=$(is_process_running "$APP_NAME")
 
-echo
+echo $(tput setaf 6) "\nChecking application status" $(tput sgr 0)
+
 echo $APP_NAME is running: $RES
 if [ "$RES"  == "TRUE" ] ; then 
 	echo $(tput setaf 1) "Cannot rsync: '$APP_NAME' is running"
@@ -40,4 +41,4 @@ fi
 run_rsync
 
 
-echo "Syncronization finished"
+echo $(tput setaf 6)"Syncronization finished"
