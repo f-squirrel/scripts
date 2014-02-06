@@ -2,7 +2,8 @@ ROOT_DIR=$HOME
 
 function run_rsync {
 	echo "Starting rsync"
-    rsync -rah --delete --progress "$ROOT_DIR/Pictures/iPhoto Library.photolibrary/" "$ROOT_DIR/Cloud@Mail.Ru/photo/iPhoto Library.photolibrary/"
+    rsync -rah --delete --progress "$ROOT_DIR/Pictures/iPhoto Library.photolibrary/"\
+    "$ROOT_DIR/Cloud@Mail.Ru/photo/iPhoto Library.photolibrary/"
 }
 
 function is_process_running {
