@@ -2,7 +2,7 @@ ROOT_DIR=$HOME
 
 function run_rsync {
 	echo "Starting rsync"
-    rsync -rah --delete --progress "$ROOT_DIR/Pictures/iPhoto Library.photolibrary/"\
+    rsync -rah --delete --progress --human-readable "$ROOT_DIR/Pictures/iPhoto Library.photolibrary/"\
     "$ROOT_DIR/Cloud@Mail.Ru/photo/iPhoto Library.photolibrary/"
 }
 
@@ -20,7 +20,7 @@ function is_process_running {
 APP_NAME="iPhoto"
 RES=$(is_process_running "$APP_NAME")
 
-echo $(tput setaf 6) "\nChecking application status" $(tput sgr 0)
+echo $(tput setaf 6)"\nChecking application status"$(tput sgr 0)
 
 echo $APP_NAME is running: $RES
 if [ "$RES"  == "TRUE" ] ; then 
@@ -34,7 +34,7 @@ RES="$(is_process_running "$APP_NAME")"
 echo
 echo $APP_NAME is running: $RES
 if [ "$RES"  == "TRUE" ] ; then 
-	echo $(tput setaf 1) "Cannot rsync: '$APP_NAME' is running"
+	echo $(tput setaf 1)"Cannot rsync: '$APP_NAME' is running"
 	exit
 fi
 
