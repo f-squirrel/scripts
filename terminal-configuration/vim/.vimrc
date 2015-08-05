@@ -69,6 +69,8 @@ set clipboard=unnamed
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
 
 "For YcmComplete
 let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
