@@ -66,6 +66,8 @@ set cindent
 set backspace=indent,eol,start
 set clipboard=unnamed
 
+highlight ColorColumn ctermbg=darkgray
+
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -73,10 +75,17 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
 
 "For YcmComplete
-let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-if isdirectory(s:clang_library_path)
-    let g:clang_library_path=s:clang_library_path
+let os = substitute(system('uname'), "\n", "", "")
+if os == "Darwin"
+    let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+    if isdirectory(s:clang_library_path)
+        let g:clang_library_path=s:clang_library_path
+    endif
+elseif os == "Linux"
+    " Do Linux-specific stuff.
+    " ...
 endif
+
 
 "for Clighter
 "let g:clighter_autostart = 1
