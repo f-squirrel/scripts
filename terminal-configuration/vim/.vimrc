@@ -64,6 +64,7 @@ set ignorecase
 set smartcase
 set cindent
 set backspace=indent,eol,start
+set clipboard=unnamed
 
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
