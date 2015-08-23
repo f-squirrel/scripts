@@ -47,13 +47,21 @@ flags = [
 if (os.getenv('NDK_ROOT')):
     android_build_top = os.getenv('NDK_ROOT');
 #    out_dir =  os.getenv('OUT')
-    androidflags = [
+    ndkIncludes = [
         
         '-I', os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
         '-I', os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost')
     ]
-    flags = flags + androidflags
+    flags = flags + ndkIncludes
 
+if (os.getenv('ANDROID_SRC_ROOT')):
+    android_build_top = os.getenv('ANDROID_SRC_ROOT');
+    androidIncludes = [
+        
+        '-I', os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
+        '-I', os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost')
+    ]
+    flags = flags +  androidIncludes
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
