@@ -90,4 +90,5 @@ endif
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+set pastetoggle=<F2>
 
