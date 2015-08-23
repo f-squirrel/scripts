@@ -57,9 +57,7 @@ if (os.getenv('NDK_ROOT')):
 if (os.getenv('ANDROID_SRC_ROOT')):
     android_build_top = os.getenv('ANDROID_SRC_ROOT');
     androidIncludes = [
-        
-        '-I', os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
-        '-I', os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost')
+        #add paths to Android sources
     ]
     flags = flags +  androidIncludes
 
