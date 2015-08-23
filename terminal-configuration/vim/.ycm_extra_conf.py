@@ -19,6 +19,7 @@
 
 import os
 import ycm_core
+import glob
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -40,26 +41,41 @@ flags = [
 '-DUSE_CLANG_COMPLETER',
 '-std=c++11',
 '-x', 'c++',
-'-I', '.',
-'-I', './3rdParties/curl/include/curl'
+'-I', '.'
 ]
+
+flagsRec=[
+'/home/dmitry/dev/Crystax_ndk/crystax-ndk-10.2.1/sources/boost/1.58.0/include/boost/*',
+'/home/dmitry/dev/Crystax_ndk/crystax-ndk-10.2.1/sources/boost/1.58.0/include/'
+]
+
+def AddDirsRecursively( flagsRec ):                
+    global flags                                                                                                         
+    new_flags = []                                                                        
+    for flag in flagsRec: 
+        for d in glob.glob(flag):
+            if os.path.isdir(d):
+                new_flags.append('-I')
+                new_flags.append(d)                                                               
+
+    flags += new_flags                                                                                                                                
+#AddDirsRecursively(flagsRec)
 
 if (os.getenv('NDK_ROOT')):
     android_build_top = os.getenv('NDK_ROOT');
-#    out_dir =  os.getenv('OUT')
     ndkIncludes = [
-        
-        '-I', os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
-        '-I', os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost')
+    os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
+    os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost'),
+    os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/*') #to add all subdirectories
     ]
-    flags = flags + ndkIncludes
+    AddDirsRecursively(ndkIncludes)
 
-if (os.getenv('ANDROID_SRC_ROOT')):
-    android_build_top = os.getenv('ANDROID_SRC_ROOT');
-    androidIncludes = [
-        #add paths to Android sources
-    ]
-    flags = flags +  androidIncludes
+#if (os.getenv('ANDROID_SRC_ROOT')):
+#    android_build_top = os.getenv('ANDROID_SRC_ROOT');
+#    androidIncludes = [
+#        #add paths to Android sources
+#    ]
+#    flags = flags +  androidIncludes
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for

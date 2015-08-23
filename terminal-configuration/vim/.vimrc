@@ -86,7 +86,7 @@ elseif os == "Linux"
     " ...
 endif
 
-
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
