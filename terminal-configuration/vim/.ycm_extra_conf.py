@@ -65,8 +65,8 @@ if (os.getenv('NDK_ROOT')):
     #flags += ndkIncludes
 
     ndkIncludes = [
-    os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
-    os.path.join(android_build_top, 'sources/boost/1.58.0/include'),
+    os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include/'),
+    os.path.join(android_build_top, 'sources/boost/1.58.0/include/'),
     os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/*') 
     ]
     AddDirsRecursively(ndkIncludes)
