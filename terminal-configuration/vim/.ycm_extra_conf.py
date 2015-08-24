@@ -44,11 +44,6 @@ flags = [
 '-I', '.'
 ]
 
-flagsRec=[
-'/home/dmitry/dev/Crystax_ndk/crystax-ndk-10.2.1/sources/boost/1.58.0/include/boost/*',
-'/home/dmitry/dev/Crystax_ndk/crystax-ndk-10.2.1/sources/boost/1.58.0/include/'
-]
-
 def AddDirsRecursively( flagsRec ):                
     global flags                                                                                                         
     new_flags = []                                                                        
@@ -59,14 +54,20 @@ def AddDirsRecursively( flagsRec ):
                 new_flags.append(d)                                                               
 
     flags += new_flags                                                                                                                                
-#AddDirsRecursively(flagsRec)
 
 if (os.getenv('NDK_ROOT')):
     android_build_top = os.getenv('NDK_ROOT');
+    #ndkIncludes = [
+    #'I', os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
+    #'I', os.path.join(android_build_top, 'sources/boost/1.58.0/include'),
+    #'I', os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/') 
+    #]
+    #flags += ndkIncludes
+
     ndkIncludes = [
     os.path.join(android_build_top, 'sources/cxx-stl/llvm-libc++/libcxx/include'),
-    os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost'),
-    os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/*') #to add all subdirectories
+    os.path.join(android_build_top, 'sources/boost/1.58.0/include'),
+    os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/*') 
     ]
     AddDirsRecursively(ndkIncludes)
 
