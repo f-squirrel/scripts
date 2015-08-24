@@ -44,16 +44,16 @@ flags = [
 '-I', '.'
 ]
 
-def AddDirsRecursively( flagsRec ):                
-    global flags                                                                                                         
-    new_flags = []                                                                        
+def AddDirsRecursively( flagsRec, predicatFlag ):
+    global flags
+    new_flags = []
     for flag in flagsRec: 
         for d in glob.glob(flag):
             if os.path.isdir(d):
-                new_flags.append('-I')
-                new_flags.append(d)                                                               
+                new_flags.append(predicatFlag)
+                new_flags.append(d)
 
-    flags += new_flags                                                                                                                                
+    flags += new_flags 
 
 if (os.getenv('NDK_ROOT')):
     android_build_top = os.getenv('NDK_ROOT');
@@ -69,7 +69,41 @@ if (os.getenv('NDK_ROOT')):
     os.path.join(android_build_top, 'sources/boost/1.58.0/include/'),
     os.path.join(android_build_top, 'sources/boost/1.58.0/include/boost/*') 
     ]
-    AddDirsRecursively(ndkIncludes)
+    #AddDirsRecursively(ndkIncludes, '-isystem');
+
+tinyandroid_build_top = None
+if (os.getenv('ANDROID_SRC')):
+    android_build_top = os.getenv('ANDROID_SRC');
+    tinyandroid_build_top = os.path.join(android_build_top, 'tinyandroid');
+elif (os.getenv('TINYANDROID_SRC')):
+    tinyandroid_build_top = os.getenv('TINYANDROID_SRC');
+
+if (tinyandroid_build_top is not None):
+    common = os.path.join(tinyandroid_build_top, 'Common');
+    commonIncludes = [
+        os.path.join(common, 'DroidUI/inc'),
+        os.path.join(common, 'WMTUtil/inc'),
+        os.path.join(common, 'WMTNet/inc'),
+        os.path.join(common, 'wifi/inc'),
+        os.path.join(common, 'cast/UpgradeService/inc'),
+        os.path.join(common, 'cast/WebService'),
+        os.path.join(common, 'UpgradeUtil/inc'),
+        os.path.join(common, 'tiny_vold/inc'),
+        os.path.join(common, 'tiny_power'),
+        os.path.join(common, 'QREncode')
+    ]
+
+    tinyandroidIncludes = commonIncludes;
+
+    mifi = os.path.join(tinyandroid_build_top, 'Mifi/FileSystem');
+    mifiIncludes = [
+        os.path.join(mifi, 'RilService/inc'),
+        os.path.join(mifi, 'SysUtil/inc'),
+        os.path.join(mifi, 'WebService'),
+        os.path.join(mifi, 'MifiUI')
+    ]
+    tinyandroidIncludes += mifiIncludes;
+    AddDirsRecursively(tinyandroidIncludes, '-isystem');
 
 #if (os.getenv('ANDROID_SRC_ROOT')):
 #    android_build_top = os.getenv('ANDROID_SRC_ROOT');
