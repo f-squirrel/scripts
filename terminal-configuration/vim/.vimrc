@@ -92,3 +92,6 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 set pastetoggle=<F2>
 
+
+"Mappings
+map <C-G> :YcmCompleter GoToDeclaration<CR>
