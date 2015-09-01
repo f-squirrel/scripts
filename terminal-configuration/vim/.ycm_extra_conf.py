@@ -74,7 +74,36 @@ if (os.getenv('NDK_ROOT')):
 tinyandroid_build_top = None
 if (os.getenv('ANDROID_SRC')):
     android_build_top = os.getenv('ANDROID_SRC');
-    tinyandroid_build_top = os.path.join(android_build_top, 'tinyandroid');
+    androidCoreIncludes = [
+         os.path.join(android_build_top, 'system/core/include'),
+         os.path.join(android_build_top, 'hardware/libhardware/include'),
+         os.path.join(android_build_top, 'hardware/libhardware_legacy/include'),
+         os.path.join(android_build_top, 'hardware/ril/include'),
+         os.path.join(android_build_top, 'libnativehelper/include'),
+         os.path.join(android_build_top, 'bionic/libc/arch-arm/include'),
+         os.path.join(android_build_top, 'bionic/libc/include'),
+         os.path.join(android_build_top, 'bionic/libc/kernel/common'),
+         os.path.join(android_build_top, 'bionic/libc/kernel/arch-arm'),
+        # We dp not want to use bionic
+        # os.path.join(android_build_top, 'bionic/libstdc++/include'),
+        # os.path.join(android_build_top, 'bionic/libstdc++/include'),
+         os.path.join(android_build_top, 'bionic/libm/include'),
+         os.path.join(android_build_top, 'bionic/libm/include/arm'),
+         os.path.join(android_build_top, 'bionic/libthread_db/include'),
+         os.path.join(android_build_top, 'frameworks/native/include'),
+         os.path.join(android_build_top, 'frameworks/native/opengl/include'),
+         os.path.join(android_build_top, 'frameworks/av/include'),
+         os.path.join(android_build_top, 'frameworks/base/include'),
+         os.path.join(android_build_top, 'kernel/include/uapi') 
+    ]
+    AddDirsRecursively(androidCoreIncludes, '-isystem');
+    
+    stdlibIncludes = [
+        os.path.join(android_build_top, 'external/stlport/stlport')
+    ]
+    AddDirsRecursively(stdlibIncludes, '-isystem');
+
+    tinyandroid_build_top = os.path.join(android_build_top, 'tinyandroid_bsp');
 elif (os.getenv('TINYANDROID_SRC')):
     tinyandroid_build_top = os.getenv('TINYANDROID_SRC');
 

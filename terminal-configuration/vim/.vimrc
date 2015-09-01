@@ -33,6 +33,11 @@ call vundle#begin()
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'octol/vim-cpp-enhanced-highlight'
 
+    " Track the engine.
+    Plugin 'SirVer/ultisnips'
+    " Snippets are separated from the engine. Add this if you want them:
+    Plugin 'honza/vim-snippets'
+
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -85,13 +90,26 @@ elseif os == "Linux"
     " Do Linux-specific stuff.
     " ...
 endif
-
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_use_ultisnips_completer = 1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+
+
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 set pastetoggle=<F2>
 
+"Highligt max line length
+set colorcolumn=144
 
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
