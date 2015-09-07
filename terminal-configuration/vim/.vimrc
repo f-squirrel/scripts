@@ -115,6 +115,7 @@ set colorcolumn=144
 
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
-
+"Delete all trailing spaces
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR> 
 
 set t_Co=256
