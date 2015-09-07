@@ -78,6 +78,8 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
+set modifiable "to have possibility to add/remove files from NERD Tree menu
+
 
 "For YcmComplete
 let os = substitute(system('uname'), "\n", "", "")
@@ -113,3 +115,6 @@ set colorcolumn=144
 
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
+
+
+set t_Co=256
