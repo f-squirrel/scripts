@@ -103,7 +103,7 @@ if (os.getenv('ANDROID_SRC')):
     ]
     AddDirsRecursively(stdlibIncludes, '-isystem');
 
-    tinyandroid_build_top = os.path.join(android_build_top, 'tinyandroid_bsp');
+    tinyandroid_build_top = os.path.join(android_build_top, 'tinyandroid');
 elif (os.getenv('TINYANDROID_SRC')):
     tinyandroid_build_top = os.getenv('TINYANDROID_SRC');
 

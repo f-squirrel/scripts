@@ -36,7 +36,8 @@ call vundle#begin()
     " Track the engine.
     Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
-    Plugin 'honza/vim-snippets'
+    Plugin 'skyjack/vim-snippets'
+    Plugin 'bling/vim-airline'
 
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
@@ -117,7 +118,7 @@ set colorcolumn=144
 map <C-G> :YcmCompleter GoToDeclaration<CR>
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR> 
-
+map <C-n> :NERDTreeToggle<CR>
 "set t_Co=256
 
 "enable mouse
