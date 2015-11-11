@@ -124,6 +124,11 @@ map <C-n> :NERDTreeToggle<CR>
 "set t_Co=256
 
 "enable mouse
-set mouse=a
+"set mouse=a
+
+"Mappings for mouse-toggle plugin
+"https://github.com/nvie/vim-togglemouse
+noremap <F11> :call <SID>ToggleMouse()<CR>
+inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
 
 
