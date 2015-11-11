@@ -106,6 +106,8 @@ let g:ycm_use_ultisnips_completer = 1
 "let g:UltiSnipsEditSplit="vertical"
 
 
+let g:airline#extensions#tabline#enabled = 1
+
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
@@ -113,7 +115,7 @@ set pastetoggle=<F2>
 
 "Highligt max line length
 set colorcolumn=144
-
+set laststatus=2
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
 "Delete all trailing spaces
