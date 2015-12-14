@@ -38,7 +38,8 @@ call vundle#begin()
     " Snippets are separated from the engine. Add this if you want them:
     Plugin 'skyjack/vim-snippets'
     Plugin 'bling/vim-airline'
-
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'junegunn/vim-easy-align'
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -79,6 +80,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
+let g:NERDTreeWinPos = "left"
 set modifiable "to have possibility to add/remove files from NERD Tree menu
 
 
@@ -115,9 +117,17 @@ set pastetoggle=<F2>
 
 "Highligt max line length
 set colorcolumn=144
+
+"vim-airline
 set laststatus=2
+se t_Co=256
+let g:airline_theme='dark'
+let g:solarized_termcolors=256
+
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
+let g:ycm_collect_identifiers_from_tags_files=1
+set tags+=/home/dmitry/8880/android-4.2.1_r1/tinyandroid/Mifi/FileSystem/dreamrouter/tags
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR> 
 map <C-n> :NERDTreeToggle<CR>
@@ -131,4 +141,9 @@ map <C-n> :NERDTreeToggle<CR>
 noremap <F11> :call <SID>ToggleMouse()<CR>
 inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
 
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+set shell=/bin/bash
 
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
