@@ -40,6 +40,8 @@ call vundle#begin()
     Plugin 'bling/vim-airline'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/vim-easy-align'
+    Plugin 'altercation/vim-colors-solarized.git'
+    Plugin 'jiangmiao/auto-pairs.git'
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -74,6 +76,14 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 
 highlight ColorColumn ctermbg=darkgray
+
+"Solarized
+syntax enable
+set background=dark
+"let g:solarized_termcolors=256
+colorscheme solarized
+"colorscheme wellsokai
+"colorscheme wombat256mod
 
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
@@ -122,7 +132,6 @@ set colorcolumn=144
 set laststatus=2
 se t_Co=256
 let g:airline_theme='dark'
-let g:solarized_termcolors=256
 
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
@@ -143,6 +152,9 @@ inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
 
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
+nnoremap <S-Left> :bprev<CR>
+nnoremap <S-Right> :bnext<CR>
+
 set shell=/bin/bash
 
 nmap ga <Plug>(EasyAlign)
