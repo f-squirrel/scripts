@@ -74,8 +74,14 @@ set smartcase
 set cindent
 set backspace=indent,eol,start
 set clipboard=unnamed
+set hidden
+set hlsearch
 
+"Highlight current line
+set cursorline
 highlight ColorColumn ctermbg=darkgray
+"Highligt max line length
+set colorcolumn=144
 
 "Solarized
 syntax enable
@@ -125,9 +131,6 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 set pastetoggle=<F2>
 
-"Highligt max line length
-set colorcolumn=144
-
 "vim-airline
 set laststatus=2
 se t_Co=256
@@ -159,3 +162,7 @@ set shell=/bin/bash
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
+"Double ESC turns off highlight of search results
+nnoremap <esc><esc> :noh<return>
+
