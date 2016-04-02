@@ -97,6 +97,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
 let g:NERDTreeWinPos = "left"
+let g:NERDTreeWinSize=30
 set modifiable "to have possibility to add/remove files from NERD Tree menu
 
 
@@ -165,4 +166,5 @@ xmap ga <Plug>(EasyAlign)
 
 "Double ESC turns off highlight of search results
 nnoremap <esc><esc> :noh<return>
+let mapleader=","
 
