@@ -37,8 +37,8 @@ call vundle#begin()
     Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     Plugin 'skyjack/vim-snippets'
-    Plugin 'bling/vim-airline'
-    Plugin 'bling/vim-airline-themes'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/vim-easy-align'
     Plugin 'altercation/vim-colors-solarized.git'
@@ -79,7 +79,7 @@ set hidden
 set hlsearch
 
 "Highlight current line
-set cursorline
+"set cursorline
 highlight ColorColumn ctermbg=darkgray
 "Highligt max line length
 set colorcolumn=144
@@ -87,7 +87,6 @@ set colorcolumn=144
 "Solarized
 syntax enable
 set background=dark
-"let g:solarized_termcolors=256
 
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
@@ -130,7 +129,6 @@ let g:ycm_use_ultisnips_completer = 1
 "let g:UltiSnipsEditSplit="vertical"
 
 
-let g:airline#extensions#tabline#enabled = 1
 
 "for Clighter
 "let g:clighter_autostart = 1
@@ -141,6 +139,13 @@ set pastetoggle=<F2>
 set laststatus=2
 se t_Co=256
 let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled = 1
+
+let os = substitute(system('uname'), "\n", "", "")
+if os == "Darwin"
+    let g:airline_powerline_fonts = 1
+endif
+
 
 "Mappings
 map <C-G> :YcmCompleter GoToDeclaration<CR>
@@ -149,7 +154,6 @@ set tags+=/home/dmitry/8880/android-4.2.1_r1/tinyandroid/Mifi/FileSystem/dreamro
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR> 
 map <C-n> :NERDTreeToggle<CR>
-"set t_Co=256
 
 "enable mouse
 "set mouse=a
