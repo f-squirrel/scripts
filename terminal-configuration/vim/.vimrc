@@ -38,6 +38,7 @@ call vundle#begin()
     " Snippets are separated from the engine. Add this if you want them:
     Plugin 'skyjack/vim-snippets'
     Plugin 'bling/vim-airline'
+    Plugin 'bling/vim-airline-themes'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/vim-easy-align'
     Plugin 'altercation/vim-colors-solarized.git'
@@ -87,7 +88,11 @@ set colorcolumn=144
 syntax enable
 set background=dark
 "let g:solarized_termcolors=256
-colorscheme solarized
+
+let os = substitute(system('uname'), "\n", "", "")
+if os == "Linux"
+    colorscheme solarized
+endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
 
