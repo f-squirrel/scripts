@@ -41,7 +41,8 @@ flags = [
 '-DUSE_CLANG_COMPLETER',
 '-std=c++11',
 '-x', 'c++',
-'-I', '.'
+'-I', '.',
+'-I', './include'
 ]
 
 def AddDirsRecursively( flagsRec, predicatFlag ):
@@ -129,7 +130,16 @@ if (tinyandroid_build_top is not None):
         os.path.join(mifi, 'RilService/inc'),
         os.path.join(mifi, 'SysUtil/inc'),
         os.path.join(mifi, 'WebService'),
-        os.path.join(mifi, 'MifiUI')
+        os.path.join(mifi, 'MifiUI'),
+        os.path.join(mifi, 'dreamrouter/dreamrouter/*'),
+        os.path.join(mifi, 'dreamrouter/filesender/include'),
+        os.path.join(mifi, 'dreamrouter/ntpclient/include'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/curl/include'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/uuid/include'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/openssl/include'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/vsp/include'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/rapidjson'),
+        os.path.join(mifi, 'dreamrouter/ThirdParty/sqlite/include')
     ]
     tinyandroidIncludes += mifiIncludes;
     AddDirsRecursively(tinyandroidIncludes, '-isystem');
