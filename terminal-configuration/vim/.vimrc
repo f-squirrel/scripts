@@ -39,10 +39,12 @@ call vundle#begin()
     Plugin 'skyjack/vim-snippets'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    "Plugin 'bling/vim-bufferline'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/vim-easy-align'
     Plugin 'altercation/vim-colors-solarized.git'
     Plugin 'jiangmiao/auto-pairs.git'
+    Plugin 'ntpeters/vim-better-whitespace'
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -142,9 +144,9 @@ let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
 
 let os = substitute(system('uname'), "\n", "", "")
-if os == "Darwin"
-    let g:airline_powerline_fonts = 1
-endif
+
+let g:airline_powerline_fonts = 1
+
 
 
 "Mappings
@@ -176,4 +178,3 @@ xmap ga <Plug>(EasyAlign)
 "Double ESC turns off highlight of search results
 nnoremap <esc><esc> :noh<return>
 let mapleader=","
-
