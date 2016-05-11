@@ -101,7 +101,7 @@ endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
-let NERDTreeIgnore = ['\.pyc$', '\.DS_Store']
+let NERDTreeIgnore = ['\.pyc$', '\.DS_Store', '\.swp', '\.swn', '\.swo']
 let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize=30
 set modifiable "to have possibility to add/remove files from NERD Tree menu
