@@ -30,6 +30,7 @@ call vundle#begin()
     "Plugin 'user/L9', {'name': 'newL9'}
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'octol/vim-cpp-enhanced-highlight'
 
