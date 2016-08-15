@@ -171,6 +171,9 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <S-Left> :bprev<CR>
 nnoremap <S-Right> :bnext<CR>
 
+"Select visually text and press // to start search
+vnoremap // y/<C-R>"<CR>
+
 set shell=/bin/bash
 
 nmap ga <Plug>(EasyAlign)
