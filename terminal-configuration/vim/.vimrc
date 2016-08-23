@@ -46,6 +46,7 @@ call vundle#begin()
     Plugin 'altercation/vim-colors-solarized.git'
     Plugin 'jiangmiao/auto-pairs.git'
     Plugin 'ntpeters/vim-better-whitespace'
+    Plugin 'fatih/vim-go'
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
