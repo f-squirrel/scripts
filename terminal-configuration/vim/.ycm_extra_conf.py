@@ -28,7 +28,7 @@ import glob
 flags = [
 '-Wall',
 '-Wextra',
-'-Wc++98-compat',
+#'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
