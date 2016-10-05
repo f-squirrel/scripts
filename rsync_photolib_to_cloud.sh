@@ -26,7 +26,6 @@ log_message() {
 }
 
 run_rsync() {
-
     log_message "Starting rsync"
 
     local src="${1}"
@@ -51,7 +50,6 @@ is_process_running() {
     fi
 }
 
-
 check_prerequisites() {
 
     for application in "${APPS_TO_CHECK[@]}"
@@ -66,6 +64,7 @@ check_prerequisites() {
     done
 
 }
+
 main() {
 
     check_prerequisites
