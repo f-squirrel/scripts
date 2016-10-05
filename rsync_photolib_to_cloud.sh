@@ -71,4 +71,4 @@ function main {
     run_rsync "${SRC}" "${DST}"
 }
 
-main
+main $@
