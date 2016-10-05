@@ -1,31 +1,33 @@
-#!/bin/sh
+#!/bin/bash
 
 ROOT_DIR=$HOME
 SRC="/Volumes/Macintosh HD/Users/skyjack/Pictures/iPhoto Library.photolibrary/"
 DST="$ROOT_DIR/Cloud@Mail.Ru/photo/iPhoto Library.photolibrary/"
+APPS_TO_CHECK=("iPhoto" "Aperture")
 
 SUCCESS_COLOR=2
 ERROR_COLOR=1
 MESSAGE_COLOR=4
 
-function log {
+log() {
     echo $(tput setaf ${1})"$2"
 }
 
-function log_success {
+log_success() {
     log ${SUCCESS_COLOR} "$1"
 }
 
-function log_error {
+log_error() {
     log ${ERROR_COLOR} "$1"
 }
 
-function log_message {
+log_message() {
     log ${MESSAGE_COLOR} "$1"
 }
 
-function run_rsync {
-    echo "Starting rsync"
+run_rsync() {
+
+    log_message "Starting rsync"
 
     local src="${1}"
     local dst="${2}"
@@ -39,9 +41,8 @@ function run_rsync {
     fi
 }
 
-function is_process_running {
-    local APP_NAME=$1
-    number=$(ps xc | grep "$APP_NAME" | wc -l)
+is_process_running() {
+    local number=$(ps xc | grep "$1" | wc -l)
 
     if [ $number -gt 0 ]; then
     	echo TRUE
@@ -51,22 +52,23 @@ function is_process_running {
 }
 
 
-function main {
+check_prerequisites() {
 
-    APP_NAME="iPhoto"
-    RES=$(is_process_running "$APP_NAME")
-    if [ "$RES"  == "TRUE" ] ; then
-        log_error "Cannot rsync: '$APP_NAME' is running"
-        exit
-    fi
+    for application in "${APPS_TO_CHECK[@]}"
+    do
+        :
+        local res="$(is_process_running "$application")"
 
-    APP_NAME="Aperture"
-    RES="$(is_process_running "$APP_NAME")"
+        if [ "$res"  == "TRUE" ] ; then
+            log_error "Cannot rsync: '$application' is running"
+            exit
+        fi
+    done
 
-    if [ "$RES"  == "TRUE" ] ; then
-        log_error "Cannot rsync: '$APP_NAME' is running"
-        exit
-    fi
+}
+main() {
+
+    check_prerequisites
 
     run_rsync "${SRC}" "${DST}"
 }
