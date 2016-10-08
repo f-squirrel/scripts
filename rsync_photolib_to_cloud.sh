@@ -10,7 +10,7 @@ ERROR_COLOR=1
 MESSAGE_COLOR=4
 
 log() {
-    echo $(tput setaf ${1})"$2"
+    echo $(tput setaf ${1})"$(date)" - "$2"
 }
 
 log_success() {
