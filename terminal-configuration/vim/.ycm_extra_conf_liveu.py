@@ -179,7 +179,9 @@ def FlagsForFile( filename, **kwargs ):
     except ValueError:
       pass
   else:
-    relative_to ='/home/dmitry/work/liveu/cpp'
+    #relative_to ='/home/me/work/liveu'
+    relative_to = os.getcwd() + "/cpp"
+
     #DirectoryOfThisScript()
     final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
 
