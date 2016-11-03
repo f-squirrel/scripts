@@ -93,10 +93,13 @@ set colorcolumn=144
 syntax enable
 set background=dark
 
-let os = substitute(system('uname'), "\n", "", "")
-if os == "Linux"
-"    colorscheme solarized
-"    let g:solarized_termcolors=256
+function GetOperatingSystemName()
+    return substitute(system('uname'), "\n", "", "")
+endfunction
+
+if GetOperatingSystemName() == "Linux"
+    colorscheme solarized
+    let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
@@ -113,13 +116,12 @@ set modifiable "to have possibility to add/remove files from NERD Tree menu
 
 
 "For YcmComplete
-let os = substitute(system('uname'), "\n", "", "")
-if os == "Darwin"
+if GetOperatingSystemName() == "Darwin"
     let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
     if isdirectory(s:clang_library_path)
         let g:clang_library_path=s:clang_library_path
     endif
-elseif os == "Linux"
+elseif GetOperatingSystemName() == "Linux"
     " Do Linux-specific stuff.
     " ...
 endif
@@ -147,9 +149,6 @@ set laststatus=2
 se t_Co=256
 let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
-
-let os = substitute(system('uname'), "\n", "", "")
-
 let g:airline_powerline_fonts = 1
 
 
