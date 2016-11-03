@@ -98,8 +98,8 @@ function GetOperatingSystemName()
 endfunction
 
 if GetOperatingSystemName() == "Linux"
-    colorscheme solarized
-    let g:solarized_termcolors=256
+"    colorscheme solarized
+"    let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
