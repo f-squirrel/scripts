@@ -47,6 +47,7 @@ call vundle#begin()
     Plugin 'jiangmiao/auto-pairs.git'
     Plugin 'ntpeters/vim-better-whitespace'
     Plugin 'fatih/vim-go'
+    Bundle 'schickling/vim-bufonly'
     "Plugin 'bbchung/clighter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -94,10 +95,12 @@ set background=dark
 
 let os = substitute(system('uname'), "\n", "", "")
 if os == "Linux"
-    colorscheme solarized
+"    colorscheme solarized
+"    let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
+
 
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
@@ -152,6 +155,10 @@ let g:airline_powerline_fonts = 1
 
 
 "Mappings
+"
+"turns off youCompleteMe
+"let g:loaded_youcompleteme = 1
+
 map <C-G> :YcmCompleter GoToDeclaration<CR>
 let g:ycm_collect_identifiers_from_tags_files=1
 set tags+=/home/dmitry/8880/android-4.2.1_r1/tinyandroid/Mifi/FileSystem/dreamrouter/tags
@@ -183,3 +190,8 @@ xmap ga <Plug>(EasyAlign)
 "Double ESC turns off highlight of search results
 nnoremap <esc><esc> :noh<return>
 let mapleader=","
+
+"Command-T
+"Sometimes we deal with really big projects...
+let g:CommandTSuppressMaxFilesWarning=1
+let g:CommandTFileScanner = 'find'
