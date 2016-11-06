@@ -1,6 +1,7 @@
 " This file is used for code style options
-" It is sourced from main ~/.vimrc and should be located in
-" ~/.vim/.code_style.vim
+" It is turned on from main vimrc: source ~/.vim/.code_style.vim
+" To enable it:
+" ln -s <absolute path to this directory>/.default_code_style.vim <absolute path to home directory>/.vim/.code_style.vim
 
 syntax on
 "filetype plugin indent on
