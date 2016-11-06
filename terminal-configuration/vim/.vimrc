@@ -180,4 +180,7 @@ let g:CommandTSuppressMaxFilesWarning=1
 let g:CommandTFileScanner = 'find'
 
 " Set shady colors for NerdTree
-hi Directory guifg=#FF0000 ctermfg=red
+if( GetOperatingSystemName() == "Linux" )
+    hi Directory guifg=#FF0000 ctermfg=red
+endif
+
