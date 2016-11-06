@@ -65,23 +65,7 @@ call vundle#begin()
     " Put your non-Plugin stuff after this line
 
 
-syntax on
-"filetype plugin indent on
-set number
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set incsearch
-set softtabstop=4
-set autoindent
-set ignorecase
-set smartcase
-set cindent
-set backspace=indent,eol,start
-set clipboard=unnamed
-set hidden
-set hlsearch
+source ~/.vim/.code_style.vim
 
 "Highlight current line
 "set cursorline
@@ -97,13 +81,13 @@ function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
+"SetColorScheme
 if GetOperatingSystemName() == "Linux"
 "    colorscheme solarized
 "    let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
-
 
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
@@ -137,8 +121,6 @@ let g:ycm_use_ultisnips_completer = 1
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
-
-
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
@@ -162,7 +144,7 @@ map <C-G> :YcmCompleter GoToDeclaration<CR>
 let g:ycm_collect_identifiers_from_tags_files=1
 set tags+=/home/dmitry/8880/android-4.2.1_r1/tinyandroid/Mifi/FileSystem/dreamrouter/tags
 "Delete all trailing spaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR> 
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 "enable mouse
@@ -194,3 +176,4 @@ let mapleader=","
 "Sometimes we deal with really big projects...
 let g:CommandTSuppressMaxFilesWarning=1
 let g:CommandTFileScanner = 'find'
+
