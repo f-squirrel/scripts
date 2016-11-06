@@ -83,8 +83,8 @@ endfunction
 
 "SetColorScheme
 if GetOperatingSystemName() == "Linux"
-"    colorscheme solarized
-"    let g:solarized_termcolors=256
+	colorscheme molokai
+    let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
@@ -92,6 +92,8 @@ endif
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" close vim in case only open window is NerdTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.DS_Store', '\.swp', '\.swn', '\.swo']
 let g:NERDTreeWinPos = "left"
@@ -177,3 +179,5 @@ let mapleader=","
 let g:CommandTSuppressMaxFilesWarning=1
 let g:CommandTFileScanner = 'find'
 
+" Set shady colors for NerdTree
+hi Directory guifg=#FF0000 ctermfg=red
