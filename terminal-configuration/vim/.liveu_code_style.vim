@@ -9,7 +9,7 @@ set number
 set smartindent
 set tabstop=4
 set shiftwidth=4
-set expandtab " use tabs instead of spaces
+"set expandtab " to insert spaces instead of tabs
 set incsearch
 set softtabstop=4
 set autoindent
