@@ -10,6 +10,7 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 "set expandtab " to insert spaces instead of tabs
+set noexpandtab " global for all types of file
 set incsearch
 set softtabstop=4
 set autoindent
@@ -21,3 +22,5 @@ set clipboard=unnamed
 set hidden
 set hlsearch
 
+"Specific for Python because vim does not want to use tabs for Python
+autocmd Filetype python setlocal noexpandtab tabstop=4 shiftwidth=4
