@@ -23,4 +23,8 @@ set hidden
 set hlsearch
 
 "Specific for Python because vim does not want to use tabs for Python
-autocmd Filetype python setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd filetype python setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" Vim specific tab options, because I do want to have tabs in my .vimrc
+autocmd filetype vim setlocal expandtab tabstop=4 shiftwidth=4
+
