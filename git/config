@@ -21,7 +21,7 @@
 	logallrefupdates = true
 [remote "origin"]
 	fetch = +refs/heads/*:refs/remotes/origin/*
-	url = git@github.com:skyjack/scripts.git
+	url = git@github.com:f-squirrel/scripts.git
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master

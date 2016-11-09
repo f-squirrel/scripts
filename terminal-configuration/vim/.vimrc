@@ -37,7 +37,7 @@ call vundle#begin()
     " Track the engine.
     Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
-    Plugin 'skyjack/vim-snippets'
+    Plugin 'f-squirrel/vim-snippets'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     "Plugin 'bling/vim-bufferline'
