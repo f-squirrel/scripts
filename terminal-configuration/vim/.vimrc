@@ -64,7 +64,8 @@ call vundle#begin()
     " see :h vundle for more details or wiki for FAQ
     " Put your non-Plugin stuff after this line
 
-
+" This file is usually symbolic link to file with code style relevant for
+" current company
 source ~/.vim/.code_style.vim
 
 "Highlight current line
@@ -73,7 +74,8 @@ highlight ColorColumn ctermbg=darkgray
 "Highligt max line length
 set colorcolumn=144
 
-"Solarized
+" ============================================================================================================================================
+" Solarized
 syntax enable
 set background=dark
 
@@ -81,15 +83,19 @@ function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
-"SetColorScheme
 if GetOperatingSystemName() == "Linux"
 	colorscheme molokai
     let g:solarized_termcolors=256
 endif
 "colorscheme wellsokai
 "colorscheme wombat256mod
+" ============================================================================================================================================
 
-"NERDTree config
+
+
+" ============================================================================================================================================
+" NERDTree config
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " close vim in case only open window is NerdTree
@@ -100,8 +106,10 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize=30
 set modifiable "to have possibility to add/remove files from NERD Tree menu
 
+" ============================================================================================================================================
 
-"For YcmComplete
+" ============================================================================================================================================
+" For YcmComplete
 if GetOperatingSystemName() == "Darwin"
     let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
     if isdirectory(s:clang_library_path)
@@ -123,28 +131,42 @@ let g:ycm_use_ultisnips_completer = 1
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
+" ============================================================================================================================================
+
 "for Clighter
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 set pastetoggle=<F2>
 
-"vim-airline
+" ============================================================================================================================================
+" vim-airline
 set laststatus=2
 se t_Co=256
 let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" ============================================================================================================================================
+
+
+" ============================================================================================================================================
+" Command-T
+"Sometimes we deal with really big projects...
+let g:CommandTSuppressMaxFilesWarning=1
+"Use binary native find to increase speed
+let g:CommandTFileScanner = 'find'
+
+" ============================================================================================================================================
+
 
 
 "Mappings
 "
-"turns off youCompleteMe
+"Turns off youCompleteMe
 "let g:loaded_youcompleteme = 1
 
 map <C-G> :YcmCompleter GoToDeclaration<CR>
 let g:ycm_collect_identifiers_from_tags_files=1
-set tags+=/home/dmitry/8880/android-4.2.1_r1/tinyandroid/Mifi/FileSystem/dreamrouter/tags
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 map <C-n> :NERDTreeToggle<CR>
@@ -173,11 +195,6 @@ xmap ga <Plug>(EasyAlign)
 "Double ESC turns off highlight of search results
 nnoremap <esc><esc> :noh<return>
 let mapleader=","
-
-"Command-T
-"Sometimes we deal with really big projects...
-let g:CommandTSuppressMaxFilesWarning=1
-let g:CommandTFileScanner = 'find'
 
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
