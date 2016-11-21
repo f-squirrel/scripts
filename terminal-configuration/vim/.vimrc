@@ -49,6 +49,7 @@ call vundle#begin()
     Plugin 'fatih/vim-go'
     Bundle 'schickling/vim-bufonly'
     "Plugin 'bbchung/clighter'
+    Plugin 'vim-syntastic/syntastic'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -160,6 +161,18 @@ function SetCommandT()
     let g:CommandTFileScanner = 'find'
 endfunction
 
+function SetSyntastic()
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_python_checkers = ['pyflakes']
+endfunction
+
 function SetEasyAlignMappings()
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
@@ -203,6 +216,7 @@ call SetVimAirLine()
 call SetYouCompleteMe()
 call SetCommandT()
 call SetSearchMappings()
+call SetSyntastic()
 
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
