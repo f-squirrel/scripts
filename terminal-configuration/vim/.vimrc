@@ -69,6 +69,8 @@ call vundle#begin()
 " current company
 source ~/.vim/.code_style.vim
 
+set clipboard=unnamed " to be able to copy-paste from other applications
+
 function SetColumnGuideLine()
     "Highlight current line
     "set cursorline
