@@ -89,6 +89,9 @@ function SetColorScheme()
 
     if GetOperatingSystemName() == "Linux"
         colorscheme molokai
+        " for Pretty-Vim-Python
+        highlight Comment cterm=bold
+
         let g:solarized_termcolors=256
     endif
     "colorscheme wellsokai
