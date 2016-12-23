@@ -1,1 +1,1 @@
-colorscheme desert 
+colorscheme solarized
