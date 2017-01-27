@@ -18,7 +18,7 @@ write "TARGET=${PROJECT_NAME}"
 write 'TARGET_BINARY=$(TARGET).bin'
 
 write "CC=clang++"
-write "CPP_FLAGS=-W -Wall -std=c++14 -stdlib=libc++"
+write "CPP_FLAGS=-W -Wall -g -std=c++14 -stdlib=libc++"
 write 'SRC=$(wildcard *.cpp)'
 
 write 'all: $(TARGET)'
