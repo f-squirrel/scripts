@@ -50,6 +50,7 @@ call vundle#begin()
     Bundle 'schickling/vim-bufonly'
     "Plugin 'bbchung/clighter'
     Plugin 'vim-syntastic/syntastic'
+    Plugin 'scrooloose/nerdcommenter'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -69,7 +70,19 @@ call vundle#begin()
 " current company
 source ~/.vim/.code_style.vim
 
-set clipboard=unnamed " to be able to copy-paste from other applications
+function SetClipboardGuiSettings()
+        set guioptions-=a
+        set guioptions-=A
+        set guioptions-=aA
+endfunction
+
+function SetClipboardSettings()
+    set clipboard=unnamed " to be able to copy-paste from other applications
+    if GetOperatingSystemName() == "Linux"
+        set clipboard-=autoselect
+        call SetClipboardGuiSettings()
+    endif
+endfunction
 
 function SetColumnGuideLine()
     "Highlight current line
@@ -161,9 +174,11 @@ endfunction
 
 function SetCommandT()
     "Sometimes we deal with really big projects...
+    let g:CommandTMaxFiles = 500000
     let g:CommandTSuppressMaxFilesWarning=1
+    let g:CommandTMaxCachedDirectories=5
     "Use binary native find to increase speed
-    let g:CommandTFileScanner = 'find'
+    let g:CommandTFileScanner = 'watchman'
 endfunction
 
 function SetSyntastic()
@@ -174,7 +189,7 @@ function SetSyntastic()
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+    let g:syntastic_check_on_wq = 1
     let g:syntastic_python_checkers = ['pyflakes']
 endfunction
 
@@ -212,6 +227,7 @@ set shell=/bin/bash
 
 let mapleader=","
 
+call SetClipboardSettings()
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
