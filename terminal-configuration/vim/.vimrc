@@ -115,7 +115,7 @@ function SetNerdTree()
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " close vim in case only open window is NerdTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     let g:NERDTreeShowHidden=1
     let g:NERDTreeIgnore = ['\.pyc$', '\.DS_Store', '\.swp', '\.swn', '\.swo']
     let g:NERDTreeWinPos = "left"
@@ -212,6 +212,10 @@ function SetSearchMappings()
 
     nnoremap <esc><esc> :noh<return>
 endfunction
+
+function SetMappingToCloseBufferWithoutClosingWindow()
+    map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
+endfunction
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -222,7 +226,6 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 "https://github.com/nvie/vim-togglemouse
 noremap <F11> :call <SID>ToggleMouse()<CR>
 inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
-
 set shell=/bin/bash
 
 let mapleader=","
@@ -238,7 +241,7 @@ call SetYouCompleteMe()
 call SetCommandT()
 call SetSearchMappings()
 call SetSyntastic()
-
+call SetMappingToCloseBufferWithoutClosingWindow()
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
     hi Directory guifg=#FF0000 ctermfg=red
