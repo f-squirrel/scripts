@@ -51,6 +51,7 @@ call vundle#begin()
     "Plugin 'bbchung/clighter'
     Plugin 'vim-syntastic/syntastic'
     Plugin 'scrooloose/nerdcommenter'
+    Plugin 'AndrewRadev/linediff.vim'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -104,8 +105,9 @@ function SetColorScheme()
         colorscheme molokai
         " for Pretty-Vim-Python
         highlight Comment cterm=bold
-
-        let g:solarized_termcolors=256
+        let g:molokai_original = 1
+        let g:rehash256 = 1
+        "let g:solarized_termcolors=256
     endif
     "colorscheme wellsokai
     "colorscheme wombat256mod
@@ -152,6 +154,7 @@ function SetYouCompleteMe()
     "let g:UltiSnipsEditSplit="vertical"
 
     map <C-G> :YcmCompleter GoToDeclaration<CR>
+    nnoremap <2-LeftMouse> :YcmCompleter GoToDeclaration<CR>
 endfunction
 
 set pastetoggle=<F2>
@@ -164,7 +167,7 @@ function SetVimAirLine()
     let g:airline_powerline_fonts = 1
 
     " For GVIM
-    set guifont=Source\ Code\ Pro\ for\ Powerline
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light
 endfunction
 
 function SetCommandT()
@@ -211,6 +214,12 @@ endfunction
 function SetMappingToCloseBufferWithoutClosingWindow()
     map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
 endfunction
+
+function GrepUnderCursorMapping()
+    grep -rsI <cword> ./
+    copen
+endfunction
+
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -241,4 +250,7 @@ call SetMappingToCloseBufferWithoutClosingWindow()
 if( GetOperatingSystemName() == "Linux" )
     hi Directory guifg=#FF0000 ctermfg=red
 endif
+
+nnoremap gr :call GrepUnderCursorMapping()<CR>
+set listchars=eol:$,tab:>-
 
