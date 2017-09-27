@@ -217,7 +217,8 @@ endfunction
 
 function GrepUnderCursorMapping()
     grep -risI <cword> ./
-    copen
+    cwindow
+    redraw!
 endfunction
 
 "Delete all trailing spaces
