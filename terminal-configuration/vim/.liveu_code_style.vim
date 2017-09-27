@@ -28,3 +28,5 @@ autocmd filetype python setlocal noexpandtab tabstop=4 shiftwidth=4
 " Vim specific tab options, because I do want to have tabs in my .vimrc
 autocmd filetype vim setlocal expandtab tabstop=4 shiftwidth=4
 
+"Specific for JS because vim does not want to use tabs for Python
+autocmd filetype javascript setlocal noexpandtab tabstop=4 shiftwidth=4
