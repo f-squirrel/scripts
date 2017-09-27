@@ -216,7 +216,7 @@ function SetMappingToCloseBufferWithoutClosingWindow()
 endfunction
 
 function GrepUnderCursorMapping()
-    grep -rsI <cword> ./
+    grep -risI <cword> ./
     copen
 endfunction
 
