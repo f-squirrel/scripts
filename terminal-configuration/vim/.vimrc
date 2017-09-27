@@ -216,7 +216,7 @@ function SetMappingToCloseBufferWithoutClosingWindow()
 endfunction
 
 function GrepUnderCursorMapping()
-    grep -risI <cword> ./
+    grep <cword> ./
     cwindow
     redraw!
 endfunction
@@ -261,6 +261,17 @@ map <C-K> :pyf ~/clang-format.py<cr>
 command Format call FormatFile()
 imap <C-K> <c-o>:pyf ~/clang-format.py<cr>
 
-nnoremap gr :call GrepUnderCursorMapping()<CR>
+function SetupGrepSettings()
+    " The Silver Searcher
+    if executable('ag')
+        " Use ag over grep
+        set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --numbers
+    else
+        set grepprg=grep\ --line-number\ --binary-files=without-match\ --ignore-case\ --recursive
+    endif
+    nnoremap gr :call GrepUnderCursorMapping()<CR>
+endfunction
+
+call SetupGrepSettings()
 set listchars=eol:$,tab:>-
 
