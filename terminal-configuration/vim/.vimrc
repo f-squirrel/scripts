@@ -251,6 +251,15 @@ if( GetOperatingSystemName() == "Linux" )
     hi Directory guifg=#FF0000 ctermfg=red
 endif
 
+function FormatFile()
+  let l:lines="all"
+  pyf ~/clang-format.py
+endfunction
+
+map <C-K> :pyf ~/clang-format.py<cr>
+command Format call FormatFile()
+imap <C-K> <c-o>:pyf ~/clang-format.py<cr>
+
 nnoremap gr :call GrepUnderCursorMapping()<CR>
 set listchars=eol:$,tab:>-
 
