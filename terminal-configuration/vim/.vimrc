@@ -216,11 +216,21 @@ function SetMappingToCloseBufferWithoutClosingWindow()
 endfunction
 
 function GrepUnderCursorMapping()
-    grep <cword> ./
+    grep --ignore-case <cword> ./
     cwindow
     redraw!
 endfunction
 
+function GrepSensitiveUnderCursorMapping()
+
+    if executable('ag')
+        grep --case-sensitive <cword> ./
+    else
+        grep <cword> ./
+    endif
+    cwindow
+    redraw!
+endfunction
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -265,11 +275,12 @@ function SetupGrepSettings()
     " The Silver Searcher
     if executable('ag')
         " Use ag over grep
-        set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --numbers
+        set grepprg=ag\ --nogroup\ --nocolor\ --numbers
     else
-        set grepprg=grep\ --line-number\ --binary-files=without-match\ --ignore-case\ --recursive
+        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive
     endif
     nnoremap gr :call GrepUnderCursorMapping()<CR>
+    nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
 endfunction
 
 call SetupGrepSettings()
