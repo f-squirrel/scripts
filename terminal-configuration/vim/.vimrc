@@ -52,6 +52,7 @@ call vundle#begin()
     Plugin 'vim-syntastic/syntastic'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'AndrewRadev/linediff.vim'
+    Plugin 'jlanzarotta/bufexplorer'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -201,6 +202,8 @@ function SetBufferSwitchingMappings()
     nnoremap <C-Right> :tabnext<CR>
     nnoremap <S-Left> :bprev<CR>
     nnoremap <S-Right> :bnext<CR>
+    map <C-h> :bprev<CR>
+    map <C-l> :bnext<CR>
 endfunction
 
 function SetSearchMappings()
