@@ -31,4 +31,6 @@
 
 [user]
 	name = f-squirrel
-	email = mr.skyjack@gmail.com
+	email = dmitry.b.danilov@gmail.com
+[merge]
+	tool = gvimdiff
