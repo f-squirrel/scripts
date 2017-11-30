@@ -91,7 +91,7 @@ function SetColumnGuideLine()
     "set cursorline
     highlight ColorColumn ctermbg=darkgray
     "Highligt max line length
-    set colorcolumn=144
+    set colorcolumn=120
 endfunction
 
 function GetOperatingSystemName()
