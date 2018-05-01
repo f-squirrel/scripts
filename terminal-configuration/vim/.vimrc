@@ -142,7 +142,7 @@ function SetYouCompleteMe()
         " Do Linux-specific stuff.
         " ...
     endif
-    let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+    "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_key_list_select_completion = ['<Down>']
     let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_use_ultisnips_completer = 1
@@ -223,6 +223,16 @@ function SetMappingToCloseBufferWithoutClosingWindow()
     map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
 endfunction
 
+
+function GrepUnderCursorMappingPython()
+    if executable('ag')
+        grep --ignore-case <cword> --python ./
+    else
+        grep --include=\*.py <cword> ./
+    cwindow
+    redraw!
+endfunction
+
 function GrepUnderCursorMapping()
     grep --ignore-case <cword> ./
     cwindow
@@ -230,7 +240,6 @@ function GrepUnderCursorMapping()
 endfunction
 
 function GrepSensitiveUnderCursorMapping()
-
     if executable('ag')
         grep --case-sensitive <cword> ./
     else
@@ -288,6 +297,7 @@ function SetupGrepSettings()
         set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive
     endif
     nnoremap gr :call GrepUnderCursorMapping()<CR>
+    nnoremap grp:call GrepUnderCursorMappingPython()<CR>
     nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
 endfunction
 
