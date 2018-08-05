@@ -183,6 +183,7 @@ function SetCommandT()
     let g:CommandTMaxCachedDirectories=5
     "Use binary native find to increase speed
     let g:CommandTFileScanner = 'watchman'
+    let g:CommandTWildIgnore=&wildignore . ",*.pyc"
 endfunction
 
 function SetSyntastic()
