@@ -1,4 +1,4 @@
-function GetOperatingSystemName()
+function! GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
