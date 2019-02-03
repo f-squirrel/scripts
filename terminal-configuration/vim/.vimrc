@@ -168,11 +168,15 @@ function SetVimAirLine()
     let g:airline_powerline_fonts = 1
 
     " For GVIM
-
-    if( GetOperatingSystemName() == "Linux" )
-        set guifont=Source\ Code\ Pro\ for\ Powerline\ Light
-    else
-        set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+    if has("gui_running")
+        if has("gui_gtk2") || has("gui_gtk3")
+            set lines=999 columns=999
+            set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
+        elseif has("gui_macvim")
+            set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+        elseif has("gui_win32")
+            set guifont=Consolas:h11:cANSI
+        endif
     endif
 endfunction
 
