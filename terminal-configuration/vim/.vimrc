@@ -160,6 +160,13 @@ endfunction
 
 set pastetoggle=<F2>
 
+function GetDisplayDimension()
+    let dimension = system("~/scripts/terminal-configuration/vim/get_display_dimensions.sh")
+    let dimension = split(trim(dimension), 'x')
+    let dimension = [ str2nr(dimension[0]), str2nr(dimension[1]) ]
+    return dimension
+endfunction
+
 function SetVimAirLine()
     set laststatus=2
     se t_Co=256
@@ -171,7 +178,13 @@ function SetVimAirLine()
     if has("gui_running")
         if has("gui_gtk2") || has("gui_gtk3")
             set lines=999 columns=999
-            set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
+            let LAPTOP_DIMENSION = [ 1920, 1080 ]
+            let dimension = GetDisplayDimension()
+            if dimension[0] > LAPTOP_DIMENSION[0] || dimension[1] > LAPTOP_DIMENSION[1]
+                set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
+            else
+                set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
+            endif
         elseif has("gui_macvim")
             set guifont=Source\ Code\ Pro\ for\ Powerline:h16
         elseif has("gui_win32")
