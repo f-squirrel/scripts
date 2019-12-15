@@ -154,8 +154,8 @@ function SetYouCompleteMe()
     " If you want :UltiSnipsEdit to split your window.
     "let g:UltiSnipsEditSplit="vertical"
 
-    map <C-G> :YcmCompleter GoToDeclaration<CR>
-    nnoremap <2-LeftMouse> :YcmCompleter GoToDeclaration<CR>
+    map <C-G> :YcmCompleter GoTo<CR>
+    nnoremap <2-LeftMouse> :YcmCompleter GoTo<CR>
 endfunction
 
 set pastetoggle=<F2>
