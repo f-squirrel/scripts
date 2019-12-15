@@ -21,6 +21,14 @@ import os
 import ycm_core
 import glob
 
+
+# Set path to the right interpreter to allow autocompletion
+# Default is python 2.7( python )
+def Settings( **kwargs ):
+    return {
+        'interpreter_path': '/usr/local/bin/python3'
+}
+
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
