@@ -18,9 +18,9 @@ set clipboard=unnamed
 set hidden
 set hlsearch
 
-"set tabstop=2
-"set shiftwidth=2
-"set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 autocmd filetype cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 colorcolumn=120
 
