@@ -257,6 +257,10 @@ function GrepUnderCursorMapping()
     redraw!
 endfunction
 
+function SetGitGutter()
+    autocmd BufWritePost * GitGutter
+endfunction
+
 function GrepSensitiveUnderCursorMapping()
 
     if executable('ag')
@@ -294,6 +298,7 @@ call SetCommandT()
 call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
+call SetGitGutter()
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
     hi Directory guifg=#FF0000 ctermfg=red
