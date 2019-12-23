@@ -326,5 +326,5 @@ function SetupGrepSettings()
 endfunction
 
 call SetupGrepSettings()
-set listchars=eol:$,tab:>-
+set listchars+=eol:$,tab:>-,space:·
 
