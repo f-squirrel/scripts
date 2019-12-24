@@ -223,6 +223,7 @@ function SetSyntastic()
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 1
     let g:syntastic_python_checkers = ['pyflakes']
+    let g:syntastic_python3_checkers = ['pyflakes']
 endfunction
 
 function SetEasyAlignMappings()
