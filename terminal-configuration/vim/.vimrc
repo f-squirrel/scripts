@@ -54,6 +54,7 @@ call vundle#begin()
     Plugin 'AndrewRadev/linediff.vim'
     Plugin 'jlanzarotta/bufexplorer'
     Plugin 'Yggdroot/indentLine'
+    Plugin 'rhysd/vim-clang-format'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -275,6 +276,16 @@ endfunction
 "Delete all trailing spaces
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+function SetupVimClangFormat()
+    if filereadable(getcwd() . "/.clang-format")
+        let g:clang_format#auto_format = 1
+        " map to <Leader>cf in C++ code
+        autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+        autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+    else
+        let g:clang_format#auto_format = 0
+    endif
+endfunction
 "enable mouse
 "set mouse=a
 
@@ -300,6 +311,8 @@ call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
+call SetupVimClangFormat()
+
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
     hi Directory guifg=#FF0000 ctermfg=red
