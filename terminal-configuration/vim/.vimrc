@@ -4,8 +4,21 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+function GetOperatingSystemName()
+    return substitute(system('uname'), "\n", "", "")
+endfunction
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
+if GetOperatingSystemName() == "Linux"
+    " If installed using git
+    set rtp+=~/.fzf
+else
+    " If installed using Homebrew
+    set rtp+=/usr/local/opt/fzf
+endif
+
 call vundle#begin()
     " alternatively, pass a path where Vundle should install plugins
     "call vundle#begin('~/some/path/here')
@@ -55,6 +68,8 @@ call vundle#begin()
     Plugin 'jlanzarotta/bufexplorer'
     Plugin 'Yggdroot/indentLine'
     Plugin 'rhysd/vim-clang-format'
+    Plugin 'MattesGroeger/vim-bookmarks'
+    Plugin 'junegunn/fzf.vim'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -94,10 +109,6 @@ function SetColumnGuideLine()
     highlight ColorColumn ctermbg=darkgray
     "Highligt max line length
     set colorcolumn=120
-endfunction
-
-function GetOperatingSystemName()
-    return substitute(system('uname'), "\n", "", "")
 endfunction
 
 function SetColorScheme()
@@ -148,6 +159,9 @@ function SetYouCompleteMe()
     let g:ycm_key_list_select_completion = ['<Down>']
     let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_use_ultisnips_completer = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_use_clangd = 1
+    let g:ycm_show_diagnostics_ui = 1
 
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     "let g:UltiSnipsExpandTrigger="<tab>"
@@ -188,14 +202,15 @@ function SetVimAirLine()
     " For GVIM
     if has("gui_running")
         if has("gui_gtk2") || has("gui_gtk3")
-            set lines=999 columns=999
-            let LAPTOP_DIMENSION = [ 1920, 1080 ]
-            let dimension = GetDisplayDimension()
-            if dimension[0] > LAPTOP_DIMENSION[0] || dimension[1] > LAPTOP_DIMENSION[1]
-                set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
-            else
-                set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
-            endif
+            "set lines=999 columns=999
+            "let LAPTOP_DIMENSION = [ 1920, 1080 ]
+            "let dimension = GetDisplayDimension()
+            "if dimension[0] > LAPTOP_DIMENSION[0] || dimension[1] > LAPTOP_DIMENSION[1]
+            "    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
+            "else
+            "    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
+            "endif
+            set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
         elseif has("gui_macvim")
             set guifont=Source\ Code\ Pro\ for\ Powerline:h16
         elseif has("gui_win32")
@@ -286,6 +301,11 @@ function SetupVimClangFormat()
         let g:clang_format#auto_format = 0
     endif
 endfunction
+
+function SetupVimBookmarks()
+    nmap mo <Plug>BookmarkShowAll
+endfunction
+
 "enable mouse
 "set mouse=a
 
@@ -312,6 +332,7 @@ call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
 call SetupVimClangFormat()
+call SetupVimBookmarks()
 
 " Set shady colors for NerdTree
 if( GetOperatingSystemName() == "Linux" )
@@ -333,7 +354,7 @@ function SetupGrepSettings()
         " Use ag over grep
         set grepprg=ag\ --nogroup\ --nocolor\ --numbers
     else
-        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive
+        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
     endif
     nnoremap gr :call GrepUnderCursorMapping()<CR>
     nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
