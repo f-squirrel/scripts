@@ -45,7 +45,7 @@ def GetStandardLibraryIndexInSysPath( sys_path ):
 # Default is python 2.7( python )
 def Settings( **kwargs ):
     return {
-         'interpreter_path': '/usr/local/bin/python3'
+         'interpreter_path': 'python3'
 }
 
 def PythonSysPath( **kwargs ):
