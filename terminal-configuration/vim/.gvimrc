@@ -3,7 +3,8 @@ function! GetOperatingSystemName()
 endfunction
 
 if GetOperatingSystemName() == "Linux"
-    colorscheme molokai
+    colorscheme monokai
+    "colorscheme molokai
 else
     colorscheme solarized
 endif
