@@ -162,6 +162,7 @@ function SetYouCompleteMe()
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_use_clangd = 1
     let g:ycm_show_diagnostics_ui = 1
+    let g:ycm_autoclose_preview_window_after_completion = 1
 
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     "let g:UltiSnipsExpandTrigger="<tab>"
