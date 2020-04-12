@@ -70,6 +70,7 @@ call vundle#begin()
     Plugin 'rhysd/vim-clang-format'
     Plugin 'MattesGroeger/vim-bookmarks'
     Plugin 'junegunn/fzf.vim'
+    Plugin 'ekalinin/Dockerfile.vim'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -116,7 +117,7 @@ function SetColorScheme()
     set background=dark
 
     if GetOperatingSystemName() == "Linux"
-        colorscheme molokai
+        colorscheme monokai
         " for Pretty-Vim-Python
         highlight Comment cterm=bold
         let g:molokai_original = 1
@@ -156,8 +157,8 @@ function SetYouCompleteMe()
         " ...
     endif
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-    let g:ycm_key_list_select_completion = ['<Down>']
-    let g:ycm_key_list_previous_completion = ['<Up>']
+    let g:ycm_key_list_select_completion = ['<C-j>']
+    let g:ycm_key_list_previous_completion = ['<C-k>']
     let g:ycm_use_ultisnips_completer = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_use_clangd = 1
@@ -166,12 +167,13 @@ function SetYouCompleteMe()
 
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     "let g:UltiSnipsExpandTrigger="<tab>"
-    "let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsJumpForwardTrigger='<C-j>'
+    let g:UltiSnipsJumpBackwardTrigger='<C-k>'
     " If you want :UltiSnipsEdit to split your window.
     "let g:UltiSnipsEditSplit="vertical"
 
     map <C-G> :YcmCompleter GoTo<CR>
+    map <leader>f :YcmCompleter Format<CR>
     nnoremap <2-LeftMouse> :YcmCompleter GoTo<CR>
 endfunction
 
