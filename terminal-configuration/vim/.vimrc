@@ -1,6 +1,3 @@
-"execute pathogen#infect()
-"let g:nerdtree_tabs_open_on_console_startup=1
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -25,52 +22,56 @@ call vundle#begin()
 
     " let Vundle manage Vundle, required
     Plugin 'gmarik/Vundle.vim'
-
-    " The following are examples of different formats supported.
-    " Keep Plugin commands between vundle#begin/end.
-    " plugin on GitHub repo
+    " Gblame and all the stuff
     Plugin 'tpope/vim-fugitive'
+    " It shows which lines have been added, modified, or removed.
+    Plugin 'airblade/vim-gitgutter'
+    " A plugin of NERDTree showing git status flags
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     " plugin from http://vim-scripts.org/vim/scripts.html
     Plugin 'L9'
-    " Git plugin not hosted on GitHub
+
     Plugin 'git://git.wincent.com/command-t.git'
-    " git repos on your local machine (i.e. when working on your own plugin)
-    "Plugin 'file:///home/gmarik/path/to/plugin'
-    " The sparkup vim script is in a subdirectory of this repo called vim.
-    " Pass the path to set the runtimepath properly.
-    Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-    " Avoid a name conflict with L9
-    "Plugin 'user/L9', {'name': 'newL9'}
-    Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
-    Plugin 'rdnetto/YCM-Generator'
+
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'octol/vim-cpp-enhanced-highlight'
 
-    " Track the engine.
-    Plugin 'SirVer/ultisnips'
+    " Track the engine. removed since it is incompatible with neovim on macos
+    " Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
-    Plugin 'f-squirrel/vim-snippets'
+    " Plugin 'f-squirrel/vim-snippets'
+    Plugin 'honza/vim-snippets'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    "Plugin 'bling/vim-bufferline'
-    Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/vim-easy-align'
-    Plugin 'altercation/vim-colors-solarized.git'
+
+    " Insert or delete brackets, parens, quotes in pair.
     Plugin 'jiangmiao/auto-pairs.git'
+
+    " :StripWhitespace to delete trailing white spaces
     Plugin 'ntpeters/vim-better-whitespace'
-    Plugin 'fatih/vim-go'
+    " :Bufonly to delete all buffers but this
     Bundle 'schickling/vim-bufonly'
-    "Plugin 'bbchung/clighter'
+    " :SyntasticCheck to run syntax check for scripting languages(python)
     Plugin 'vim-syntastic/syntastic'
+    " Comment short cuts
+    " [count]<leader>c<space> |NERDCommenterToggle|
+    " Toggles the comment state of the selected line(s).
+    " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
     Plugin 'scrooloose/nerdcommenter'
+    " Select and compare lines in code
     Plugin 'AndrewRadev/linediff.vim'
+    " ,be to see the list of open buffers
     Plugin 'jlanzarotta/bufexplorer'
+    " Shows indention level
     Plugin 'Yggdroot/indentLine'
     Plugin 'rhysd/vim-clang-format'
     Plugin 'MattesGroeger/vim-bookmarks'
     Plugin 'junegunn/fzf.vim'
     Plugin 'ekalinin/Dockerfile.vim'
+    " Neovim-Qt runtime
+    Plugin 'equalsraf/neovim-gui-shim'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -90,17 +91,14 @@ call vundle#begin()
 " current company
 source ~/.vim/.code_style.vim
 
-function SetClipboardGuiSettings()
-        set guioptions-=a
-        set guioptions-=A
-        set guioptions-=aA
-endfunction
+set shell=/bin/bash
+let mapleader=","
+set listchars+=eol:$,tab:>-,space:·
 
 function SetClipboardSettings()
     set clipboard=unnamed " to be able to copy-paste from other applications
     if GetOperatingSystemName() == "Linux"
         set clipboard-=autoselect
-        call SetClipboardGuiSettings()
     endif
 endfunction
 
@@ -115,17 +113,10 @@ endfunction
 function SetColorScheme()
     syntax enable
     set background=dark
-
+    colorscheme monokai
     if GetOperatingSystemName() == "Linux"
-        colorscheme monokai
-        " for Pretty-Vim-Python
-        highlight Comment cterm=bold
-        let g:molokai_original = 1
         let g:rehash256 = 1
-        "let g:solarized_termcolors=256
     endif
-    "colorscheme wellsokai
-    "colorscheme wombat256mod
 endfunction
 
 function SetNerdTree()
@@ -146,16 +137,6 @@ function SetYouCompleteMe()
     "Turns off youCompleteMe
     "let g:loaded_youcompleteme = 1
     let g:ycm_collect_identifiers_from_tags_files=1
-
-    if GetOperatingSystemName() == "Darwin"
-        let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-        if isdirectory(s:clang_library_path)
-            let g:clang_library_path=s:clang_library_path
-        endif
-    elseif GetOperatingSystemName() == "Linux"
-        " Do Linux-specific stuff.
-        " ...
-    endif
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_key_list_select_completion = ['<C-j>']
     let g:ycm_key_list_previous_completion = ['<C-k>']
@@ -172,9 +153,9 @@ function SetYouCompleteMe()
     " If you want :UltiSnipsEdit to split your window.
     "let g:UltiSnipsEditSplit="vertical"
 
-    map <C-G> :YcmCompleter GoTo<CR>
-    map <leader>f :YcmCompleter Format<CR>
-    nnoremap <2-LeftMouse> :YcmCompleter GoTo<CR>
+    map <C-G>               :YcmCompleter GoTo<CR>
+    map <leader>f           :YcmCompleter Format<CR>
+    nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
 endfunction
 
 function SetCppEnhancedHighlight()
@@ -201,25 +182,6 @@ function SetVimAirLine()
     let g:airline_theme='dark'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_powerline_fonts = 1
-
-    " For GVIM
-    if has("gui_running")
-        if has("gui_gtk2") || has("gui_gtk3")
-            "set lines=999 columns=999
-            "let LAPTOP_DIMENSION = [ 1920, 1080 ]
-            "let dimension = GetDisplayDimension()
-            "if dimension[0] > LAPTOP_DIMENSION[0] || dimension[1] > LAPTOP_DIMENSION[1]
-            "    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
-            "else
-            "    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 16
-            "endif
-            set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 12
-        elseif has("gui_macvim")
-            set guifont=Source\ Code\ Pro\ for\ Powerline:h16
-        elseif has("gui_win32")
-            set guifont=Consolas:h11:cANSI
-        endif
-    endif
 endfunction
 
 function SetCommandT()
@@ -291,8 +253,6 @@ function GrepSensitiveUnderCursorMapping()
     cwindow
     redraw!
 endfunction
-"Delete all trailing spaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 function SetupVimClangFormat()
     if filereadable(getcwd() . "/.clang-format")
@@ -309,16 +269,17 @@ function SetupVimBookmarks()
     nmap mo <Plug>BookmarkShowAll
 endfunction
 
-"enable mouse
-"set mouse=a
-
-"Mappings for mouse-toggle plugin
-"https://github.com/nvie/vim-togglemouse
-noremap <F11> :call <SID>ToggleMouse()<CR>
-inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
-set shell=/bin/bash
-
-let mapleader=","
+function SetupGrepSettings()
+    " The Silver Searcher
+    if executable('ag')
+        " Use ag over grep
+        set grepprg=ag\ --nogroup\ --nocolor\ --numbers
+    else
+        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
+    endif
+    nnoremap gr :call GrepUnderCursorMapping()<CR>
+    nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
+endfunction
 
 call SetClipboardSettings()
 call SetBufferSwitchingMappings()
@@ -336,33 +297,4 @@ call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
 call SetupVimClangFormat()
 call SetupVimBookmarks()
-
-" Set shady colors for NerdTree
-if( GetOperatingSystemName() == "Linux" )
-    hi Directory guifg=#FF0000 ctermfg=red
-endif
-
-function FormatFile()
-  let l:lines="all"
-  pyf ~/clang-format.py
-endfunction
-
-map <C-K> :pyf ~/clang-format.py<cr>
-command Format call FormatFile()
-imap <C-K> <c-o>:pyf ~/clang-format.py<cr>
-
-function SetupGrepSettings()
-    " The Silver Searcher
-    if executable('ag')
-        " Use ag over grep
-        set grepprg=ag\ --nogroup\ --nocolor\ --numbers
-    else
-        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
-    endif
-    nnoremap gr :call GrepUnderCursorMapping()<CR>
-    nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
-endfunction
-
 call SetupGrepSettings()
-set listchars+=eol:$,tab:>-,space:·
-
