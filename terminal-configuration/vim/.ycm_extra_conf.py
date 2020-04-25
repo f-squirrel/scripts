@@ -26,7 +26,7 @@ import glob
 # Default is python 2.7( python )
 def Settings( **kwargs ):
     return {
-        'interpreter_path': '/usr/local/bin/python3'
+        'interpreter_path': 'python3'
 }
 
 # These are the compilation flags that will be used in case there's no
