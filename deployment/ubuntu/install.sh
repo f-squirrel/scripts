@@ -5,7 +5,6 @@ apt-get update && apt-get -y install \
     automake \
     build-essential \
     clang \
-    clang \
     cmake \
     curl \
     g++ \
@@ -23,7 +22,21 @@ apt-get update && apt-get -y install \
 
 echo "Installed basic tools"
 
-bash ./ubuntu/nvim_core.sh
-bash ./ubuntu/fonts.sh
-bash ./ubuntu/build_tools.sh
-bash ./install_vim_plugins.sh
+cd
+git clone https://github.com/f-squirrel/scripts.git
+# TODO: remove after updated
+echo "SCRIPT PATH:" ${SCRIPT_PATH}
+cd ${SCRIPT_PATH}
+git checkout new_layout
+cd ..
+
+bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
+#TODO: add condition for GUI!
+bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
+bash ${SCRIPT_PATH}/deployment/install_vim_plugins.sh
+
+bash ${SCRIPT_PATH}/common/setup_links.sh
+bash ${SCRIPT_PATH}/common/setup_zshrc.sh
+# fzf needs to be installed after zsh
+bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
+bash ${SCRIPT_PATH}/common/install_vim_plugins.sh
