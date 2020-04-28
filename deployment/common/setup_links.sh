@@ -25,3 +25,5 @@ printf "Replace the symlink if needed!\n"
 # tmux
 ln -sf ${PWD}/dotfiles/.tmux.conf ~/.tmux.conf
 tmux source-file ~/.tmux.conf
+
+ln -sf {PWD}/dotfiles/git/gitconfig ~/.gitconfig
