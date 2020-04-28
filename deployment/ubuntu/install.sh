@@ -1,6 +1,12 @@
 #!/bin/bash
 
-apt-get update && apt-get -y install \
+export DEBIAN_FRONTEND=noninteractive
+echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+apt-get update && apt-get install -y --no-install-recommends apt-utils
+
+apt-get update && apt-get -y -q install \
+    dialog \
+    apt-utils \
     autoconf \
     automake \
     build-essential \
@@ -17,6 +23,7 @@ apt-get update && apt-get -y install \
     python3-dev \
     python3-pip \
     silversearcher-ag \
+    tmux \
     wget \
     zsh
 
@@ -33,10 +40,12 @@ cd ..
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 #TODO: add condition for GUI!
 bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
-bash ${SCRIPT_PATH}/deployment/install_vim_plugins.sh
+mkdir -p ~/.vim/bundle/
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
-bash ${SCRIPT_PATH}/common/setup_links.sh
-bash ${SCRIPT_PATH}/common/setup_zshrc.sh
+bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
+bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 # fzf needs to be installed after zsh
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
-bash ${SCRIPT_PATH}/common/install_vim_plugins.sh
+bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh

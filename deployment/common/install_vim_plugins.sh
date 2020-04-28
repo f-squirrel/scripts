@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-nvim +PluginInstall +qall
+bash "nvim +PluginInstall +qall"
 
 #YouCompleteMe
 cd ~/.vim/bundle/YouCompleteMe

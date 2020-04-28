@@ -25,5 +25,9 @@ cd
 export SCRIPT_PATH=${PWD}/scripts
 #https://github.com/f-squirrel/scripts.git
 
-apt-get update && apt-get -y install curl
+if [[ "$CURRENT_OS" == "ubuntu" ]]; then
+    # Vanilla Ubuntu comes without curl
+    apt-get update && apt-get -y install curl
+fi
+
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scripts/new_layout/deployment/${CURRENT_OS}/install.sh)"
