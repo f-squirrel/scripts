@@ -34,6 +34,9 @@ call vundle#begin()
     Plugin 'git://git.wincent.com/command-t.git'
     Plugin 'scrooloose/nerdtree'
 
+    " Check if it works woth Vundle
+    Plugin 'crusoexia/vim-monokai'
+
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'octol/vim-cpp-enhanced-highlight'
 
@@ -67,7 +70,7 @@ call vundle#begin()
     " Shows indention level
     Plugin 'Yggdroot/indentLine'
     Plugin 'rhysd/vim-clang-format'
-    Plugin 'MattesGroeger/vim-bookmarks'
+    "Plugin 'MattesGroeger/vim-bookmarks'
     Plugin 'junegunn/fzf.vim'
     Plugin 'ekalinin/Dockerfile.vim'
     " Neovim-Qt runtime
@@ -265,9 +268,9 @@ function SetupVimClangFormat()
     endif
 endfunction
 
-function SetupVimBookmarks()
-    nmap mo <Plug>BookmarkShowAll
-endfunction
+"function SetupVimBookmarks()
+"    nmap mo <Plug>BookmarkShowAll
+"endfunction
 
 function SetupGrepSettings()
     " The Silver Searcher
@@ -296,5 +299,5 @@ call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
 call SetupVimClangFormat()
-call SetupVimBookmarks()
+"call SetupVimBookmarks()
 call SetupGrepSettings()
