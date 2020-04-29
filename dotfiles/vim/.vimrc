@@ -14,12 +14,6 @@ else
     set rtp+=/usr/local/opt/fzf
 endif
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/plugged')
 
     " let Vundle manage Vundle, required
@@ -31,7 +25,7 @@ call plug#begin('~/.vim/plugged')
     " A plugin of NERDTree showing git status flags
     Plug 'Xuyuanp/nerdtree-git-plugin'
     " plugin from http://vim-scripts.org/vim/scripts.html
-    Plug 'L9'
+    " Plug 'L9'
 
     Plug 'git://git.wincent.com/command-t.git'
     Plug 'scrooloose/nerdtree'
@@ -39,7 +33,7 @@ call plug#begin('~/.vim/plugged')
     " Check if it works woth Vundle
     Plug 'crusoexia/vim-monokai'
 
-    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all && ./install.sh --clangd-completer' }
+    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.sh --all' }
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
@@ -52,7 +46,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align'
 
     " Insert or delete brackets, parens, quotes in pair.
-    Plug 'jiangmiao/auto-pairs.git'
+    Plug 'jiangmiao/auto-pairs'
 
     " :StripWhitespace to delete trailing white spaces
     Plug 'ntpeters/vim-better-whitespace'
@@ -76,7 +70,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'ekalinin/Dockerfile.vim'
     " Neovim-Qt runtime
-    Plug 'equalsraf/neovim-gui-shim'
+    if has('nvim')
+        Plug 'equalsraf/neovim-gui-shim'
+    endif
 call plug#end()
 "" set the runtime path to include Vundle and initialize
 "set rtp+=~/.vim/bundle/Vundle.vim
