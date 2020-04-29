@@ -14,3 +14,5 @@ echo "export EDITOR='nvim'" >> ${HOME}/.zshrc
 
 # to show user when in ssh
 echo 'DEFAULT_USER=$USER' >> ${HOME}/.zshrc
+
+chsh -s $(which zsh)

@@ -34,18 +34,16 @@ git clone https://github.com/f-squirrel/scripts.git
 # TODO: remove after updated
 echo "SCRIPT PATH:" ${SCRIPT_PATH}
 cd ${SCRIPT_PATH}
-git checkout new_layout
+git checkout ${BRANCH}
 cd ..
 
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 #TODO: add condition for GUI!
 bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
-mkdir -p ~/.vim/bundle/
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
-# fzf needs to be installed after zsh
+
+# fzf needs to be installed after zsh because it patches .zshrc
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
