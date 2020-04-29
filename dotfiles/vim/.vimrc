@@ -5,8 +5,6 @@ function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
 
 if GetOperatingSystemName() == "Linux"
     " If installed using git
@@ -16,79 +14,145 @@ else
     set rtp+=/usr/local/opt/fzf
 endif
 
-call vundle#begin()
-    " alternatively, pass a path where Vundle should install plugins
-    "call vundle#begin('~/some/path/here')
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
 
     " let Vundle manage Vundle, required
-    Plugin 'gmarik/Vundle.vim'
+    "Plug 'gmarik/Vundle.vim'
     " Gblame and all the stuff
-    Plugin 'tpope/vim-fugitive'
+    Plug 'tpope/vim-fugitive'
     " It shows which lines have been added, modified, or removed.
-    Plugin 'airblade/vim-gitgutter'
+    Plug 'airblade/vim-gitgutter'
     " A plugin of NERDTree showing git status flags
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     " plugin from http://vim-scripts.org/vim/scripts.html
-    Plugin 'L9'
+    Plug 'L9'
 
-    Plugin 'git://git.wincent.com/command-t.git'
-    Plugin 'scrooloose/nerdtree'
+    Plug 'git://git.wincent.com/command-t.git'
+    Plug 'scrooloose/nerdtree'
 
     " Check if it works woth Vundle
-    Plugin 'crusoexia/vim-monokai'
+    Plug 'crusoexia/vim-monokai'
 
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all && ./install.sh --clangd-completer' }
+    Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
     " Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     " Plugin 'f-squirrel/vim-snippets'
-    Plugin 'honza/vim-snippets'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'junegunn/vim-easy-align'
+    Plug 'honza/vim-snippets'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'junegunn/vim-easy-align'
 
     " Insert or delete brackets, parens, quotes in pair.
-    Plugin 'jiangmiao/auto-pairs.git'
+    Plug 'jiangmiao/auto-pairs.git'
 
     " :StripWhitespace to delete trailing white spaces
-    Plugin 'ntpeters/vim-better-whitespace'
+    Plug 'ntpeters/vim-better-whitespace'
     " :Bufonly to delete all buffers but this
-    Bundle 'schickling/vim-bufonly'
+    Plug 'schickling/vim-bufonly'
     " :SyntasticCheck to run syntax check for scripting languages(python)
-    Plugin 'vim-syntastic/syntastic'
+    Plug 'vim-syntastic/syntastic'
     " Comment short cuts
     " [count]<leader>c<space> |NERDCommenterToggle|
     " Toggles the comment state of the selected line(s).
     " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-    Plugin 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdcommenter'
     " Select and compare lines in code
-    Plugin 'AndrewRadev/linediff.vim'
+    Plug 'AndrewRadev/linediff.vim'
     " ,be to see the list of open buffers
-    Plugin 'jlanzarotta/bufexplorer'
+    Plug 'jlanzarotta/bufexplorer'
     " Shows indention level
-    Plugin 'Yggdroot/indentLine'
-    Plugin 'rhysd/vim-clang-format'
+    Plug 'Yggdroot/indentLine'
+    Plug 'rhysd/vim-clang-format'
     "Plugin 'MattesGroeger/vim-bookmarks'
-    Plugin 'junegunn/fzf.vim'
-    Plugin 'ekalinin/Dockerfile.vim'
+    Plug 'junegunn/fzf.vim'
+    Plug 'ekalinin/Dockerfile.vim'
     " Neovim-Qt runtime
-    Plugin 'equalsraf/neovim-gui-shim'
-    " All of your Plugins must be added before the following line
-    call vundle#end()            " required
-    filetype plugin indent on    " required
-    " To ignore plugin indent changes, instead use:
-    "filetype plugin on
-    "
-    " Brief help
-    " :PluginList       - lists configured plugins
-    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-    "
-    " see :h vundle for more details or wiki for FAQ
-    " Put your non-Plugin stuff after this line
+    Plug 'equalsraf/neovim-gui-shim'
+call plug#end()
+"" set the runtime path to include Vundle and initialize
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"    " alternatively, pass a path where Vundle should install plugins
+"    "call vundle#begin('~/some/path/here')
+"
+"    " let Vundle manage Vundle, required
+"    Plugin 'gmarik/Vundle.vim'
+"    " Gblame and all the stuff
+"    Plugin 'tpope/vim-fugitive'
+"    " It shows which lines have been added, modified, or removed.
+"    Plugin 'airblade/vim-gitgutter'
+"    " A plugin of NERDTree showing git status flags
+"    Plugin 'Xuyuanp/nerdtree-git-plugin'
+"    " plugin from http://vim-scripts.org/vim/scripts.html
+"    Plugin 'L9'
+"
+"    Plugin 'git://git.wincent.com/command-t.git'
+"    Plugin 'scrooloose/nerdtree'
+"
+"    " Check if it works woth Vundle
+"    Plugin 'crusoexia/vim-monokai'
+"
+"    Plugin 'Valloric/YouCompleteMe'
+"    Plugin 'octol/vim-cpp-enhanced-highlight'
+"
+"    " Track the engine. removed since it is incompatible with neovim on macos
+"    " Plugin 'SirVer/ultisnips'
+"    " Snippets are separated from the engine. Add this if you want them:
+"    " Plugin 'f-squirrel/vim-snippets'
+"    Plugin 'honza/vim-snippets'
+"    Plugin 'vim-airline/vim-airline'
+"    Plugin 'vim-airline/vim-airline-themes'
+"    Plugin 'junegunn/vim-easy-align'
+"
+"    " Insert or delete brackets, parens, quotes in pair.
+"    Plugin 'jiangmiao/auto-pairs.git'
+"
+"    " :StripWhitespace to delete trailing white spaces
+"    Plugin 'ntpeters/vim-better-whitespace'
+"    " :Bufonly to delete all buffers but this
+"    Bundle 'schickling/vim-bufonly'
+"    " :SyntasticCheck to run syntax check for scripting languages(python)
+"    Plugin 'vim-syntastic/syntastic'
+"    " Comment short cuts
+"    " [count]<leader>c<space> |NERDCommenterToggle|
+"    " Toggles the comment state of the selected line(s).
+"    " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+"    Plugin 'scrooloose/nerdcommenter'
+"    " Select and compare lines in code
+"    Plugin 'AndrewRadev/linediff.vim'
+"    " ,be to see the list of open buffers
+"    Plugin 'jlanzarotta/bufexplorer'
+"    " Shows indention level
+"    Plugin 'Yggdroot/indentLine'
+"    Plugin 'rhysd/vim-clang-format'
+"    "Plugin 'MattesGroeger/vim-bookmarks'
+"    Plugin 'junegunn/fzf.vim'
+"    Plugin 'ekalinin/Dockerfile.vim'
+"    " Neovim-Qt runtime
+"    Plugin 'equalsraf/neovim-gui-shim'
+"    " All of your Plugins must be added before the following line
+"    call vundle#end()            " required
+"    filetype plugin indent on    " required
+"    " To ignore plugin indent changes, instead use:
+"    "filetype plugin on
+"    "
+"    " Brief help
+"    " :PluginList       - lists configured plugins
+"    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+"    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+"    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"    "
+"    " see :h vundle for more details or wiki for FAQ
+"    " Put your non-Plugin stuff after this line
 
 " This file is usually symbolic link to file with code style relevant for
 " current company
