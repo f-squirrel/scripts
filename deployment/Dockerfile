@@ -17,4 +17,4 @@ RUN /bin/bash -c "/bootstrap.sh -b new_layout -r"
 EXPOSE 22
 ENV HOME /root
 WORKDIR $HOME
-ENTRYPOINT ["/usr/bin/zsh"
+ENTRYPOINT ["/usr/bin/zsh"]
