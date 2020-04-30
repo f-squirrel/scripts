@@ -1,9 +1,54 @@
 #!/bin/bash
 
-export TARGET_BRANCH="new_layout"
-CURRENT_OS=""
 
-export GUI=""
+help() {
+    echo "Description:"
+    echo "The script downloads and installs the development environment"
+    echo ""
+    echo "Usage:"
+    echo "bootstrap.sh [options]"
+    echo "Options:"
+    echo '-b:   Source branch of the installation script. Default is "master"'
+    echo '-r:   Install type "remote"(default value). In this mode none of GUI tools are installed'
+    echo '-l:   Install type "local". In this mode GUI tools(neovim-qt, etc) are installed'
+    echo ""
+    echo "Example:"
+    echo "bootstrap.sh -b master -l # Installs master version of dev env for a local setup"
+    echo "bootstrap.sh -b master -r # Installs master version of dev env for a remote setup"
+}
+
+while getopts "hrlb:" option; do
+   case $option in
+      h) # display Help
+          help
+         exit;;
+      b) #
+         TARGET_BRANCH=$OPTARG
+         ;;
+      r) #
+         export REMOTE_INSTALLATION="remote"
+         ;;
+      l) #
+         export LOCAL_INSTALLATION="local"
+         ;;
+     \?) # incorrect option
+         echo "Error: Invalid option"
+         exit;;
+   esac
+done
+
+export TARGET_BRANCH={$TARGET_BRANCH:-"master"}
+
+if [[ -n $REMOTE_INSTALLATION && -n $LOCAL_INSTALLATION ]]; then
+    printf "Incorrect configuration: both remote(-r) and local(-l) installation flags are set\n"
+    usage
+    exit 1
+fi
+
+if [[ -z $REMOTE_INSTALLATION && -z $LOCAL_INSTALLATION ]]; then
+    export $REMOTE_INSTALLATION="remote"
+    export $LOCAL_INSTALLATION=""
+fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     CURRENT_DISTRO=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -20,7 +65,15 @@ else
     exit 1
 fi
 
-echo $CURRENT_OS
+if [[ -z $LOCAL_INSTALLATION ]];then
+    INSTALL_TYPE=$LOCAL_INSTALLATION
+else
+    INSTALL_TYPE=$REMOTE_INSTALLATION
+fi
+echo "Build environment with the following settings:"
+echo "Installtion type:" $INSTALL_TYPE
+echo "Source branch:" $TARGET_BRANCH
+echo "Target OS:" $CURRENT_OS
 
 cd
 export SCRIPT_PATH=${PWD}/scripts
