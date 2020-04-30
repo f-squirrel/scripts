@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BRANCH="new_layout"
+export TARGET_BRANCH="new_layout"
 CURRENT_OS=""
 
 export GUI=""
@@ -30,4 +30,4 @@ if [[ "$CURRENT_OS" == "ubuntu" ]]; then
     apt-get update && apt-get -y install curl
 fi
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scripts/${BRANCH}/deployment/${CURRENT_OS}/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scripts/${TARGET_BRANCH}/deployment/${CURRENT_OS}/install.sh)"
