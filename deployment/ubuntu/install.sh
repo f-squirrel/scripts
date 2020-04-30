@@ -34,7 +34,7 @@ git clone https://github.com/f-squirrel/scripts.git
 # TODO: remove after updated
 echo "SCRIPT PATH:" ${SCRIPT_PATH}
 cd ${SCRIPT_PATH}
-git checkout ${BRANCH}
+git checkout ${TARGET_BRANCH}
 cd ..
 
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
