@@ -5,7 +5,7 @@ LABEL Description="Build dev environment"
 
 COPY ./bootstrap.sh /bootstrap.sh
 
-RUN ["bash", "/bootstrap.sh"]
+RUN ["bash", "/bootstrap.sh -b new_layout -r"]
 
 # Need to understand why it does not work
 #COPY ~/.ssh/id_rsa.pub /id_rsa.pub
