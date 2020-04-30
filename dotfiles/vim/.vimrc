@@ -33,7 +33,8 @@ call plug#begin('~/.vim/plugged')
     " Check if it works woth Vundle
     Plug 'crusoexia/vim-monokai'
 
-    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+    " for some reasons post install does not work when started here
+    Plug 'ycm-core/YouCompleteMe'
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
