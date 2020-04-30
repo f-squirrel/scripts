@@ -37,17 +37,17 @@ while getopts "hrlb:" option; do
    esac
 done
 
-export TARGET_BRANCH={$TARGET_BRANCH:-"master"}
+export TARGET_BRANCH=${TARGET_BRANCH:-master}
 
 if [[ -n $REMOTE_INSTALLATION && -n $LOCAL_INSTALLATION ]]; then
     printf "Incorrect configuration: both remote(-r) and local(-l) installation flags are set\n"
-    usage
+    help
     exit 1
 fi
 
-if [[ -z $REMOTE_INSTALLATION && -z $LOCAL_INSTALLATION ]]; then
-    export $REMOTE_INSTALLATION="remote"
-    export $LOCAL_INSTALLATION=""
+if [[ -z $LOCAL_INSTALLATION ]]; then
+    export REMOTE_INSTALLATION="remote"
+    export LOCAL_INSTALLATION=""
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -65,19 +65,18 @@ else
     exit 1
 fi
 
-if [[ -z $LOCAL_INSTALLATION ]];then
-    INSTALL_TYPE=$LOCAL_INSTALLATION
-else
-    INSTALL_TYPE=$REMOTE_INSTALLATION
-fi
+INSTALL_TYPE=${LOCAL_INSTALLATION:-remote}
 echo "Build environment with the following settings:"
-echo "Installtion type:" $INSTALL_TYPE
+echo "Installation type:" $INSTALL_TYPE
+echo "$LOCAL_INSTALLATION"
+echo "$REMOTE_INSTALLATION"
 echo "Source branch:" $TARGET_BRANCH
 echo "Target OS:" $CURRENT_OS
 
 cd
 export SCRIPT_PATH=${PWD}/scripts
 
+exit 1
 if [[ "$CURRENT_OS" == "ubuntu" ]]; then
     # Vanilla Ubuntu comes without curl
     apt-get update && apt-get -y install curl
