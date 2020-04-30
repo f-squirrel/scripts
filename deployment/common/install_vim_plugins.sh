@@ -17,3 +17,4 @@ python3 ./install.py --clangd-completer
 cd
 
 #Command-T - maybe to replace with fzf
+printf "Finished plugin setup!\n"
