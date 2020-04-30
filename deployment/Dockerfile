@@ -12,5 +12,6 @@ RUN ["bash", "/bootstrap.sh"]
 #RUN ["bash", "cat >> ~/.ssh/authorized_keys"]
 #RUN ["bash", "rm /id_rsa.pub"]
 
+ENV HOME /root
 WORKDIR $HOME
 CMD ["/usr/bin/zsh"]
