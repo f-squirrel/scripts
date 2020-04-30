@@ -51,4 +51,4 @@ bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
-Echo "installation completed"
+echo "installation completed"
