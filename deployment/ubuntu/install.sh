@@ -26,7 +26,6 @@ apt-get update && apt-get -y -q install \
     python3-dev \
     python3-pip \
     silversearcher-ag \
-    ssh \
     tmux \
     wget \
     zsh
@@ -52,7 +51,4 @@ bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
-#run ssh
-systemctl ssh start
-systemctl ssh enable
-service ssh status
+Echo "installation completed"
