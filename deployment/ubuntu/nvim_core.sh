@@ -5,3 +5,5 @@ apt-get update && apt-get -y install \
 
 #python-provider
 python3 -m pip install --user --upgrade pynvim
+
+printf "Finished nvim core setup\n"

@@ -9,3 +9,5 @@ cd fonts
 # clean-up a bit
 cd ..
 rm -rf fonts
+
+printf "Finished font setup\n"

@@ -30,3 +30,5 @@ ln -sf ${HOME}/scripts/dotfiles/.tmux.conf ~/.tmux.conf
 #tmux source-file ~/.tmux.conf
 
 ln -sf ${HOME}/scripts/dotfiles/git/config ~/.gitconfig
+
+printf "Finished link setup!\n"

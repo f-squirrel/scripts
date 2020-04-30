@@ -11,3 +11,6 @@ RUN ["bash", "/bootstrap.sh"]
 #COPY ~/.ssh/id_rsa.pub /id_rsa.pub
 #RUN ["bash", "cat >> ~/.ssh/authorized_keys"]
 #RUN ["bash", "rm /id_rsa.pub"]
+
+WORKDIR $HOME
+CMD ["/usr/bin/zsh"]

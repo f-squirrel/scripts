@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugged')
     " Check if it works woth Vundle
     Plug 'crusoexia/vim-monokai'
 
-    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.sh --all' }
+    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
