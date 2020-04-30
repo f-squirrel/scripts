@@ -5,7 +5,6 @@ echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 apt-get update && apt-get -y -q install \
-    dialog \
     apt-utils \
     autoconf \
     automake \
@@ -13,8 +12,12 @@ apt-get update && apt-get -y -q install \
     clang \
     cmake \
     curl \
+    dialog \
     g++ \
+    gdb \
     git \
+    iputils-ping \
+    net-tools \
     openssh-server \
     pkg-config \
     protobuf-compiler \
@@ -23,6 +26,7 @@ apt-get update && apt-get -y -q install \
     python3-dev \
     python3-pip \
     silversearcher-ag \
+    ssh \
     tmux \
     wget \
     zsh
@@ -47,3 +51,8 @@ bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 # fzf needs to be installed after zsh because it patches .zshrc
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
+
+#run ssh
+systemctl ssh start
+systemctl ssh enable
+service ssh status

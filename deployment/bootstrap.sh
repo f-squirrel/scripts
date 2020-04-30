@@ -76,7 +76,6 @@ echo "Target OS:" $CURRENT_OS
 cd
 export SCRIPT_PATH=${PWD}/scripts
 
-exit 1
 if [[ "$CURRENT_OS" == "ubuntu" ]]; then
     # Vanilla Ubuntu comes without curl
     apt-get update && apt-get -y install curl
