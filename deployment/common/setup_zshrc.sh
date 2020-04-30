@@ -2,6 +2,7 @@
 
 cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Installed zsh: " $?
 
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="miloshadzic"/' ${HOME}/.zshrc
 
