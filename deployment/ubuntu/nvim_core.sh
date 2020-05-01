@@ -9,7 +9,7 @@ chmod u+x nvim.appimage
 mv ${HOME}/squashfs-root ${HOME}/nvim_install_dir
 
 # Link the binary so all the dependency will be able to find it
-ln -s ${HOME}/squashfs-root/usr/bin/nvim usr/bin/nvim
+ln -s ${HOME}/nvim_install_dir/usr/bin/nvim /usr/bin/nvim
 
 rm nvim.appimage
 
