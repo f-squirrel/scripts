@@ -20,7 +20,6 @@ apt-get update && apt-get -y -q install \
     net-tools \
     openssh-server \
     pkg-config \
-    protobuf-compiler \
     python \
     python3 \
     python3-dev \
