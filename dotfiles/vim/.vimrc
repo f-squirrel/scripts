@@ -27,7 +27,6 @@ call plug#begin('~/.vim/plugged')
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plug 'L9'
 
-    Plug 'git://git.wincent.com/command-t.git'
     Plug 'scrooloose/nerdtree'
 
     " Check if it works woth Vundle
