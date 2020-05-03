@@ -38,7 +38,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
-    " Plugin 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     " Plugin 'f-squirrel/vim-snippets'
     Plug 'honza/vim-snippets'
