@@ -247,16 +247,6 @@ function SetVimAirLine()
     let g:airline_powerline_fonts = 1
 endfunction
 
-function SetCommandT()
-    "Sometimes we deal with really big projects...
-    let g:CommandTMaxFiles = 500000
-    let g:CommandTSuppressMaxFilesWarning=1
-    let g:CommandTMaxCachedDirectories=5
-    "Use binary native find to increase speed
-    let g:CommandTFileScanner = 'watchman'
-    let g:CommandTWildIgnore=&wildignore . ",*.pyc" . ",*.swp" . ",*.swn" . ",*.swo" . ",*.o" . ",*.out"
-endfunction
-
 function SetSyntastic()
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
@@ -358,7 +348,6 @@ call SetNerdTree()
 call SetVimAirLine()
 call SetYouCompleteMe()
 call SetCppEnhancedHighlight()
-call SetCommandT()
 call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
