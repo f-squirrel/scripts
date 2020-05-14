@@ -3,8 +3,6 @@
 # exit when any command fails
 set -e
 
-source nvim_vars.sh
-
 MIN_PORT=7770
 MAX_PORT=7790
 
