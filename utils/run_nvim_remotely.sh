@@ -3,9 +3,6 @@
 # exit when any command fails
 set -e
 
-MIN_PORT=7770
-MAX_PORT=7790
-
 help() {
     echo "Description:"
     echo "The script launches nvim remotely and neovim-qt locally that connects to the remote instance"
