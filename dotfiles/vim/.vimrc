@@ -167,7 +167,7 @@ endfunction
 
 function SetColumnGuideLine()
     "Highlight current line
-    "set cursorline
+    set cursorline
     highlight ColorColumn ctermbg=darkgray
     "Highligt max line length
     set colorcolumn=120
@@ -217,7 +217,7 @@ function SetYouCompleteMe()
     "let g:UltiSnipsEditSplit="vertical"
 
     map <C-G>               :YcmCompleter GoTo<CR>
-    map <leader>F           :YcmCompleter Format<CR>
+    map <leader>f           :YcmCompleter Format<CR>
     nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
 endfunction
 
@@ -335,7 +335,7 @@ function SetupGrepSettings()
 endfunction
 
 function SetupFzf()
-    map <leader>f           :Files<CR>
+    map <leader>F           :Files<CR>
     map <leader>t           :Ag!<CR>
 endfunction
 
