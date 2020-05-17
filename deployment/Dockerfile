@@ -7,7 +7,7 @@ ENV  DEBIAN_FRONTEND noninteractive
 
 COPY ./bootstrap.sh /bootstrap.sh
 
-RUN /bin/bash -c "/bootstrap.sh -b new_layout -r"
+RUN /bin/bash -c "/bootstrap.sh -b master -r"
 
 # Need to understand why it does not work
 #COPY ~/.ssh/id_rsa.pub /id_rsa.pub
