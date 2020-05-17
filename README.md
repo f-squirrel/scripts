@@ -2,7 +2,7 @@ This repository contains a set of dotfiles for nvim, neovim-qt and tmux.
 Suppoerted OS: Ubuntu
 
 
-# Usage #
+# Usage
 
 ## Dev station
 
@@ -12,7 +12,7 @@ curl -O https://raw.githubusercontent.com/f-squirrel/scripts/master/deployment/b
 sudo bash ./bootstrap.sh -b master -l
 ```
 
-### Remote dev station
+## Remote dev station
 
 ```sh
 cd
@@ -20,7 +20,7 @@ curl -O https://raw.githubusercontent.com/f-squirrel/scripts/master/deployment/b
 sudo bash ./bootstrap.sh -b master -r
 ```
 
-### Build docker container with dev environment
+## Build docker container with dev environment
 ```sh
 cd
 git clone git@github.com:f-squirrel/scripts.git
