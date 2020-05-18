@@ -16,20 +16,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-    " let Vundle manage Vundle, required
-    "Plug 'gmarik/Vundle.vim'
+    " plugin from http://vim-scripts.org/vim/scripts.html
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
     " It shows which lines have been added, modified, or removed.
     Plug 'airblade/vim-gitgutter'
     " A plugin of NERDTree showing git status flags
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    " plugin from http://vim-scripts.org/vim/scripts.html
-    " Plug 'L9'
-
     Plug 'scrooloose/nerdtree'
-
-    " Check if it works woth Vundle
     Plug 'crusoexia/vim-monokai'
 
     " for some reasons post install does not work when started here
@@ -55,6 +49,7 @@ call plug#begin('~/.vim/plugged')
     " :SyntasticCheck to run syntax check for scripting languages(python)
     Plug 'vim-syntastic/syntastic'
     " Comment short cuts
+    " <Leader>cl
     " [count]<leader>c<space> |NERDCommenterToggle|
     " Toggles the comment state of the selected line(s).
     " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
@@ -74,81 +69,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'equalsraf/neovim-gui-shim'
     endif
 call plug#end()
-"" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"    " alternatively, pass a path where Vundle should install plugins
-"    "call vundle#begin('~/some/path/here')
-"
-"    " let Vundle manage Vundle, required
-"    Plugin 'gmarik/Vundle.vim'
-"    " Gblame and all the stuff
-"    Plugin 'tpope/vim-fugitive'
-"    " It shows which lines have been added, modified, or removed.
-"    Plugin 'airblade/vim-gitgutter'
-"    " A plugin of NERDTree showing git status flags
-"    Plugin 'Xuyuanp/nerdtree-git-plugin'
-"    " plugin from http://vim-scripts.org/vim/scripts.html
-"    Plugin 'L9'
-"
-"    Plugin 'git://git.wincent.com/command-t.git'
-"    Plugin 'scrooloose/nerdtree'
-"
-"    " Check if it works woth Vundle
-"    Plugin 'crusoexia/vim-monokai'
-"
-"    Plugin 'Valloric/YouCompleteMe'
-"    Plugin 'octol/vim-cpp-enhanced-highlight'
-"
-"    " Track the engine. removed since it is incompatible with neovim on macos
-"    " Plugin 'SirVer/ultisnips'
-"    " Snippets are separated from the engine. Add this if you want them:
-"    " Plugin 'f-squirrel/vim-snippets'
-"    Plugin 'honza/vim-snippets'
-"    Plugin 'vim-airline/vim-airline'
-"    Plugin 'vim-airline/vim-airline-themes'
-"    Plugin 'junegunn/vim-easy-align'
-"
-"    " Insert or delete brackets, parens, quotes in pair.
-"    Plugin 'jiangmiao/auto-pairs.git'
-"
-"    " :StripWhitespace to delete trailing white spaces
-"    Plugin 'ntpeters/vim-better-whitespace'
-"    " :Bufonly to delete all buffers but this
-"    Bundle 'schickling/vim-bufonly'
-"    " :SyntasticCheck to run syntax check for scripting languages(python)
-"    Plugin 'vim-syntastic/syntastic'
-"    " Comment short cuts
-"    " [count]<leader>c<space> |NERDCommenterToggle|
-"    " Toggles the comment state of the selected line(s).
-"    " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-"    Plugin 'scrooloose/nerdcommenter'
-"    " Select and compare lines in code
-"    Plugin 'AndrewRadev/linediff.vim'
-"    " ,be to see the list of open buffers
-"    Plugin 'jlanzarotta/bufexplorer'
-"    " Shows indention level
-"    Plugin 'Yggdroot/indentLine'
-"    Plugin 'rhysd/vim-clang-format'
-"    "Plugin 'MattesGroeger/vim-bookmarks'
-"    Plugin 'junegunn/fzf.vim'
-"    Plugin 'ekalinin/Dockerfile.vim'
-"    " Neovim-Qt runtime
-"    Plugin 'equalsraf/neovim-gui-shim'
-"    " All of your Plugins must be added before the following line
-"    call vundle#end()            " required
-"    filetype plugin indent on    " required
-"    " To ignore plugin indent changes, instead use:
-"    "filetype plugin on
-"    "
-"    " Brief help
-"    " :PluginList       - lists configured plugins
-"    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-"    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-"    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"    "
-"    " see :h vundle for more details or wiki for FAQ
-"    " Put your non-Plugin stuff after this line
 
 " This file is usually symbolic link to file with code style relevant for
 " current company
