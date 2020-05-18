@@ -5,14 +5,10 @@ LABEL Description="Build dev environment"
 RUN  export DEBIAN_FRONTEND=noninteractive
 ENV  DEBIAN_FRONTEND noninteractive
 
-COPY ./bootstrap.sh /bootstrap.sh
 
-RUN /bin/bash -c "/bootstrap.sh -b master -r"
-
-# Need to understand why it does not work
-#COPY ~/.ssh/id_rsa.pub /id_rsa.pub
-#RUN ["bash", "cat >> ~/.ssh/authorized_keys"]
-#RUN ["bash", "rm /id_rsa.pub"]
+RUN apt-get update && apt-get -y install curl
+WORKDIR /
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scripts/master/deployment/bootstrap.sh) -b master -r"
 
 EXPOSE 22
 ENV HOME /root
