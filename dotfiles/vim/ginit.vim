@@ -9,3 +9,10 @@ colorscheme monokai
 
 "Allows to yank in local clipboard(even from remote!)
 call GuiClipboard()
+
+" Show current path in window title
+set title
+augroup dirchange
+    autocmd!
+    autocmd DirChanged * let &titlestring=v:event['cwd']
+augroup END
