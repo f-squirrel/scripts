@@ -20,10 +20,9 @@ echo 'DEFAULT_USER=$USER' >> ${HOME}/.zshrc
 if [[ -n $LOCAL_INSTALLATION ]]; then
     echo 'export REMOTE_DEV_USER=<user name for remote dev station>' >> ${HOME}/.zshrc
     echo 'export REMOTE_DEV_SERVER=<IP>' >> ${HOME}/.zshrc
-    echo 'export NVIM_QT_PATH="<path neovim-qt>"' >> ${HOME}/.zshrc
     echo 'export MIN_PORT=7770' >> ${HOME}/.zshrc
     echo 'export MAX_PORT=7790' >> ${HOME}/.zshrc
-    echo 'alias gvim="$NVIM_QT_PATH &"' >> ${HOME}/.zshrc
+    echo 'export NVIM_QT_PATH="<path neovim-qt>"' >> ${HOME}/.zshrc
 
     echo "Please fill the env variable added to ${HOME}/.zshrc"
 fi

@@ -45,6 +45,7 @@ bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
+bash ${SCRIPT_PATH}/deployment/common/setup_custom_script_helpers.sh
 
 # fzf needs to be installed after zsh because it patches .zshrc
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
