@@ -35,15 +35,13 @@ echo "Installed basic tools"
 
 cd
 git clone https://github.com/f-squirrel/scripts.git
-# TODO: remove after updated
-echo "SCRIPT PATH:" ${SCRIPT_PATH}
 cd ${SCRIPT_PATH}
 git checkout ${TARGET_BRANCH}
 cd ..
 
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 #TODO: add condition for GUI!
-bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
+bash ${SCRIPT_PATH}/deployment/common/fonts.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
