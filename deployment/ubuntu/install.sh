@@ -41,7 +41,7 @@ cd ..
 
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 #TODO: add condition for GUI!
-bash ${SCRIPT_PATH}/deployment/ubuntu/fonts.sh
+bash ${SCRIPT_PATH}/deployment/common/fonts.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
