@@ -255,8 +255,8 @@ function SetupGrepSettings()
 endfunction
 
 function SetupFzf()
-    map <leader>F           :Files<CR>
-    map <leader>t           :Ag!<CR>
+    map <leader>ff           :Files<CR>
+    map <leader>t            :Ag<CR>
 endfunction
 
 call SetClipboardSettings()
