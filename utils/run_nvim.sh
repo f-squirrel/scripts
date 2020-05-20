@@ -5,3 +5,4 @@ gvim() {
 }
 
 alias gvim=gvim "$@"
+alias gview='gvim "$@" -- -R'
