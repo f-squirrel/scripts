@@ -20,6 +20,8 @@ apt-get update && apt-get -y -q install \
     net-tools \
     openssh-server \
     pkg-config \
+    pyflakes \
+    pyflakes3 \
     python \
     python3 \
     python3-dev \
