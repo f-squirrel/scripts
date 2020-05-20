@@ -15,6 +15,7 @@ echo "export EDITOR='nvim'" >> ${HOME}/.zshrc
 
 # to show user when in ssh
 echo 'DEFAULT_USER=$USER' >> ${HOME}/.zshrc
+echo "alias view='nvim -R'" >> ${HOME}/.zshrc
 
 #Setup zshrc
 if [[ -n $LOCAL_INSTALLATION ]]; then
