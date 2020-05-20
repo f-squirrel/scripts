@@ -31,4 +31,6 @@ ln -sf ${HOME}/scripts/dotfiles/.tmux.conf ~/.tmux.conf
 
 ln -sf ${HOME}/scripts/dotfiles/git/config ~/.gitconfig
 
+ln -sf ${HOME}/scripts/dotfiles/.gdbinit ~/.gdbinit
+
 printf "Finished link setup!\n"
