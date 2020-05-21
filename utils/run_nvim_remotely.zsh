@@ -11,6 +11,7 @@ help() {
     echo "Options:"
     echo '-s:   Remote address, if ommited $REMOTE_DEV_SERVER variable is used'
     echo '-u:   Remote user, if ommited $REMOTE_DEV_USER variable is used'
+    echo '-p:   Remote path, if contains tilde(~) needs to be wrapped with quotes("")'
     echo ""
     echo "Example:"
     echo "run_nvim_remotely.sh -s <remote address> -u <remote user>"
@@ -68,7 +69,7 @@ run() {
     #launch nvim remotely
     echo "Launching nvim at ${server}:${port}"
     /usr/bin/ssh ${user}@${server} \
-        "nvim --listen ${server}:${port} --headless \
+        "cd ${path} && nvim --listen ${server}:${port} --headless \
         </dev/null >.nvim-remote.${port}.log 2>&1 &"
 
     #launch local neovim-qt
