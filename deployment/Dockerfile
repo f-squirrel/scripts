@@ -13,4 +13,3 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scri
 EXPOSE 22
 ENV HOME /root
 WORKDIR $HOME
-ENTRYPOINT ["/usr/bin/zsh"]
