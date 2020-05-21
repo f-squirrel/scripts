@@ -64,6 +64,8 @@ call plug#begin('~/.vim/plugged')
     "Plugin 'MattesGroeger/vim-bookmarks'
     Plug 'junegunn/fzf.vim'
     Plug 'ekalinin/Dockerfile.vim'
+    " :CopyPath and :CopyFileName
+    Plug 'taku-o/vim-copypath'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
