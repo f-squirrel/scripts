@@ -25,6 +25,10 @@ if [[ -n $LOCAL_INSTALLATION ]]; then
     echo 'export MAX_PORT=7790' >> ${HOME}/.zshrc
     echo 'export NVIM_QT_PATH="<path neovim-qt>"' >> ${HOME}/.zshrc
 
+    # To allow crash dumps
+    # Probably you need to setup core pattern
+    echo 'ulimit -c unlimited' >> ${HOME}/.zshrc
+
     echo "Please fill the env variable added to ${HOME}/.zshrc"
 fi
 chsh -s $(which zsh)
