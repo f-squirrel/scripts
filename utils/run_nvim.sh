@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gvim() {
-    ${NVIM_QT_PATH} "$@" &
+    ${NVIM_QT_PATH} "$@" & disown
 }
 
 alias gvim=gvim "$@"

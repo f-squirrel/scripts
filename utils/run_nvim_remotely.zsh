@@ -71,9 +71,8 @@ run() {
     /usr/bin/ssh ${user}@${server} \
         "cd ${path} && nvim --listen ${server}:${port} --headless \
         </dev/null > /dev/null 2>&1 &"
-
     #launch local neovim-qt
-    ${NVIM_QT_PATH} --server ${server}:${port} &
+    ${NVIM_QT_PATH} --server ${server}:${port} & disown
 }
 
 alias rgvim='run'
