@@ -260,7 +260,7 @@ function SetupFzf()
     map <leader>t            :Ag<CR>
 endfunction
 
-call SetClipboardSettings()
+"call SetClipboardSettings()
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
