@@ -1,6 +1,6 @@
 #!/bin/bash
 
-generate_cmake() {
+generate_cmake_helper() {
 
 local RESULT_FILE=CMakeLists.txt
 
@@ -30,4 +30,4 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 EOM
 }
 
-alias generate_cmake=generate_cmake
+alias generate_cmake=generate_cmake_helper

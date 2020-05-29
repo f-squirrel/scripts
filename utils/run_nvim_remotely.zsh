@@ -18,7 +18,7 @@ help() {
     echo 'If the script run w/o argiments it uses $REMOTE_DEV_SERVER and $REMOTE_DEV_USER env variables'
 }
 
-run() {
+remote_gvim_helper() {
     local server=$REMOTE_DEV_SERVER
     local user=$REMOTE_DEV_USER
     local path=$REMOTE_PATH
@@ -75,4 +75,4 @@ run() {
     ${NVIM_QT_PATH} --server ${server}:${port} & disown
 }
 
-alias rgvim='run'
+alias rgvim='remote_gvim_helper'
