@@ -260,6 +260,10 @@ function SetupFzf()
     map <leader>t            :Ag<CR>
 endfunction
 
+function SetupTerminal()
+    tnoremap <Esc> <C-\><C-n>
+endfunction
+
 "call SetClipboardSettings()
 call SetBufferSwitchingMappings()
 call SetColorScheme()
@@ -277,3 +281,4 @@ call SetupVimClangFormat()
 "call SetupVimBookmarks()
 call SetupGrepSettings()
 call SetupFzf()
+call SetupTerminal()
