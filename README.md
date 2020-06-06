@@ -1,9 +1,9 @@
 This repository contains a set of dotfiles for nvim, neovim-qt and tmux.
 
-Supported OS: Ubuntu
+Supported OS: Ubuntu, macOS
 
 
-# Usage
+# Installation
 
 ## Dev station
 
@@ -31,3 +31,11 @@ docker pull fsquirrel/dev_env:latest
 ```sh
 docker build https://raw.githubusercontent.com/f-squirrel/scripts/master/deployment/Dockerfile -t dev_env:latest
 ```
+
+# Usage
+
+## Run locally
+`gvim`
+
+## Remote server
+Run `rgvim -h` for the details
