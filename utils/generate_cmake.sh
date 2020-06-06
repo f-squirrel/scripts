@@ -28,6 +28,8 @@ file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 EOM
+
+cp ${HOME}/scripts/utils/.clang-format .
 }
 
-alias generate_cmake=generate_cmake_helper
+alias generate_cpp_env=generate_cmake_helper
