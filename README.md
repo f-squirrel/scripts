@@ -39,3 +39,14 @@ docker build https://raw.githubusercontent.com/f-squirrel/scripts/master/deploym
 
 ## Remote server
 Run `rgvim -h` for the details
+
+# Utils
+
+**Generate C++ environment**
+```sh
+mkdir <project dir>
+cd <project dir>
+generate_cpp_env
+```
+
+The script generates `CMakeLists.txt` and `.clang-format` files
