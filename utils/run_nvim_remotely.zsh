@@ -14,8 +14,8 @@ help() {
     echo '-p:   Remote path, if contains tilde(~) needs to be wrapped with quotes("")'
     echo ""
     echo "Example:"
-    echo "run_nvim_remotely.sh -s <remote address> -u <remote user>"
-    echo 'If the script run w/o argiments it uses $REMOTE_DEV_SERVER and $REMOTE_DEV_USER env variables'
+    echo "rgvim -s <remote address> -u <remote user>"
+    echo 'If the script is launched w/o arguments it uses $REMOTE_DEV_SERVER and $REMOTE_DEV_USER env variables'
 }
 
 remote_gvim_helper() {
