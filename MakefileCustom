@@ -1,0 +1,20 @@
+DOCKER_CONTAINER:=concord-bft
+DOCKER_IMAGE:=dev_env:latest
+CONTAINER_SHELL:=/bin/bash
+TARGET_DIR:=/concord-bft
+PORT_RANGE="7780-7790
+
+run-c: ## Run container in background
+	docker run -d --rm --privileged=true \
+			  --cap-add NET_ADMIN --cap-add=SYS_PTRACE --ulimit core=-1 \
+			  --name="${DOCKER_CONTAINER}" \
+			  --mount type=bind,source=${CURDIR},target=/cores \
+			  --mount type=bind,source=${CURDIR},target=${TARGET_DIR} \
+			  --workdir=${TARGET_DIR} \
+			  -p ${PORT_RANGE}:${PORT_RANGE} \
+			  ${DOCKER_IMAGE} \
+			  ${CONTAINER_SHELL} -c \
+			  "/usr/bin/tail -f /dev/null"
+	@echo
+	@echo "The container \"${DOCKER_CONTAINER}\" with the build environment is started as daemon."
+	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."

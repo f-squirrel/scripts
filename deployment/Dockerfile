@@ -1,5 +1,9 @@
 # This docker file is for testing purposes
-FROM ubuntu:18.04
+
+ARG base_image=ubuntu
+ARG base_tag=18.04
+
+FROM "${base_image}:${base_tag}"
 LABEL Description="Build dev environment"
 
 RUN  export DEBIAN_FRONTEND=noninteractive
