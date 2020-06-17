@@ -19,6 +19,7 @@ help() {
 }
 
 remote_gvim_helper() {
+    local docker_internal_port=7777
     local server=$REMOTE_DEV_SERVER
     local user=$REMOTE_DEV_USER
     local path=$REMOTE_PATH
@@ -54,44 +55,37 @@ remote_gvim_helper() {
 
     #find a free port
     if [[ -n ${remote_container} ]]; then
-        local ports=($(/usr/bin/ssh ${user}@${server} "ps -elf | \
-                            grep -oP \"nvim --listen 0.0.0.0:\d+\" | sed \"s/.*://\" | uniq | sort"))
-        let mmin_port="$MIN_PORT + ($MAX_PORT - $MIN_PORT)/2"
-        local mmax_port=$MAX_PORT
+        local port=($(/usr/bin/ssh ${user}@${server} "\
+                    docker port ${remote_container} | sed \"s/${docker_internal_port}\/tcp.*://\""))
+        /usr/bin/ssh ${user}@${server} \
+            "docker exec -dit \
+            ${remote_container} /bin/bash -c \"nvim --listen 0.0.0.0:${docker_internal_port} --headless\" \
+            </dev/null > /dev/null 2>&1"
     else
         local ports=($(/usr/bin/ssh ${user}@${server} "ps -elf | \
                             grep -oP \"nvim --listen ${server}:\d+\" | sed \"s/.*://\" | uniq | sort"))
 
-        local mmin_port=$MIN_PORT
-        let mmax_port="$MIN_PORT + ($MAX_PORT - $MIN_PORT)/2 -1"
-    fi
-    local port=$mmin_port
-    if [ -n "$ports" ]; then
-        local min_port=$(printf "%d\n" "${ports[@]}"| /usr/bin/head -1)
-        local max_port=$(printf "%d\n" "${ports[@]}"| /usr/bin/tail -1)
-        if [ $min_port -gt $mmin_port ]; then
-            port=$(($min_port-1))
-        elif [ $max_port -lt $mmax_port ]; then
-            port=$(($max_port+1))
-        else
-            echo "Unable to find a free port!"
-            return
+        local port=$MIN_PORT
+        if [ -n "$ports" ]; then
+            local min_port=$(printf "%d\n" "${ports[@]}"| /usr/bin/head -1)
+            local max_port=$(printf "%d\n" "${ports[@]}"| /usr/bin/tail -1)
+            if [ $min_port -gt $MIN_PORT ]; then
+                port=$(($min_port-1))
+            elif [ $max_port -lt $MAX_PORT ]; then
+                port=$(($max_port+1))
+            else
+                echo "Unable to find a free port!"
+                return
+            fi
         fi
-    fi
-
-    #launch nvim remotely
-    if [[ -z ${remote_container} ]]; then
         echo "Launching nvim at ${server}:${port}"
         /usr/bin/ssh ${user}@${server} \
             "cd ${path} && nvim --listen ${server}:${port} --headless \
             </dev/null > /dev/null 2>&1 &"
-    else
-        /usr/bin/ssh ${user}@${server} \
-            "docker exec -dit \
-            ${remote_container} /bin/bash -c \"nvim --listen 0.0.0.0:${port} --headless\" \
-            </dev/null > /dev/null 2>&1"
     fi
+
     #launch local neovim-qt
+    echo "Launch: ${server}:${port}"
     ${NVIM_QT_PATH} --server ${server}:${port} & disown
 }
 

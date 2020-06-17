@@ -14,6 +14,5 @@ RUN apt-get update && apt-get -y install curl
 WORKDIR /
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/f-squirrel/scripts/master/deployment/bootstrap.sh) -b master -r"
 
-EXPOSE 22
 ENV HOME /root
 WORKDIR $HOME
