@@ -10,7 +10,6 @@ apt-get update && apt-get -y -q install \
     automake \
     build-essential \
     clang \
-    cmake \
     curl \
     dialog \
     g++ \
@@ -30,6 +29,11 @@ apt-get update && apt-get -y -q install \
     tmux \
     wget \
     zsh
+
+# Dirty hack, sometimes base image already has newer cmake installed manually
+if [ ! -f "/usr/bin/cmake" ]; then
+    apt-get update && apt-get -y -q install cmake
+fi
 
 echo "Installed basic tools"
 
