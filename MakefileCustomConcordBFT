@@ -1,0 +1,19 @@
+BASE_IMAGE:=${CONCORD_BFT_DOCKER_REPO}${CONCORD_BFT_DOCKER_IMAGE}
+BASE_IMAGE_VERSION:=${CONCORD_BFT_DOCKER_IMAGE_VERSION}
+CONCORD_BFT_DOCKER_REPO:=
+CONCORD_BFT_DOCKER_IMAGE:=concord_bft_env
+CONCORD_BFT_DOCKER_IMAGE_VERSION:=latest
+CONCORD_BFT_TARGET_SOURCE_PATH:=/concord-bft
+CONCORD_BFT_DOCKER_CONTAINER:=concord-bft-env
+
+PORT_RANGE:=7770
+CONCORD_BFT_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
+
+
+.PHONY: build-env-docker-image
+build-env-docker-image: ## Re-build the container without caching
+	@echo ${BASE_IMAGE}
+	@echo ${CONCORD_BFT_DOCKER_IMAGE}
+	docker build --rm --no-cache=true -t ${CONCORD_BFT_DOCKER_IMAGE}:latest \
+		--build-arg "base_image=${BASE_IMAGE}" --build-arg "base_tag=${BASE_IMAGE_VERSION}" \
+		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/

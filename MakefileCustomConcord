@@ -1,0 +1,31 @@
+BASE_IMAGE_NAME:=${shell echo ${PREREQS_IMAGE} | sed 's/:.*//'}
+BASE_IMAGE_VERSION:=${shell echo ${PREREQS_IMAGE} | sed 's/.*://'}
+PREREQS_IMAGE:=concord-env:latest
+CONCORD_WORK_DIR:=/vmwathena/concord
+CONCORD_BUILD_CONTAINER:=concord-env
+
+PORT_RANGE:=7771
+CONCORD_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
+
+.PHONY: run-cu
+run-cu: ## Run container in background
+	docker run -d --rm \
+			  --name=${CONCORD_BUILD_CONTAINER} \
+			  --workdir=${CONCORD_WORK_DIR} \
+			  --mount type=bind,source=${CURDIR}/..,target=/vmwathena/ \
+			  ${CONCORD_ADDITIONAL_RUN_PARAMS} \
+			  ${PREREQS_IMAGE} \
+			  ${CONCORD_CONTAINER_SHELL} -c \
+			  "${CONCORD_ADDITIONAL_RUN_COMMANDS} \
+			  make -C /googletest/_build install; /usr/bin/tail -f /dev/null"
+	@echo
+	@echo "The container \"${CONCORD_BUILD_CONTAINER}\" with the build environment is started as daemon."
+	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."
+
+.PHONY: build-env-docker-image
+build-env-docker-image: ## Re-build the container without caching
+	@echo ${BASE_IMAGE_NAME}
+	@echo ${BASE_IMAGE_VERSION}
+	docker build --rm --no-cache=true -t ${CONCORD_BUILD_CONTAINER}:latest \
+		--build-arg base_image=${BASE_IMAGE_NAME} --build-arg base_tag=${BASE_IMAGE_VERSION} \
+		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/
