@@ -78,14 +78,15 @@ remote_gvim_helper() {
                 return
             fi
         fi
-        echo "Launching nvim at ${server}:${port}"
+        echo "Launching nvim: cd ${path} && nvim --listen ${server}:${port} --headless \
+            </dev/null > /dev/null 2>&1 &"
         /usr/bin/ssh ${user}@${server} \
             "cd ${path} && nvim --listen ${server}:${port} --headless \
             </dev/null > /dev/null 2>&1 &"
     fi
 
     #launch local neovim-qt
-    echo "Launch: ${server}:${port}"
+    echo "Launch: ${NVIM_QT_PATH} --server ${server}:${port} & disown"
     ${NVIM_QT_PATH} --server ${server}:${port} & disown
 }
 
