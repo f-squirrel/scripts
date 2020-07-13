@@ -1,14 +1,16 @@
 BASE_IMAGE_NAME:=${shell echo ${PREREQS_IMAGE} | sed 's/:.*//'}
 BASE_IMAGE_VERSION:=${shell echo ${PREREQS_IMAGE} | sed 's/.*://'}
 PREREQS_IMAGE:=concord-env:latest
-CONCORD_WORK_DIR:=/vmwathena/concord
+#CONCORD_WORK_DIR:=/vmwathena/concord
 CONCORD_BUILD_CONTAINER:=concord-env
 
 PORT_RANGE:=7771
-CONCORD_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
+CONCORD_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777 \
+			  --mount type=bind,source=${CURDIR}/../.git,target=/.git
 
 .PHONY: run-cu
-run-cu: ## Run container in background
+run-cu: ## Run container in background -- needed only for editing files outside concord
+	@echo "Uncomment CONCORD_WORK_DIR"
 	docker run -d --rm \
 			  --name=${CONCORD_BUILD_CONTAINER} \
 			  --workdir=${CONCORD_WORK_DIR} \
