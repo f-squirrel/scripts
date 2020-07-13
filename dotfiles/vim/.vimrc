@@ -141,6 +141,7 @@ function SetYouCompleteMe()
     map <C-G>               :YcmCompleter GoTo<CR>
     map <leader>f           :YcmCompleter Format<CR>
     nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
+    nnoremap yr             :YcmCompleter GoToReferences<CR>
 endfunction
 
 function SetCppEnhancedHighlight()
@@ -258,6 +259,7 @@ endfunction
 function SetupFzf()
     map <leader>ff           :Files<CR>
     map <leader>t            :Ag<CR>
+    map <leader>/            :BLines<CR>
 endfunction
 
 function SetupTerminal()
