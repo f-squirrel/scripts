@@ -24,7 +24,8 @@ remote_gvim_helper() {
     local user=$REMOTE_DEV_USER
     local path=$REMOTE_PATH
     local remote_container=""
-    while getopts "hs:u:p:C:" option; do
+    local local_container=""
+    while getopts "hs:u:p:C:c:" option; do
        case $option in
           h) # display Help
               help
@@ -41,16 +42,21 @@ remote_gvim_helper() {
           C) #
              remote_container=$OPTARG
              ;;
+          c) #
+             local_container=$OPTARG
+             ;;
          \?) # incorrect option
              echo "Error: Invalid option"
              return;;
        esac
     done
 
-    if [[ -z ${server} || -z ${user} ]]; then
-        echo "Please set server and user"
-        help
-        return
+    if [[ -z ${local_container} ]]; then
+        if [[ -z ${server} || -z ${user} ]]; then
+            echo "Please set server and user"
+            help
+            return
+        fi
     fi
 
     #find a free port
@@ -61,6 +67,13 @@ remote_gvim_helper() {
             "docker exec -dit \
             ${remote_container} /bin/bash -c \"nvim --listen 0.0.0.0:${docker_internal_port} --headless\" \
             </dev/null > /dev/null 2>&1"
+    elif [[ -n ${local_container} ]]; then
+        local port=$(/usr/local/bin/docker port ${local_container} | /usr/bin/sed "s/${docker_internal_port}\/tcp.*://")
+        echo "PORT" $port
+        /usr/local/bin/docker exec -dit \
+            ${local_container} /bin/bash -c "nvim --listen 0.0.0.0:${docker_internal_port} --headless" \
+            </dev/null > /dev/null 2>&1
+        server="localhost"
     else
         local ports=($(/usr/bin/ssh ${user}@${server} "ps -elf | \
                             grep -oP \"nvim --listen ${server}:\d+\" | sed \"s/.*://\" | uniq | sort"))
