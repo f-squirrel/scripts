@@ -104,3 +104,4 @@ remote_gvim_helper() {
 }
 
 alias rgvim='remote_gvim_helper'
+alias dgvim='remote_gvim_helper -c $(make container)'

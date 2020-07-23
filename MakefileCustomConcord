@@ -31,3 +31,7 @@ build-env-docker-image: ## Re-build the container without caching
 	docker build --rm --no-cache=true -t ${CONCORD_BUILD_CONTAINER}:latest \
 		--build-arg base_image=${BASE_IMAGE_NAME} --build-arg base_tag=${BASE_IMAGE_VERSION} \
 		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/
+
+.PHONY: container
+container: #returns container name
+	@echo ${CONCORD_BUILD_CONTAINER}
