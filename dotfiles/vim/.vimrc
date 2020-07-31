@@ -259,7 +259,7 @@ endfunction
 function SetupFzf()
     map <leader>ff           :Files<CR>
     map <leader>t            :Ag<CR>
-    map <leader>/            :BLines<CR>
+    map <leader>s            :BLines<CR>
 endfunction
 
 function SetupTerminal()
