@@ -12,6 +12,8 @@ help() {
     echo '-s:   Remote address, if ommited $REMOTE_DEV_SERVER variable is used'
     echo '-u:   Remote user, if ommited $REMOTE_DEV_USER variable is used'
     echo '-p:   Remote path, if contains tilde(~) needs to be wrapped with quotes("")'
+    echo '-C:   Run nvim in a remote container'
+    echo '-c:   Run nvim in a local container'
     echo ""
     echo "Example:"
     echo "rgvim -s <remote address> -u <remote user>"
