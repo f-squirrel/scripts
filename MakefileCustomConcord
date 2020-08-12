@@ -4,6 +4,8 @@ PREREQS_IMAGE:=concord-env:latest
 #CONCORD_WORK_DIR:=/vmwathena/concord
 CONCORD_BUILD_CONTAINER:=concord-env
 
+CONCORD_CONTAINER_SHELL:=/usr/bin/zsh
+
 PORT_RANGE:=7771
 CONCORD_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777 \
 			  --mount type=bind,source=${CURDIR}/../.git,target=/.git
