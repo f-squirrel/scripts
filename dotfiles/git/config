@@ -34,3 +34,5 @@
 	email = dmitry.b.danilov@gmail.com
 [merge]
 	tool = gvimdiff
+[diff]
+	tool = gvimdiff
