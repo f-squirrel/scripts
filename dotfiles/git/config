@@ -32,7 +32,13 @@
 [user]
 	name = f-squirrel
 	email = dmitry.b.danilov@gmail.com
-[merge]
-	tool = gvimdiff
 [diff]
-	tool = gvimdiff
+    tool = vimdiff3
+[difftool "vimdiff3"]
+    path = nvim
+[merge]
+    tool = vimdiff3
+[mergetool "vimdiff3"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool]
+    prompt = false

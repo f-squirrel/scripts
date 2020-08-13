@@ -266,6 +266,10 @@ function SetupTerminal()
     tnoremap <Esc> <C-\><C-n>
 endfunction
 
+function SetupVimFugitive()
+    set diffopt+=vertical
+endfunction
+
 "call SetClipboardSettings()
 call SetBufferSwitchingMappings()
 call SetColorScheme()
@@ -284,3 +288,4 @@ call SetupVimClangFormat()
 call SetupGrepSettings()
 call SetupFzf()
 call SetupTerminal()
+call SetupVimFugitive()
