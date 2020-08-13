@@ -1,7 +1,6 @@
 BASE_IMAGE_NAME:=${shell echo ${PREREQS_IMAGE} | sed 's/:.*//'}
 BASE_IMAGE_VERSION:=${shell echo ${PREREQS_IMAGE} | sed 's/.*://'}
 PREREQS_IMAGE:=concord-env:latest
-#CONCORD_WORK_DIR:=/vmwathena/concord
 CONCORD_BUILD_CONTAINER:=concord-env
 
 CONCORD_CONTAINER_SHELL:=/usr/bin/zsh
