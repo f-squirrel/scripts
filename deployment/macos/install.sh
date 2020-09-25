@@ -10,6 +10,7 @@ xcode-select --install
 
 brew install \
     cmake \
+    bat \
     git \
     python \
     the_silver_searcher \
