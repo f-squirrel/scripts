@@ -10,6 +10,7 @@ xcode-select --install
 
 brew install \
     cmake \
+    coreutils \
     bat \
     git \
     python \
