@@ -56,7 +56,7 @@ bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
 wget https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
-sudo dpkg -i bat_0.15.4_amd64.deb
+dpkg -i bat_0.15.4_amd64.deb
 rm bat_0.15.4_amd64.deb
 
 echo "installation completed"
