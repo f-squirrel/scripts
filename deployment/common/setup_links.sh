@@ -26,6 +26,8 @@ printf "Installed YCM extras to ${HOME}\n"
 printf "Replace the symlink if needed!\n"
 
 # tmux
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf ${HOME}/scripts/dotfiles/.tmux.conf ~/.tmux.conf
 #tmux source-file ~/.tmux.conf
 
