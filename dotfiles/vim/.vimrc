@@ -66,6 +66,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'ekalinin/Dockerfile.vim'
     " :CopyPath and :CopyFileName
     Plug 'taku-o/vim-copypath'
+    " Markdown viewer
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'cespare/vim-toml'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
