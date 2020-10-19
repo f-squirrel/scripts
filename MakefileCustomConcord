@@ -1,38 +1,51 @@
 BASE_IMAGE_NAME:=${shell echo ${PREREQS_IMAGE} | sed 's/:.*//'}
 BASE_IMAGE_VERSION:=${shell echo ${PREREQS_IMAGE} | sed 's/.*://'}
-PREREQS_IMAGE:=fsquirrel/concord-env:latest
-CONCORD_BUILD_CONTAINER:=concord-env
+CUSTOM_BUILD_IMAGE:=fsquirrel/concord-env:latest
+CUSTOM_BUILD_CONTAINER:=concord-env
 
-CONCORD_CONTAINER_SHELL:=/usr/bin/zsh
+CUSTOM_CONTAINER_SHELL:=/usr/bin/zsh
 
 PORT_RANGE:=7771
-CONCORD_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777 \
+CUSTOM_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777 \
 			  --mount type=bind,source=${CURDIR}/../.git,target=/.git
 
-.PHONY: run-cu
-run-cu: ## Run container in background -- needed only for editing files outside concord
-	@echo "Uncomment CONCORD_WORK_DIR"
-	docker run -d --rm \
-			  --name=${CONCORD_BUILD_CONTAINER} \
-			  --workdir=${CONCORD_WORK_DIR} \
-			  --mount type=bind,source=${CURDIR}/..,target=/vmwathena/ \
-			  ${CONCORD_ADDITIONAL_RUN_PARAMS} \
-			  ${PREREQS_IMAGE} \
-			  ${CONCORD_CONTAINER_SHELL} -c \
-			  "${CONCORD_ADDITIONAL_RUN_COMMANDS} \
-			  make -C /googletest/_build install; /usr/bin/tail -f /dev/null"
+CUSTOM_RUN_PARAMS:=-d --rm \
+				  --name=${CUSTOM_BUILD_CONTAINER} \
+				  --workdir=${CONCORD_WORK_DIR} \
+				  --mount type=bind,source=${CURDIR},target=${CONCORD_WORK_DIR} \
+				  --mount type=bind,source=${CURDIR}/../communication,target=/communication \
+				  ${CUSTOM_ADDITIONAL_RUN_PARAMS} \
+				  ${CUSTOM_BUILD_IMAGE} \
+
+.PHONY: run-c
+run-c: ## Run container in background
+	docker run ${CUSTOM_RUN_PARAMS} \
+			  ${CUSTOM_CONTAINER_SHELL} -c \
+			  "/usr/bin/tail -f /dev/null"
 	@echo
-	@echo "The container \"${CONCORD_BUILD_CONTAINER}\" with the build environment is started as daemon."
+	@echo "The container \"${CUSTOM_BUILD_CONTAINER}\" with the build environment is started as daemon."
 	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."
+
+.PHONY: stop-c
+stop-c: ## Stop the container
+	docker container stop -t 1 ${CUSTOM_BUILD_CONTAINER}
+	@echo
+	@echo "The container \"${CUSTOM_BUILD_CONTAINER}\" is successfully stopped."
+
+.PHONY: remove-c
+remove-c: ## Remove the container
+	docker container rm -f ${CUSTOM_BUILD_CONTAINER}
+	@echo
+	@echo "The container \"${CUSTOM_BUILD_CONTAINER}\" is successfully removed."
 
 .PHONY: build-env-docker-image
 build-env-docker-image: ## Re-build the container without caching
 	@echo ${BASE_IMAGE_NAME}
 	@echo ${BASE_IMAGE_VERSION}
-	docker build --rm --no-cache=true -t ${CONCORD_BUILD_CONTAINER}:latest \
+	docker build --rm --no-cache=true -t ${CUSTOM_BUILD_CONTAINER}:latest \
 		--build-arg base_image=${BASE_IMAGE_NAME} --build-arg base_tag=${BASE_IMAGE_VERSION} \
 		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/
 
 .PHONY: container
 container: #returns container name
-	@echo ${CONCORD_BUILD_CONTAINER}
+	@echo ${CUSTOM_BUILD_CONTAINER}

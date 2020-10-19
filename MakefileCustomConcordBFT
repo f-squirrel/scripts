@@ -1,23 +1,53 @@
 BASE_IMAGE:=${CONCORD_BFT_DOCKER_REPO}${CONCORD_BFT_DOCKER_IMAGE}
 BASE_IMAGE_VERSION:=${CONCORD_BFT_DOCKER_IMAGE_VERSION}
-CONCORD_BFT_DOCKER_REPO:=fsquirrel/
-CONCORD_BFT_DOCKER_IMAGE:=concord-bft-env
-CONCORD_BFT_DOCKER_IMAGE_VERSION:=latest
-CONCORD_BFT_TARGET_SOURCE_PATH:=/concord-bft
-CONCORD_BFT_DOCKER_CONTAINER:=concord-bft-env
+CUSTOM_DOCKER_REPO:=fsquirrel/
+CUSTOM_DOCKER_IMAGE:=concord-bft-env
+CUSTOM_DOCKER_IMAGE_VERSION:=latest
+CUSTOM_TARGET_SOURCE_PATH:=/concord-bft
+CUSTOM_DOCKER_CONTAINER:=concord-bft-env
 
 PORT_RANGE:=7770
-CONCORD_BFT_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
+CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
 
+CUSTOM_RUN_PARAMS:=-d --privileged=true \
+					  --cap-add NET_ADMIN --cap-add=SYS_PTRACE --ulimit core=-1 \
+					  --name="${CUSTOM_DOCKER_CONTAINER}" \
+					  --workdir=${CUSTOM_TARGET_SOURCE_PATH} \
+					  --mount type=bind,source=${CURDIR},target=/cores \
+					  --mount type=bind,source=${CURDIR},target=${CONCORD_BFT_TARGET_SOURCE_PATH}${CONCORD_BFT_CONTAINER_MOUNT_CONSISTENCY} \
+					  ${CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS} \
+					  ${CUSTOM_ADDITIONAL_RUN_PARAMS} \
+					  ${CUSTOM_DOCKER_REPO}${CUSTOM_DOCKER_IMAGE}:${CUSTOM_DOCKER_IMAGE_VERSION}
+
+.PHONY: run-c
+run-c: ## Run container in background
+	docker run ${CUSTOM_RUN_PARAMS} \
+			  ${CONCORD_BFT_CONTAINER_SHELL} -c \
+			  "/usr/bin/tail -f /dev/null"
+	@echo
+	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" with the build environment is started as daemon."
+	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."
+
+.PHONY: stop-c
+stop-c: ## Stop the container
+	docker container stop -t 1 ${CUSTOM_DOCKER_CONTAINER}
+	@echo
+	@echo "The container \"${CONCORD_BFT_DOCKER_CONTAINER}\" is successfully stopped."
+
+.PHONY: remove-c
+remove-c: ## Remove the container
+	docker container rm -f ${CUSTOM_DOCKER_CONTAINER}
+	@echo
+	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" is successfully removed."
+
+.PHONY: container
+container: #returns container name
+	@echo ${CUSTOM_DOCKER_IMAGE}
 
 .PHONY: build-env-docker-image
 build-env-docker-image: ## Re-build the container without caching
 	@echo ${BASE_IMAGE}
-	@echo ${CONCORD_BFT_DOCKER_IMAGE}
-	docker build --rm --no-cache=true -t ${CONCORD_BFT_DOCKER_REPO}${CONCORD_BFT_DOCKER_IMAGE}:latest \
+	@echo ${CUSTOM_DOCKER_IMAGE}
+	docker build --rm --no-cache=true -t ${CUSTOM_DOCKER_REPO}${CUSTOM_DOCKER_IMAGE}:latest \
 		--build-arg "base_image=${BASE_IMAGE}" --build-arg "base_tag=${BASE_IMAGE_VERSION}" \
 		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/
-
-.PHONY: container
-container: #returns container name
-	@echo ${CONCORD_BFT_DOCKER_IMAGE}
