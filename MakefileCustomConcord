@@ -1,6 +1,6 @@
 BASE_IMAGE_NAME:=${shell echo ${PREREQS_IMAGE} | sed 's/:.*//'}
 BASE_IMAGE_VERSION:=${shell echo ${PREREQS_IMAGE} | sed 's/.*://'}
-CUSTOM_BUILD_IMAGE:=fsquirrel/concord-env:latest
+CUSTOM_BUILD_IMAGE:=fsquirrel/concord-env
 CUSTOM_BUILD_CONTAINER:=concord-env
 
 CUSTOM_CONTAINER_SHELL:=/usr/bin/zsh
@@ -12,6 +12,7 @@ CUSTOM_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777 \
 CUSTOM_RUN_PARAMS:=-d --rm \
 				  --name=${CUSTOM_BUILD_CONTAINER} \
 				  --workdir=${CONCORD_WORK_DIR} \
+				  --mount type=bind,source=${HOME}/.vim/sessions,target=/root/.vim/sessions \
 				  --mount type=bind,source=${CURDIR},target=${CONCORD_WORK_DIR} \
 				  --mount type=bind,source=${CURDIR}/../communication,target=/communication \
 				  ${CUSTOM_ADDITIONAL_RUN_PARAMS} \
@@ -42,8 +43,8 @@ remove-c: ## Remove the container
 build-env-docker-image: ## Re-build the container without caching
 	@echo ${BASE_IMAGE_NAME}
 	@echo ${BASE_IMAGE_VERSION}
-	docker build --rm --no-cache=true -t ${CUSTOM_BUILD_CONTAINER}:latest \
-		--build-arg base_image=${BASE_IMAGE_NAME} --build-arg base_tag=${BASE_IMAGE_VERSION} \
+	docker build --rm --no-cache=true -t ${CUSTOM_BUILD_IMAGE}:latest \
+		--build-arg "base_image=${BASE_IMAGE_NAME}" --build-arg "base_tag=${BASE_IMAGE_VERSION}" \
 		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/deployment/
 
 .PHONY: container

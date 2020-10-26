@@ -13,8 +13,8 @@ CUSTOM_RUN_PARAMS:=-d --privileged=true \
 					  --cap-add NET_ADMIN --cap-add=SYS_PTRACE --ulimit core=-1 \
 					  --name="${CUSTOM_DOCKER_CONTAINER}" \
 					  --workdir=${CUSTOM_TARGET_SOURCE_PATH} \
-					  --mount type=bind,source=${CURDIR},target=/cores \
 					  --mount type=bind,source=${CURDIR},target=${CONCORD_BFT_TARGET_SOURCE_PATH}${CONCORD_BFT_CONTAINER_MOUNT_CONSISTENCY} \
+					  --mount type=bind,source=${HOME}/.vim/sessions,target=/root/.vim/sessions \
 					  ${CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS} \
 					  ${CUSTOM_ADDITIONAL_RUN_PARAMS} \
 					  ${CUSTOM_DOCKER_REPO}${CUSTOM_DOCKER_IMAGE}:${CUSTOM_DOCKER_IMAGE_VERSION}
