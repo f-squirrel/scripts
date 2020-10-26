@@ -69,7 +69,6 @@ call plug#begin('~/.vim/plugged')
     " Markdown viewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'cespare/vim-toml'
-    Plug 'thaerkh/vim-workspace'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
