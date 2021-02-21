@@ -9,7 +9,7 @@ CUSTOM_DOCKER_CONTAINER:=concord-bft-env
 PORT_RANGE:=7770
 CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
 
-CUSTOM_RUN_PARAMS:=-d --privileged=true \
+CUSTOM_RUN_PARAMS:=-d --rm --privileged=true \
 					  --cap-add NET_ADMIN --cap-add=SYS_PTRACE --ulimit core=-1 \
 					  --name="${CUSTOM_DOCKER_CONTAINER}" \
 					  --workdir=${CUSTOM_TARGET_SOURCE_PATH} \
@@ -32,7 +32,12 @@ run-c: ## Run container in background
 stop-c: ## Stop the container
 	docker container stop -t 1 ${CUSTOM_DOCKER_CONTAINER}
 	@echo
-	@echo "The container \"${CONCORD_BFT_DOCKER_CONTAINER}\" is successfully stopped."
+	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" is successfully stopped."
+
+.PHONY: login-c
+login-c: ## Login to the container. Note: if the container is already running, login into existing one
+	docker exec -it ${CUSTOM_DOCKER_CONTAINER} \
+		zsh;exit 0; \
 
 .PHONY: remove-c
 remove-c: ## Remove the container

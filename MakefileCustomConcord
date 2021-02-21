@@ -27,6 +27,11 @@ run-c: ## Run container in background
 	@echo "The container \"${CUSTOM_BUILD_CONTAINER}\" with the build environment is started as daemon."
 	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."
 
+.PHONY: login-c
+login-c: ## Login to the custom container
+	docker exec -it ${CUSTOM_BUILD_CONTAINER} \
+		${CUSTOM_CONTAINER_SHELL};exit 0; \
+	fi
 .PHONY: stop-c
 stop-c: ## Stop the container
 	docker container stop -t 1 ${CUSTOM_BUILD_CONTAINER}
