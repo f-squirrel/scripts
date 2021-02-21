@@ -267,6 +267,7 @@ endfunction
 
 function SetupTerminal()
     tnoremap <Esc> <C-\><C-n>
+    set termguicolors
 endfunction
 
 function SetupVimFugitive()
