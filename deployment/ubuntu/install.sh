@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install -y --no-install-recommends apt-utils
 
-apt-get update && apt-get -y -q install \
+apt-get update && apt-get -y -q --no-install-recommends install \
     apt-utils \
     autoconf \
     automake \
