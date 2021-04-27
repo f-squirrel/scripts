@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -eo pipefail
 
 cd
 # apt-get provides a vry old versin of nvim which does not support --listen

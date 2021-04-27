@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -eo pipefail
 
 VIM_DIR_PATH=~/.vim/
 mkdir -p ${VIM_DIR_PATH}

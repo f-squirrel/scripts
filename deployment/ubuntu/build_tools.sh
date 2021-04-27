@@ -1,3 +1,6 @@
+#!/bin/sh
+
+set -eo pipefail
 
 #TODO: Consider installing it via VimPlug
 cd

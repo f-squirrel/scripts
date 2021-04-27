@@ -1,3 +1,7 @@
+#!/bin/sh
+
+set -eo pipefail
+
 #Powerline for some reason works better when installed manually
 
 cd

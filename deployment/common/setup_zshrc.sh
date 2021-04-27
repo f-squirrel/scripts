@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -eo pipefail
 
 cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

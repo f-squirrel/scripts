@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install -y --no-install-recommends apt-utils
@@ -9,7 +11,7 @@ apt-get update && apt-get -y -q install \
     autoconf \
     automake \
     build-essential \
-    clang \
+    clang-7 \
     curl \
     dialog \
     g++ \
@@ -29,6 +31,15 @@ apt-get update && apt-get -y -q install \
     tmux \
     wget \
     zsh
+
+# Set Clang 7 as default compiler
+update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 100
+update-alternatives --install /usr/bin/clang clang /usr/bin/clang-7 100
+
+update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
+update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100
+
+#RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
 # Dirty hack, sometimes base image already has newer cmake installed manually
 if [ ! -f "/usr/bin/cmake" ]; then
