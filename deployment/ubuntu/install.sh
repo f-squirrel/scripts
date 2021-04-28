@@ -6,13 +6,13 @@ export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install -y --no-install-recommends apt-utils
 
+
 apt-get update && apt-get -y -q --no-install-recommends install \
     apt-utils \
     autoconf \
     automake \
     build-essential \
     clang-7 \
-    clang-10 \
     curl \
     dialog \
     g++ \
@@ -33,6 +33,10 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     wget \
     zsh
 
+apt-get install -y --reinstall ca-certificates
+mkdir /usr/local/share/ca-certificates/cacert.org
+wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
+update-ca-certificates
 
 #RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
@@ -61,24 +65,29 @@ bash ${SCRIPT_PATH}/deployment/common/setup_custom_script_helpers.sh
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 
 
-# Set Clang 10 as default compiler
-update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-10 100
-update-alternatives --install /usr/bin/clang clang /usr/bin/clang-10 100
+echo "Configure compiler"
+apt-get update && apt-get -y -q --no-install-recommends install \
+    software-properties-common
 
-update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
-update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100
+add-apt-repository -y ppa:ubuntu-toolchain-r/test
+
+apt-get update && apt-get -y -q --no-install-recommends install \
+    gcc-9 g++-9
+
+# Set Clang 10 as default compiler
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
+
+update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 100
+update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 100
+
+echo "Configured compiler"
 
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
 # Set Clang 7 as default compiler
-update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-10 30
-update-alternatives --install /usr/bin/clang clang /usr/bin/clang-10 30
-
-update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 100
-update-alternatives --install /usr/bin/clang clang /usr/bin/clang-7 100
-
-update-alternatives --install /usr/bin/cc cc /usr/bin/clang 30
-update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 30
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
 
 wget --no-check-certificate https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
 dpkg -i bat_0.15.4_amd64.deb
