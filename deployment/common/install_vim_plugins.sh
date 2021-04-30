@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#set -eo pipefail
+set -eo pipefail
 
 # Install Vim-Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -12,6 +12,8 @@ echo "Installed Vim-Plug"
 nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 echo "Installed nvim plugins"
 
+pip3 install certifi
+export PYTHONHTTPSVERIFY=0
 # YouCompleteMe for some reason Vim-PLug returns exit 1 when install automatically
 cd ~/.vim/plugged/YouCompleteMe
 python3 ./install.py --all

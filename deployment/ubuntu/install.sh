@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+#set -eo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -36,7 +36,8 @@ apt-get update && apt-get -y -q --no-install-recommends install \
 apt-get install -y --reinstall ca-certificates
 mkdir /usr/local/share/ca-certificates/cacert.org
 wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
-update-ca-certificates
+update-ca-certificates --fresh
+export SSL_CERT_DIR=/etc/ssl/certs
 
 #RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
