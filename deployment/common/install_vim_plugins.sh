@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eo pipefail
+#set -eo pipefail
 
 # Install Vim-Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
