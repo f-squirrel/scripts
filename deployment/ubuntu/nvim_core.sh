@@ -4,7 +4,7 @@ set -eo pipefail
 
 cd
 # apt-get provides a vry old versin of nvim which does not support --listen
-curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 
 #if [[ -n $LOCAL_INSTALLATION ]]; then
