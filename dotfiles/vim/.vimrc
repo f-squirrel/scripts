@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set mouse=a
 
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
