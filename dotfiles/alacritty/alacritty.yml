@@ -861,7 +861,13 @@ key_bindings:
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
   # Otherwise, ^Q does not work!
-  - { key: Q, mods: Control, chars: "\x11" }
+  - { key: Q,               mods: Control,          chars: "\x11"                           }
+  # Enables standard Emacs shortcuts, more can be found here:
+  # https://github.com/alacritty/alacritty/issues/2017#issuecomment-581707489
+  - { key: B,               mods: Alt,              chars: "\x1Bb"                          }
+  - { key: B,               mods: Alt|Shift,        chars: "\x1BB"                          }
+  - { key: F,               mods: Alt,              chars: "\x1Bf"                          }
+  - { key: F,               mods: Alt|Shift,        chars: "\x1BF"                          }
 
 #debug:
   # Display the time it takes to redraw each frame.
