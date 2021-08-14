@@ -37,4 +37,7 @@ ln -sf ${HOME}/scripts/dotfiles/git/config ~/.gitconfig
 
 ln -sf ${HOME}/scripts/dotfiles/.gdbinit ~/.gdbinit
 
+ALACRITTY_CONFIG_PATH=~/.config/alacritty
+ln -sf ${HOME}/scripts/dotfiles/alacritty ${ALACRITTY_CONFIG_PATH}
+
 printf "Finished link setup!\n"
