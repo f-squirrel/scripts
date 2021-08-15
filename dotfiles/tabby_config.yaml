@@ -1,0 +1,173 @@
+version: 3
+profiles: []
+hotkeys:
+  toggle-window: []
+  copy-current-path: []
+  ctrl-c:
+    - Ctrl-C
+  copy:
+    - ⌘-C
+  paste:
+    - ⌘-V
+  clear:
+    - ⌘-K
+  select-all:
+    - ⌘-A
+  zoom-in:
+    - ⌘-=
+    - ⌘-Shift-=
+  zoom-out:
+    - ⌘--
+    - ⌘-Shift--
+  reset-zoom:
+    - ⌘-0
+  home:
+    - ⌘-Left
+    - Home
+  end:
+    - ⌘-Right
+    - End
+  previous-word:
+    - - ⌥-Left
+    - - ⌥-B
+  next-word:
+    - - ⌥-Right
+    - - ⌥-F
+  delete-previous-word:
+    - ⌥-Backspace
+  delete-next-word:
+    - - ⌥-Delete
+    - - ⌥-D
+  search:
+    - ⌘-F
+  pane-focus-all:
+    - ⌘-Shift-I
+  telnet-profile-selector: []
+  restart-telnet-session: []
+  ssh-profile-selector: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings:
+    - ⌘-,
+  serial:
+    - Alt-K
+  restart-serial-session: []
+  new-window:
+    - ⌘-N
+  new-tab:
+    - ⌘-T
+  profile: {}
+  toggle-fullscreen:
+    - Ctrl+⌘+F
+  close-tab:
+    - ⌘-W
+  reopen-tab:
+    - ⌘-Shift-T
+  toggle-last-tab: []
+  rename-tab:
+    - ⌘-R
+  next-tab:
+    - Ctrl-Tab
+  previous-tab:
+    - Ctrl-Shift-Tab
+  move-tab-left:
+    - ⌘-Shift-Left
+  move-tab-right:
+    - ⌘-Shift-Right
+  rearrange-panes:
+    - ⌘-Shift
+  tab-1:
+    - ⌘-1
+  tab-2:
+    - ⌘-2
+  tab-3:
+    - ⌘-3
+  tab-4:
+    - ⌘-4
+  tab-5:
+    - ⌘-5
+  tab-6:
+    - ⌘-6
+  tab-7:
+    - ⌘-7
+  tab-8:
+    - ⌘-8
+  tab-9:
+    - ⌘-9
+  tab-10:
+    - ⌘-0
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right:
+    - ⌘-Shift-D
+  split-bottom:
+    - ⌘-D
+  split-left: []
+  split-top: []
+  pane-nav-right:
+    - ⌘-⌥-Right
+  pane-nav-down:
+    - ⌘-⌥-Down
+  pane-nav-up:
+    - ⌘-⌥-Up
+  pane-nav-left:
+    - ⌘-⌥-Left
+  pane-nav-previous:
+    - ⌘-⌥-[
+  pane-nav-next:
+    - ⌘-⌥-]
+  pane-maximize:
+    - ⌘-⌥-Enter
+  close-pane:
+    - ⌘-Shift-W
+  profile-selector:
+    - ⌘-E
+  switch-profile:
+    - ⌘-Shift-E
+terminal:
+  searchOptions: {}
+  colorScheme:
+    name: Solarized Dark - Patched
+    foreground: '#708284'
+    background: '#001e27'
+    cursor: '#708284'
+    colors:
+      - '#002831'
+      - '#d11c24'
+      - '#738a05'
+      - '#a57706'
+      - '#2176c7'
+      - '#c61c6f'
+      - '#259286'
+      - '#eae3cb'
+      - '#475b62'
+      - '#bd3613'
+      - '#475b62'
+      - '#536870'
+      - '#708284'
+      - '#5956ba'
+      - '#819090'
+      - '#fcf4dc'
+  customColorSchemes: []
+  font: DejaVu Sans Mono for Powerline
+  ligatures: true
+  background: colorScheme
+  fontSize: 16
+ssh:
+  warnOnClose: true
+configSync:
+  parts: {}
+appearance:
+  theme: Compact
+  frame: native
+pluginBlacklist: []
+enableWelcomeTab: false
+recentProfiles: []
