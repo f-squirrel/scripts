@@ -84,6 +84,7 @@ set shell=/bin/bash
 let mapleader=","
 set listchars+=eol:$,tab:>-,space:·
 
+    set clipboard=unnamedplus " to be able to copy-paste from other applications
 function SetClipboardSettings()
     set clipboard=unnamed " to be able to copy-paste from other applications
     if GetOperatingSystemName() == "Linux"
