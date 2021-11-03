@@ -1,0 +1,83 @@
+{
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.neovimConfigPath": "~/.config/nvim/init.vim",
+    "vim.hlsearch": true,
+    "vim.searchHighlightColor": "rgba(250, 240, 0, 0.5)",
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "c",
+                "]"
+            ],
+            "commands": [
+                "workbench.action.editor.nextChange"
+            ]
+        },
+        {
+            "before": [
+                "c",
+                "["
+            ],
+            "commands": [
+                "workbench.action.editor.previousChange"
+            ]
+        },
+        {
+            "before": [
+                "<esc>",
+                "<esc>"
+            ],
+            "commands": [
+                ":nohlsearch"
+            ]
+        }
+    ],
+    "clangd.checkUpdates": true,
+    "clangd.path": "/home/dima/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/13.0.0/clangd_13.0.0/bin/clangd",
+    "files.autoSave": "afterDelay",
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.editor.showTabs": false,
+    "C_Cpp.autocomplete": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "editor.tokenColorCustomizations": {
+        "[Monokai*]": {
+            "textMateRules": [
+                {
+                    "scope": "entity.name.namespace",
+                    "settings": {
+                        "fontStyle": ""
+                    }
+                },
+                {
+                    "scope": "entity.name.type.class",
+                    "settings": {
+                        "fontStyle": ""
+                    }
+                },
+                {
+                    "scope": "entity.name.type.parameter",
+                    "settings": {
+                        "fontStyle": ""
+                    }
+                },
+                {
+                    "scope": "string.quoted.other.lt-gt.include.cpp",
+                    "settings": {
+                        "fontStyle": ""
+                    }
+                },
+            ]
+        }
+    },
+    "editor.fontFamily": "Fira Code",
+    "editor.links": false, // see https://github.com/clangd/clangd/issues/630
+    //"editor.fontFamily": "Source Code Pro for Powerline",
+    //"editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 13,
+    "editor.fontLigatures": true,
+    "python.languageServer": "Pylance",
+    "workbench.colorTheme": "Monokai Pro",
+    "window.zoomLevel": 1
+}
