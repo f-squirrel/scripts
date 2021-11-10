@@ -71,13 +71,28 @@
             ]
         }
     },
+    "workbench.colorCustomizations": {
+        "[Monokai*]": {
+            "statusBar.foreground": "#fffefe",
+            "statusBar.background": "#0e67b0",
+            "statusBar.noFolderBackground": "#0e67b0",
+            "statusBar.debuggingBackground": "#0e67b0"
+        }
+    },
     "editor.fontFamily": "Fira Code",
     "editor.links": false, // see https://github.com/clangd/clangd/issues/630
     //"editor.fontFamily": "Source Code Pro for Powerline",
     //"editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 13,
-    "editor.fontLigatures": true,
+    "editor.fontWeight": "450",
+    //"editor.fontLigatures": true,
+    "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
     "python.languageServer": "Pylance",
+    "window.zoomLevel": 1,
     "workbench.colorTheme": "Monokai Pro",
-    "window.zoomLevel": 1
+    "terminal.integrated.commandsToSkipShell": [
+        // Send quick open's keybinding to the shell
+        "-workbench.action.quickOpen"
+    ],
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim"
 }
