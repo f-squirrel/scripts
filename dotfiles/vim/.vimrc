@@ -197,17 +197,13 @@ endfunction
 function SetBufferSwitchingMappings()
     nnoremap <C-Left> :tabprevious<CR>
     nnoremap <C-Right> :tabnext<CR>
-    nnoremap <S-Left> :bprev<CR>
-    nnoremap <S-Right> :bnext<CR>
-    map <C-h> :bprev<CR>
-    map <C-l> :bnext<CR>
+    nnoremap <C-h> :bprev<CR>
+    nnoremap <C-l> :bnext<CR>
 endfunction
 
 function SetSearchMappings()
     "Select visually text and press // to start search
     vnoremap // y/<C-R>"<CR>
-    "Double ESC turns off highlight of search results
-
     nnoremap <esc><esc> :nohlsearch<return>
 endfunction
 
@@ -227,10 +223,7 @@ endfunction
 
 function GrepSensitiveUnderCursorMapping()
 
-    if executable('ag')
-        grep --case-sensitive <cword> ./
-    else
-        grep <cword> ./
+    grep <cword> ./
     endif
     cwindow
     redraw!
@@ -252,21 +245,15 @@ endfunction
 "endfunction
 
 function SetupGrepSettings()
-    " The Silver Searcher
-    if executable('ag')
-        " Use ag over grep
-        set grepprg=ag\ --nogroup\ --nocolor\ --numbers
-    else
-        set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
-    endif
+    set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
     nnoremap gr :call GrepUnderCursorMapping()<CR>
     nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
 endfunction
 
 function SetupFzf()
-    map <leader>ff           :Files<CR>
-    map <leader>t            :Ag<CR>
-    map <leader>s            :BLines<CR>
+    map <leader>ff          :Files<CR>
+    map <leader>ft          :Rg<CR>
+    map <leader>fs          :BLines<CR>
 endfunction
 
 function SetupTerminal()
