@@ -10,10 +10,11 @@ xcode-select --install
 
 brew install \
     cmake \
-    coreutils \
     bat \
+    coreutils \
     git \
     python \
+    ripgrep \
     the_silver_searcher \
     tmux \
     wget \
