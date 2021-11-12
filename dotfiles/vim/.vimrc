@@ -144,6 +144,7 @@ function SetYouCompleteMe()
     "let g:UltiSnipsEditSplit="vertical"
 
     map <C-G>               :YcmCompleter GoTo<CR>
+    nnoremap <leader>g      :YcmCompleter GoTo<CR>
     map <leader>f           :YcmCompleter Format<CR>
     nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
     nnoremap yr             :YcmCompleter GoToReferences<CR>
@@ -185,6 +186,7 @@ function SetSyntastic()
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 1
     let g:syntastic_python_checkers = ['pyflakes']
+    let g:syntastic_python_python_exec = 'python3'
 endfunction
 
 function SetEasyAlignMappings()
@@ -206,7 +208,7 @@ function SetSearchMappings()
     vnoremap // y/<C-R>"<CR>
     "Double ESC turns off highlight of search results
 
-    nnoremap <esc><esc> :noh<return>
+    nnoremap <esc><esc> :nohlsearch<return>
 endfunction
 
 function SetMappingToCloseBufferWithoutClosingWindow()
