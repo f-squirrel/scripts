@@ -28,7 +28,7 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     python3 \
     python3-dev \
     python3-pip \
-    silversearcher-ag \
+    ripgrep \
     tmux \
     wget \
     zsh
