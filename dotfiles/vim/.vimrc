@@ -254,6 +254,10 @@ function SetupFzf()
     map <leader>ff          :Files<CR>
     map <leader>ft          :Rg<CR>
     map <leader>fs          :BLines<CR>
+
+    " Rg: to search in content, not filenames
+    command! -bang -nargs=* Rg
+      \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 endfunction
 
 function SetupTerminal()
