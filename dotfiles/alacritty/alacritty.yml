@@ -455,7 +455,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux new"
+    - "tmux attach | tmux new -s main"
 
 # Startup directory
 #
