@@ -19,6 +19,11 @@ echo "export EDITOR='nvim'" >> ${HOME}/.zshrc
 echo 'DEFAULT_USER=$USER' >> ${HOME}/.zshrc
 echo "alias view='nvim -R'" >> ${HOME}/.zshrc
 
+# To search for hidden files
+
+echo "export FZF_CTRL_T_COMMAND=\"rg --hidden -l -g '!.git/' \"\" \""
+echo "export FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND}
+
 #Setup zshrc
 if [[ -n $LOCAL_INSTALLATION ]]; then
     echo 'export REMOTE_DEV_USER=<user name for remote dev station>' >> ${HOME}/.zshrc
