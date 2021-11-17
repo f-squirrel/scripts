@@ -80,7 +80,7 @@ call plug#end()
 " current company
 source ~/.vim/.code_style.vim
 
-set shell=/bin/bash
+set shell=zsh
 let mapleader=","
 set listchars+=eol:$,tab:>-,space:·
 
@@ -254,6 +254,8 @@ function SetupFzf()
     map <leader>ff          :Files<CR>
     map <leader>ft          :Rg<CR>
     map <leader>fs          :BLines<CR>
+    map <leader>fg          :Rg<CR>
+    map <leader>fl          :BLines<CR>
 
     " Rg: to search in content, not filenames
     command! -bang -nargs=* Rg
