@@ -28,7 +28,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'crusoexia/vim-monokai'
 
     " for some reasons post install does not work when started here
-    Plug 'ycm-core/YouCompleteMe'
+    "Plug 'ycm-core/YouCompleteMe'
+    Plug 'neovim/nvim-lspconfig'
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
@@ -187,6 +188,7 @@ function SetSyntastic()
     let g:syntastic_check_on_wq = 1
     let g:syntastic_python_checkers = ['pyflakes']
     let g:syntastic_python_python_exec = 'python3'
+    let g:syntastic_ignore_files = ['.cpp', '.hpp', '.h', '.c', '.hxx', '.hh']
 endfunction
 
 function SetEasyAlignMappings()
@@ -278,7 +280,7 @@ call SetColumnGuideLine()
 call SetEasyAlignMappings()
 call SetNerdTree()
 call SetVimAirLine()
-call SetYouCompleteMe()
+"call SetYouCompleteMe()
 call SetCppEnhancedHighlight()
 call SetSearchMappings()
 call SetSyntastic()
