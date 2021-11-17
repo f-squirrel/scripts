@@ -39,5 +39,6 @@ ln -sf ${HOME}/scripts/dotfiles/.gdbinit ~/.gdbinit
 
 ALACRITTY_CONFIG_PATH=~/.config/alacritty
 ln -sf ${HOME}/scripts/dotfiles/alacritty ${ALACRITTY_CONFIG_PATH}
+ln -s ${HOME}/scripts/.ripgreprc ${HOME}/.ripgreprc
 
 printf "Finished link setup!\n"

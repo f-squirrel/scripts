@@ -21,8 +21,10 @@ echo "alias view='nvim -R'" >> ${HOME}/.zshrc
 
 # To search for hidden files
 
-echo "export FZF_CTRL_T_COMMAND=\"rg --hidden -l -g '!.git/' \"\" \""
-echo "export FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND}
+echo "export FZF_CTRL_T_COMMAND=\"rg --hidden -l -g '!.git/' \"\" \"" >> ${HOME}/.zshrc
+echo "export FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND}" >> ${HOME}/.zshrc
+
+echo "export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc" >> ${HOME}/.zshrc
 
 #Setup zshrc
 if [[ -n $LOCAL_INSTALLATION ]]; then
