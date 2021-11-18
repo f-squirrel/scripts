@@ -145,8 +145,10 @@ function SetYouCompleteMe()
 
     map <C-G>               :YcmCompleter GoTo<CR>
     nnoremap <leader>g      :YcmCompleter GoTo<CR>
-    map <leader>f           :YcmCompleter Format<CR>
     nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
+    noremap gd              :YcmCompleter GoTo<CR>
+    noremap gD              :YcmCompleter GoToDeclaration<CR>
+    noremap <leader>f       :YcmCompleter Format<CR>
     nnoremap yr             :YcmCompleter GoToReferences<CR>
 endfunction
 
