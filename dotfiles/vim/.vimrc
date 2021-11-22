@@ -1,11 +1,11 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set mouse=a
+set encoding=utf8
 
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
-
 
 if GetOperatingSystemName() == "Linux"
     " If installed using git
@@ -68,6 +68,7 @@ call plug#begin('~/.vim/plugged')
     " :CopyPath and :CopyFileName
     Plug 'taku-o/vim-copypath'
     " Markdown viewer
+    Plug 'ryanoasis/vim-devicons'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'cespare/vim-toml'
     " Neovim-Qt runtime
@@ -120,7 +121,8 @@ function SetNerdTree()
     let g:NERDTreeWinSize=30
     set modifiable "to have possibility to add/remove files from NERD Tree menu
 
-    map <C-n> :NERDTreeToggle<CR>
+    nnoremap <C-n> :NERDTreeToggle<CR>
+    nnoremap <leader>ntf :NERDTreeFind<CR>
 endfunction
 
 function SetYouCompleteMe()
