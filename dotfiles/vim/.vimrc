@@ -177,9 +177,9 @@ endfunction
 function SetVimAirLine()
     set laststatus=2
     se t_Co=256
-    let g:airline_theme='dark'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_powerline_fonts = 1
+    let g:airline_theme='base16_monokai'
 endfunction
 
 function SetSyntastic()
