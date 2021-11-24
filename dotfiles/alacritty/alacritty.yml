@@ -458,7 +458,7 @@ shell:
   args:
     - --login
     - -c
-    - "tmux attach || tmux new"
+    - "tmux"
 
 # Startup directory
 #
