@@ -29,7 +29,21 @@ file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/*.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 EOM
 
+RESULT_FILE=main.cpp
+
+cat > $RESULT_FILE <<- "EOM"
+
+int main() {
+    return 0;
+}
+EOM
+
 cp ${HOME}/scripts/utils/.clang-format .
+
+mkdir build && cd build && cmake ..
+
+cd ..
+vim main.cpp
 }
 
-alias generate_cpp_env=generate_cmake_helper
+alias gen_cppenv=generate_cmake_helper
