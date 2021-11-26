@@ -2,6 +2,12 @@
 
 generate_cmake_helper() {
 
+if [ $1 ] ; then
+    echo $1
+    mkdir -p $1
+    cd $1
+fi
+
 local RESULT_FILE=CMakeLists.txt
 
 cat > $RESULT_FILE <<- "EOM"
@@ -41,9 +47,12 @@ EOM
 cp ${HOME}/scripts/utils/.clang-format .
 
 mkdir build && cd build && cmake ..
-
 cd ..
+
+# Symlink to compilation database
+ln -s ./build/compile_commands.json compile_commands.json
+
 vim main.cpp
 }
 
-alias gen_cppenv=generate_cmake_helper
+alias gencppenv=generate_cmake_helper
