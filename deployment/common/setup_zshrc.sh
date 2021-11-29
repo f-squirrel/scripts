@@ -19,6 +19,8 @@ echo "export EDITOR='nvim'" >> ${HOME}/.zshrc
 echo 'DEFAULT_USER=$USER' >> ${HOME}/.zshrc
 echo "alias view='nvim -R'" >> ${HOME}/.zshrc
 
+echo "alias gdb='gdb --tui'" >> ${HOME}/.zshrc
+
 # To search for hidden files
 
 echo "export FZF_CTRL_T_COMMAND=\"rg --hidden -l -g '!.git/' \"\" \"" >> ${HOME}/.zshrc
