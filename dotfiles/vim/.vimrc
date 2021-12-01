@@ -2,6 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set mouse=a
 set encoding=utf8
+set noautoread " Vim asks if user wants to reload a changed file
 
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
