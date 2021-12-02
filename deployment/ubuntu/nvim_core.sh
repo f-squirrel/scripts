@@ -21,11 +21,11 @@ chmod u+x nvim.appimage
     update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 #else
     # --appimage-extract is needed because it is a mess to run FUSE at docker
-    ./nvim.appimage --appimage-extract
-    mv ${HOME}/squashfs-root ${HOME}/.nvim_install_dir
-    # Link the binary so all the dependency will be able to find it
-    ln -sf ${HOME}/.nvim_install_dir/usr/bin/nvim /usr/bin/nvim
-    rm nvim.appimage
+    #./nvim.appimage --appimage-extract
+    #mv ${HOME}/squashfs-root ${HOME}/.nvim_install_dir
+    ## Link the binary so all the dependency will be able to find it
+    #ln -sf ${HOME}/.nvim_install_dir/usr/bin/nvim /usr/bin/nvim
+    #rm nvim.appimage
 #fi
 
 cd
