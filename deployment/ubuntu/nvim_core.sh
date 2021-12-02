@@ -13,12 +13,12 @@ chmod u+x nvim.appimage
     # Set the above with the correct path, then run the rest of the commands:
     set -u
     # Need this one to make view work
-    sudo update-alternatives --install /usr/bin/nvim nvim "${CUSTOM_NVIM_PATH}" 110
-    sudo update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
-    sudo update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
-    sudo update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
-    sudo update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
-    sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/nvim nvim "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 #else
     # --appimage-extract is needed because it is a mess to run FUSE at docker
     ./nvim.appimage --appimage-extract
