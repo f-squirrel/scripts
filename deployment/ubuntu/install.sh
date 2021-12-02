@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#set -eo pipefail
+set -e
+set -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
