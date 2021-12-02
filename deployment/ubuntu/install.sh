@@ -26,13 +26,14 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     pyflakes \
     pyflakes3 \
     python \
+    python3-setuptools \
     python3 \
     python3-dev \
     python3-pip \
     tmux \
     wget \
     zsh
-
+ 
 apt-get install -y --reinstall ca-certificates
 mkdir /usr/local/share/ca-certificates/cacert.org
 wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
