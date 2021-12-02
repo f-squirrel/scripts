@@ -29,7 +29,6 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     python3 \
     python3-dev \
     python3-pip \
-    ripgrep \
     tmux \
     wget \
     zsh
@@ -43,6 +42,11 @@ export SSL_CERT_DIR=/etc/ssl/certs
 #RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
 # Dirty hack, sometimes base image already has newer cmake installed manually
+
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+dpkg -i ripgrep_13.0.0_amd64.deb
+rm ripgrep_13.0.0_amd64.deb
+
 if [ ! -f "/usr/bin/cmake" ]; then
     apt-get update && apt-get -y -q install cmake
 fi
