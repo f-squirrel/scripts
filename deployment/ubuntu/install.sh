@@ -96,7 +96,7 @@ bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
 
-wget --no-check-certificate https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
+wget --quiet --no-check-certificate https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
 dpkg -i bat_0.15.4_amd64.deb
 rm bat_0.15.4_amd64.deb
 
