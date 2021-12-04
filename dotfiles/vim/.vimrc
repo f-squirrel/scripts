@@ -3,6 +3,7 @@ set mouse=a " Enable mouse
 set smartcase " Smartcase search
 set number " Display line numbers
 set hidden
+set ignorecase " Mostly for wildmenu completion
 set smartindent
 set cindent
 set clipboard+=unnamedplus " to be able to copy-paste from other applications without + and * registers
