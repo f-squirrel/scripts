@@ -1,7 +1,20 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set mouse=a
+syntax on
+set mouse=a " Enable mouse
+set smartcase " Smartcase search
+set number " Display line numbers
+set hidden
+set smartindent
+set cindent
+
+" NVIM defaults
+set incsearch " Search while typing
 set encoding=utf8
+set autoindent
+set backspace=indent,eol,start
+set hlsearch " highlight search
+
 set noautoread " Vim asks if user wants to reload a changed file
 
 function GetOperatingSystemName()
