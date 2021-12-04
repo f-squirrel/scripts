@@ -1,21 +1,31 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-syntax on
+syntax enable
 set mouse=a " Enable mouse
 set smartcase " Smartcase search
 set number " Display line numbers
 set hidden
 set smartindent
 set cindent
+set clipboard+=unnamedplus " to be able to copy-paste from other applications without + and * registers
 
-" NVIM defaults
-set incsearch " Search while typing
-set encoding=utf8
+" NVIM defaults start
 set autoindent
 set backspace=indent,eol,start
+set encoding=utf8
 set hlsearch " highlight search
+set incsearch " Search while typing
+set nocompatible              " Non-compatible with vi
+" NVIM defaults end
 
+" NVIM default changed
 set noautoread " Vim asks if user wants to reload a changed file
+
+set shell=zsh
+let mapleader=","
+set listchars+=eol:$,tab:>-,space:·
+
+" This file is usually symbolic link to file with code style relevant for
+" current company
+source ~/.vim/.code_style.vim
 
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
@@ -93,22 +103,6 @@ call plug#begin('~/.vim/plugged')
     endif
 call plug#end()
 
-" This file is usually symbolic link to file with code style relevant for
-" current company
-source ~/.vim/.code_style.vim
-
-set shell=zsh
-let mapleader=","
-set listchars+=eol:$,tab:>-,space:·
-
-    set clipboard=unnamedplus " to be able to copy-paste from other applications
-function SetClipboardSettings()
-    set clipboard=unnamed " to be able to copy-paste from other applications
-    if GetOperatingSystemName() == "Linux"
-        set clipboard-=autoselect
-    endif
-endfunction
-
 function SetColumnGuideLine()
     "Highlight current line
     set cursorline
@@ -118,12 +112,8 @@ function SetColumnGuideLine()
 endfunction
 
 function SetColorScheme()
-    syntax enable
     set background=dark
     colorscheme monokai
-    if GetOperatingSystemName() == "Linux"
-        let g:rehash256 = 1
-    endif
 endfunction
 
 function SetNerdTree()
@@ -291,7 +281,6 @@ function SetupVimFugitive()
     set diffopt+=vertical
 endfunction
 
-"call SetClipboardSettings()
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
