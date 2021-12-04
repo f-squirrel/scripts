@@ -93,7 +93,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'ekalinin/Dockerfile.vim'
     " :CopyPath and :CopyFileName
-    Plug 'taku-o/vim-copypath'
+    Plug 'f-squirrel/copypath.vim'
     " Markdown viewer
     Plug 'ryanoasis/vim-devicons'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -282,6 +282,10 @@ function SetupVimFugitive()
     set diffopt+=vertical
 endfunction
 
+function SetupCopyPath()
+    let g:copypath_copy_to_unnamed_plus_register = 1
+endfunction
+
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
@@ -300,3 +304,4 @@ call SetupGrepSettings()
 call SetupFzf()
 call SetupTerminal()
 call SetupVimFugitive()
+call SetupCopyPath()
