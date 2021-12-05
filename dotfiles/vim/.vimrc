@@ -30,6 +30,12 @@ call plug#begin('~/.vim/plugged')
     " for some reasons post install does not work when started here
     "Plug 'ycm-core/YouCompleteMe'
     Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+
     Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
