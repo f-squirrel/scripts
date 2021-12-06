@@ -262,11 +262,19 @@ function SetupGrepSettings()
 endfunction
 
 function SetupFzf()
+    " Search for file in current directory
     map <leader>ff          :Files<CR>
-    map <leader>ft          :Rg<CR>
-    map <leader>fs          :BLines<CR>
+
+    " Search for a string in files in current directory
     map <leader>fg          :Rg<CR>
+    map <leader>ft          :Rg<CR>
+
+    " Search for a string in current buffer
+    map <leader>fs          :BLines<CR>
     map <leader>fl          :BLines<CR>
+
+    " Search in command history
+    map <leader>fh          :History:<CR>
 
     " Rg: to search in content, not filenames
     command! -bang -nargs=* Rg
