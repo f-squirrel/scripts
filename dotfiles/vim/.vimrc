@@ -88,7 +88,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'jlanzarotta/bufexplorer'
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'rhysd/vim-clang-format'
     "Plugin 'MattesGroeger/vim-bookmarks'
     Plug 'junegunn/fzf.vim'
     Plug 'ekalinin/Dockerfile.vim'
@@ -239,17 +238,6 @@ function GrepSensitiveUnderCursorMapping()
     redraw!
 endfunction
 
-function SetupVimClangFormat()
-    if filereadable(getcwd() . "/.clang-format")
-        let g:clang_format#auto_format = 1
-        " map to <Leader>cf in C++ code
-        autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-        autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-    else
-        let g:clang_format#auto_format = 0
-    endif
-endfunction
-
 "function SetupVimBookmarks()
 "    nmap mo <Plug>BookmarkShowAll
 "endfunction
@@ -311,7 +299,6 @@ call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
-call SetupVimClangFormat()
 "call SetupVimBookmarks()
 call SetupGrepSettings()
 call SetupFzf()
