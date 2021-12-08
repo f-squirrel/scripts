@@ -87,7 +87,7 @@ call plug#begin('~/.vim/plugged')
     " ,be to see the list of open buffers
     Plug 'jlanzarotta/bufexplorer'
     " Shows indention level
-    Plug 'Yggdroot/indentLine'
+    Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'rhysd/vim-clang-format'
     "Plugin 'MattesGroeger/vim-bookmarks'
     Plug 'junegunn/fzf.vim'
@@ -293,6 +293,12 @@ function SetupCopyPath()
     let g:copypath_copy_to_unnamed_plus_register = 1
 endfunction
 
+function SetupIndentPlug()
+    " Uncomment to disable the plugin
+    "let g:indent_blankline_enabled = v:false
+    let g:indent_blankline_show_first_indent_level = v:false
+endfunction
+
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
@@ -312,3 +318,4 @@ call SetupFzf()
 call SetupTerminal()
 call SetupVimFugitive()
 call SetupCopyPath()
+call SetupIndentPlug()
