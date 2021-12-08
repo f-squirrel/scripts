@@ -100,6 +100,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'cespare/vim-toml'
+
+    " Used :BD to kill the last buffer and prevent NERDTree from expanding
+    Plug 'qpkorr/vim-bufkill'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
@@ -120,6 +123,7 @@ function SetColorScheme()
 endfunction
 
 function SetNerdTree()
+    " Start NERDTree when Vim is started without file arguments.
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " close vim in case only open window is NerdTree
