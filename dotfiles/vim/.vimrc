@@ -24,6 +24,9 @@ set shell=zsh
 let mapleader=","
 set listchars+=eol:$,tab:>-,space:·
 
+" Disable Vim-recording
+map q <Nop>
+
 " This file is usually symbolic link to file with code style relevant for
 " current company
 source ~/.vim/.code_style.vim
