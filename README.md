@@ -46,7 +46,7 @@ Run `rgvim -h` for the details
 ```sh
 mkdir <project dir>
 cd <project dir>
-generate_cpp_env
+gencppenv
 ```
 
 The script generates `CMakeLists.txt` and `.clang-format` files
