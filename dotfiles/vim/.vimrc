@@ -45,63 +45,78 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-    " plugin from http://vim-scripts.org/vim/scripts.html
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
     " It shows which lines have been added, modified, or removed.
     Plug 'airblade/vim-gitgutter'
-    " A plugin of NERDTree showing git status flags
     " Colors devicons
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'scrooloose/nerdtree'
-    Plug 'crusoexia/vim-monokai'
+    "Plug 'crusoexia/vim-monokai'
+
+    Plug 'kyazdani42/nvim-web-devicons' " for file icons
+    Plug 'kyazdani42/nvim-tree.lua' " file tree
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
+    Plug 'tanvirtin/monokai.nvim'
 
     " for some reasons post install does not work when started here
     Plug 'ycm-core/YouCompleteMe'
-    Plug 'octol/vim-cpp-enhanced-highlight'
 
     " Track the engine. removed since it is incompatible with neovim on macos
     Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     " Plugin 'f-squirrel/vim-snippets'
     Plug 'honza/vim-snippets'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+
+    " Easily align lines
     Plug 'junegunn/vim-easy-align'
+
+    " Status line
+    Plug 'nvim-lualine/lualine.nvim'
+
+    " Buffers
+    Plug 'akinsho/bufferline.nvim'
 
     " Insert or delete brackets, parens, quotes in pair.
     Plug 'jiangmiao/auto-pairs'
 
     " :StripWhitespace to delete trailing white spaces
     Plug 'ntpeters/vim-better-whitespace'
+
     " :Bufonly to delete all buffers but this
     Plug 'schickling/vim-bufonly'
+
     " :SyntasticCheck to run syntax check for scripting languages(python)
     Plug 'vim-syntastic/syntastic'
+
     " Comment short cuts
     " <Leader>cl
     " [count]<leader>c<space> |NERDCommenterToggle|
     " Toggles the comment state of the selected line(s).
     " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
     Plug 'scrooloose/nerdcommenter'
+
     " Select and compare lines in code
     Plug 'AndrewRadev/linediff.vim'
+
     " ,be to see the list of open buffers
     Plug 'jlanzarotta/bufexplorer'
+
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
-    "Plugin 'MattesGroeger/vim-bookmarks'
+
     Plug 'junegunn/fzf.vim'
     Plug 'ekalinin/Dockerfile.vim'
+
     " :CopyPath and :CopyFileName
     Plug 'f-squirrel/copypath.vim'
+
     " Markdown viewer
-    Plug 'ryanoasis/vim-devicons'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
     Plug 'cespare/vim-toml'
 
     " Used :BD to kill the last buffer and prevent NERDTree from expanding
     Plug 'qpkorr/vim-bufkill'
+
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
@@ -118,23 +133,7 @@ endfunction
 
 function SetColorScheme()
     set background=dark
-    colorscheme monokai
-endfunction
-
-function SetNerdTree()
-    " Start NERDTree when Vim is started without file arguments.
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    " close vim in case only open window is NerdTree
-    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    let g:NERDTreeShowHidden=1
-    let g:NERDTreeIgnore = ['\.pyc$', '\.DS_Store', '\.swp', '\.swn', '\.swo']
-    let g:NERDTreeWinPos = "left"
-    let g:NERDTreeWinSize=30
-    set modifiable "to have possibility to add/remove files from NERD Tree menu
-
-    nnoremap <C-n> :NERDTreeToggle<CR>
-    nnoremap <leader>ntf :NERDTreeFind<CR>
+    colorscheme monokai_pro
 endfunction
 
 function SetYouCompleteMe()
@@ -174,21 +173,11 @@ function SetCppEnhancedHighlight()
     let g:cpp_concepts_highlight = 1
 endfunction
 
-set pastetoggle=<F2>
-
 function GetDisplayDimension()
     let dimension = system("~/scripts/terminal-configuration/vim/get_display_dimensions.sh")
     let dimension = split(trim(dimension), 'x')
     let dimension = [ str2nr(dimension[0]), str2nr(dimension[1]) ]
     return dimension
-endfunction
-
-function SetVimAirLine()
-    set laststatus=2
-    se t_Co=256
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline_powerline_fonts = 1
-    let g:airline_theme='base16_monokai'
 endfunction
 
 function SetSyntastic()
@@ -237,7 +226,6 @@ function SetGitGutter()
 endfunction
 
 function GrepSensitiveUnderCursorMapping()
-
     grep <cword> ./
     endif
     cwindow
@@ -274,11 +262,6 @@ function SetupFzf()
       \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 endfunction
 
-function SetupTerminal()
-    tnoremap <Esc> <C-\><C-n>
-    set termguicolors
-endfunction
-
 function SetupVimFugitive()
     set diffopt+=vertical
 endfunction
@@ -293,12 +276,16 @@ function SetupIndentPlug()
     let g:indent_blankline_show_first_indent_level = v:false
 endfunction
 
+function SetupNvimTree()
+    nnoremap <C-n> :NvimTreeToggle<CR>
+    nnoremap <C-r> :NvimTreeRefresh<CR>
+    nnoremap <leader>n :NvimTreeFindFile<CR>
+endfunction
+
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
 call SetEasyAlignMappings()
-call SetNerdTree()
-call SetVimAirLine()
 call SetYouCompleteMe()
 call SetCppEnhancedHighlight()
 call SetSearchMappings()
@@ -308,7 +295,7 @@ call SetGitGutter()
 "call SetupVimBookmarks()
 call SetupGrepSettings()
 call SetupFzf()
-call SetupTerminal()
 call SetupVimFugitive()
 call SetupCopyPath()
 call SetupIndentPlug()
+call SetupNvimTree()
