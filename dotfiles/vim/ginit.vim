@@ -6,7 +6,8 @@ GuiPopupmenu 0
 "Need to check from time to time if it works
 "Guifont Source\ Code\ Pro\ for\ Powerline:h16
 Guifont FiraCode Nerd\ Font\ Mono:h12
-colorscheme monokai
+GuiRenderLigatures 1
+colorscheme monokai_pro
 
 "Allows to yank in local clipboard(even from remote!)
 call GuiClipboard()
@@ -17,3 +18,6 @@ augroup dirchange
     autocmd!
     autocmd DirChanged * let &titlestring=v:event['cwd']
 augroup END
+
+" Enable Mouse
+set mouse=a
