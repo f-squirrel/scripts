@@ -46,4 +46,3 @@ require('bufferline').setup {
   },
 }
 EOF
-"let g:separator_style='slant'
