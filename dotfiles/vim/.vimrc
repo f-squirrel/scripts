@@ -164,15 +164,6 @@ function SetYouCompleteMe()
     nnoremap yr             :YcmCompleter GoToReferences<CR>
 endfunction
 
-function SetCppEnhancedHighlight()
-    let g:cpp_class_scope_highlight = 1
-    let g:cpp_member_variable_highlight = 1
-    let g:cpp_class_decl_highlight = 1
-    let g:cpp_posix_standard = 1
-    let g:cpp_experimental_simple_template_highlight = 1
-    let g:cpp_concepts_highlight = 1
-endfunction
-
 function GetDisplayDimension()
     let dimension = system("~/scripts/terminal-configuration/vim/get_display_dimensions.sh")
     let dimension = split(trim(dimension), 'x')
@@ -222,6 +213,8 @@ function GrepUnderCursorMapping()
 endfunction
 
 function SetGitGutter()
+    " To show git status fast
+    set updatetime=200
     autocmd BufWritePost * GitGutter
 endfunction
 
@@ -231,10 +224,6 @@ function GrepSensitiveUnderCursorMapping()
     cwindow
     redraw!
 endfunction
-
-"function SetupVimBookmarks()
-"    nmap mo <Plug>BookmarkShowAll
-"endfunction
 
 function SetupGrepSettings()
     set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
@@ -288,12 +277,10 @@ call SetColorScheme()
 call SetColumnGuideLine()
 call SetEasyAlignMappings()
 call SetYouCompleteMe()
-call SetCppEnhancedHighlight()
 call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 call SetGitGutter()
-"call SetupVimBookmarks()
 call SetupGrepSettings()
 call SetupFzf()
 call SetupVimFugitive()
