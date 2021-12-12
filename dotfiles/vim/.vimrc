@@ -155,12 +155,12 @@ function SetYouCompleteMe()
     " If you want :UltiSnipsEdit to split your window.
     "let g:UltiSnipsEditSplit="vertical"
 
-    map <C-G>               :YcmCompleter GoTo<CR>
+    nnoremap  <C-G>               :YcmCompleter GoTo<CR>
     nnoremap <leader>g      :YcmCompleter GoTo<CR>
     nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
-    noremap gd              :YcmCompleter GoTo<CR>
-    noremap gD              :YcmCompleter GoToDeclaration<CR>
-    noremap <leader>f       :YcmCompleter Format<CR>
+    nnoremap gd              :YcmCompleter GoTo<CR>
+    nnoremap gD              :YcmCompleter GoToDeclaration<CR>
+    nnoremap <leader>f       :YcmCompleter Format<CR>
     nnoremap yr             :YcmCompleter GoToReferences<CR>
 endfunction
 
@@ -185,8 +185,8 @@ function SetSyntastic()
 endfunction
 
 function SetEasyAlignMappings()
-    nmap ga <Plug>(EasyAlign)
-    xmap ga <Plug>(EasyAlign)
+    nnoremap ga <Plug>(EasyAlign)
+    xnoremap ga <Plug>(EasyAlign)
 endfunction
 
 function SetBufferSwitchingMappings()
@@ -233,18 +233,18 @@ endfunction
 
 function SetupFzf()
     " Search for file in current directory
-    map <leader>ff          :Files<CR>
+    nnoremap <leader>ff          :Files<CR>
 
     " Search for a string in files in current directory
-    map <leader>fg          :Rg<CR>
-    map <leader>ft          :Rg<CR>
+    nnoremap <leader>fg          :Rg<CR>
+    nnoremap <leader>ft          :Rg<CR>
 
     " Search for a string in current buffer
-    map <leader>fs          :BLines<CR>
-    map <leader>fl          :BLines<CR>
+    nnoremap <leader>fs          :BLines<CR>
+    nnoremap <leader>fl          :BLines<CR>
 
     " Search in command history
-    map <leader>fh          :History:<CR>
+    nnoremap <leader>fh          :History:<CR>
 
     " Rg: to search in content, not filenames
     command! -bang -nargs=* Rg
@@ -267,9 +267,9 @@ endfunction
 
 function SetupNvimTree()
     highlight NvimTreeFolderIcon guifg=grey
-    nnoremap <C-n> :NvimTreeToggle<CR>
-    nnoremap <C-r> :NvimTreeRefresh<CR>
-    nnoremap <leader>n :NvimTreeFindFile<CR>
+    nnoremap <C-n>              :NvimTreeToggle<CR>
+    nnoremap <C-r>              :NvimTreeRefresh<CR>
+    nnoremap <leader>n          :NvimTreeFindFile<CR>
 endfunction
 
 call SetBufferSwitchingMappings()
