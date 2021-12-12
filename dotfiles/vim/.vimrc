@@ -277,6 +277,7 @@ function SetupIndentPlug()
 endfunction
 
 function SetupNvimTree()
+    highlight NvimTreeFolderIcon guifg=grey
     nnoremap <C-n> :NvimTreeToggle<CR>
     nnoremap <C-r> :NvimTreeRefresh<CR>
     nnoremap <leader>n :NvimTreeFindFile<CR>
