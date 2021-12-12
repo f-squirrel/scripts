@@ -128,7 +128,7 @@ font:
     style: Bold
 
   # Italic font face
-  italic:
+  italics:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
