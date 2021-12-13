@@ -27,15 +27,15 @@ git checkout ${TARGET_BRANCH}
 cd ..
 
 
-bash ${SCRIPT_PATH}/deployment/macos/nvim_core.sh
-bash ${SCRIPT_PATH}/deployment/macos/nvim_gui.sh
 bash ${SCRIPT_PATH}/deployment/common/fonts.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 
 # fzf needs to be installed after zsh because it patches .zshrc
-brew install fzf
+bash ${SCRIPT_PATH}/deployment/macos/nvim_core.sh
+bash ${SCRIPT_PATH}/deployment/macos/nvim_gui.sh
+
 bash ${SCRIPT_PATH}/deployment/common/setup_custom_script_helpers.sh
 
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh

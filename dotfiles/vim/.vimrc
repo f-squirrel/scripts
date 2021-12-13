@@ -35,14 +35,6 @@ function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
-if GetOperatingSystemName() == "Linux"
-    " If installed using git
-    set rtp+=~/.fzf
-else
-    " If installed using Homebrew
-    set rtp+=/usr/local/opt/fzf
-endif
-
 call plug#begin('~/.vim/plugged')
 
     " Gblame and all the stuff
@@ -103,7 +95,10 @@ call plug#begin('~/.vim/plugged')
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
 
+    " Plugin outside ~/.vim/plugged with post-update hook
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+
     Plug 'ekalinin/Dockerfile.vim'
 
     " :CopyPath and :CopyFileName

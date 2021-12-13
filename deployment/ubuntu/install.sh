@@ -60,7 +60,6 @@ cd ${SCRIPT_PATH}
 git checkout ${TARGET_BRANCH}
 cd ..
 
-bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 #TODO: add condition for GUI!
 bash ${SCRIPT_PATH}/deployment/common/fonts.sh
 
@@ -68,6 +67,7 @@ bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_custom_script_helpers.sh
 
+bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
 # fzf needs to be installed after zsh because it patches .zshrc
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
 
