@@ -117,6 +117,7 @@ call plug#begin('~/.vim/plugged')
     " Used :BD to kill the last buffer and prevent NERDTree from expanding
     Plug 'qpkorr/vim-bufkill'
 
+    Plug 'sainnhe/sonokai'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
@@ -133,6 +134,13 @@ endfunction
 
 function SetColorScheme()
     set background=dark
+
+    "let g:sonokai_style = 'espresso'
+    "let g:sonokai_enable_italic = 1
+    "let g:sonokai_menu_selection_background = 'yellow'
+    "let g:sonokai_diagnostic_text_highlight = 1
+    "let g:sonokai_diagnostic_line_highlight = 1
+    "colorscheme sonokai
     colorscheme monokai_pro
 endfunction
 
@@ -268,7 +276,6 @@ endfunction
 function SetupNvimTree()
     highlight NvimTreeFolderIcon guifg=grey
     nnoremap <C-n>              :NvimTreeToggle<CR>
-    nnoremap <C-r>              :NvimTreeRefresh<CR>
     nnoremap <leader>n          :NvimTreeFindFile<CR>
 endfunction
 
