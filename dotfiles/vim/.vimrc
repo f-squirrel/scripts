@@ -58,7 +58,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tanvirtin/monokai.nvim'
 
     " for some reasons post install does not work when started here
-    Plug 'ycm-core/YouCompleteMe'
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer' }
 
     " Track the engine. removed since it is incompatible with neovim on macos
     Plug 'SirVer/ultisnips'
