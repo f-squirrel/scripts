@@ -136,7 +136,7 @@ function SetColorScheme()
     "let g:sonokai_diagnostic_text_highlight = 1
     "let g:sonokai_diagnostic_line_highlight = 1
     "colorscheme sonokai
-    colorscheme monokai_pro
+    "colorscheme monokai_pro
 endfunction
 
 function SetYouCompleteMe()

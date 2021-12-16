@@ -33,7 +33,7 @@ require'nvim-tree'.setup {
    },
 }
 
-require'lualine'.setup{
+require'lualine'.setup {
   options = {
      theme = 'powerline'
    }
@@ -42,7 +42,28 @@ require'lualine'.setup{
 require('bufferline').setup {
   options = {
     offsets = {filetype = "NvimTree", text = "File Explorer", text_align = "left"},
-    separator_style = "thin"
+    separator_style = "plant"
   },
+}
+
+local monokai = require('monokai')
+local palette = monokai.pro
+palette.white = '#dbd0d2'
+monokai.setup {
+    palette = palette,
+    custom_hlgroups = {
+        Function = {
+          -- Disable italics
+          style = 'NONE',
+        },
+        Whitespace = {
+          -- Same color as NonText
+          fg = palette.base5
+        },
+        TSFunction = {
+          -- Disable italics
+          style = 'NONE',
+        },
+    }
 }
 EOF
