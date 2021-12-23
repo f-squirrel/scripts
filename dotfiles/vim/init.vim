@@ -45,25 +45,4 @@ require('bufferline').setup {
     separator_style = "plant"
   },
 }
-
-local monokai = require('monokai')
-local palette = monokai.pro
-palette.white = '#dbd0d2'
-monokai.setup {
-    palette = palette,
-    custom_hlgroups = {
-        Function = {
-          -- Disable italics
-          style = 'NONE',
-        },
-        Whitespace = {
-          -- Same color as NonText
-          fg = palette.base5
-        },
-        TSFunction = {
-          -- Disable italics
-          style = 'NONE',
-        },
-    }
-}
 EOF
