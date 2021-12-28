@@ -20,16 +20,17 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     gdb \
     git \
     iputils-ping \
+    libfontconfig1-dev \
     net-tools \
     openssh-server \
     pkg-config \
     pyflakes \
     pyflakes3 \
     python \
-    python3-setuptools \
     python3 \
     python3-dev \
     python3-pip \
+    python3-setuptools \
     tmux \
     wget \
     zsh
