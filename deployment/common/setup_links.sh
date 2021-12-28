@@ -41,7 +41,7 @@ ln -sf ${HOME}/scripts/dotfiles/git/config ~/.gitconfig
 
 ln -sf ${HOME}/scripts/dotfiles/.gdbinit ~/.gdbinit
 
-ALACRITTY_CONFIG_PATH=~/.config/alacritty
+ALACRITTY_CONFIG_PATH=${HOME}/.config/alacritty
 ln -sf ${HOME}/scripts/dotfiles/alacritty ${ALACRITTY_CONFIG_PATH}
 ln -sf ${HOME}/scripts/.ripgreprc ${HOME}/.ripgreprc
 
