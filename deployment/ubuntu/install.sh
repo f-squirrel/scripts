@@ -35,7 +35,7 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     zsh
  
 apt-get install -y --reinstall ca-certificates
-mkdir /usr/local/share/ca-certificates/cacert.org
+mkdir -p /usr/local/share/ca-certificates/cacert.org
 wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
 update-ca-certificates --fresh
 export SSL_CERT_DIR=/etc/ssl/certs
