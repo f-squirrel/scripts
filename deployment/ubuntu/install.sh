@@ -55,7 +55,10 @@ fi
 echo "Installed basic tools"
 
 cd ${HOME}
-git clone https://github.com/f-squirrel/scripts.git
+
+if [ ! -d "${SCRIPT_PATH}" ]; then
+    git clone https://github.com/f-squirrel/scripts.git
+fi
 cd ${SCRIPT_PATH}
 git checkout ${TARGET_BRANCH}
 cd ..
