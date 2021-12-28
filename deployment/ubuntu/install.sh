@@ -5,8 +5,8 @@ set -o pipefail
 
 echo "Starting installation"
 
-export DEBIAN_FRONTEND=noninteractive
-echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+#export DEBIAN_FRONTEND=noninteractive
+#echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 
