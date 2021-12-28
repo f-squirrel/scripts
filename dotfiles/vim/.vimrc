@@ -47,7 +47,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
     Plug 'kyazdani42/nvim-tree.lua' " file tree
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
-    Plug 'tanvirtin/monokai.nvim'
+    Plug 'f-squirrel/monokai.nvim'
 
     " for some reasons post install does not work when started here
     Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer' }
