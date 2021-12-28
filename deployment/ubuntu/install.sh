@@ -20,7 +20,6 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     gdb \
     git \
     iputils-ping \
-    libfontconfig1-dev \
     net-tools \
     openssh-server \
     pkg-config \
@@ -34,7 +33,15 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     tmux \
     wget \
     zsh
- 
+
+# alacritty dependencies
+apt-get update && apt-get -y -q --no-install-recommends install \
+    libfontconfig1-dev \
+    libxcb-render0-dev \
+    libxcb-shape0-dev \
+    libxcb-xfixes0-dev \
+    libxcb1-dev
+
 apt-get install -y --reinstall ca-certificates
 mkdir -p /usr/local/share/ca-certificates/cacert.org
 wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
