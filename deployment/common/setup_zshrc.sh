@@ -2,6 +2,7 @@
 
 set -eo pipefail
 
+printf "Started zshrc setup!\n"
 cd ${HOME}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "Installed zsh: " $?
@@ -43,3 +44,5 @@ if [[ -n $LOCAL_INSTALLATION ]]; then
     echo "Please fill the env variable added to ${HOME}/.zshrc"
 fi
 chsh -s $(which zsh)
+
+printf "Finished zshrc setup!\n"

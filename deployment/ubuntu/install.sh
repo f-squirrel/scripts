@@ -53,6 +53,7 @@ wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/
 update-ca-certificates --fresh
 export SSL_CERT_DIR=/etc/ssl/certs
 
+printf "Installed certificates!\n"
 #RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
 # Dirty hack, sometimes base image already has newer cmake installed manually
@@ -60,6 +61,8 @@ export SSL_CERT_DIR=/etc/ssl/certs
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 dpkg -i ripgrep_13.0.0_amd64.deb
 rm ripgrep_13.0.0_amd64.deb
+
+printf "Installed ripgrep!\n"
 
 if [ ! -f "/usr/bin/cmake" ]; then
     apt-get update && apt-get -y -q install cmake

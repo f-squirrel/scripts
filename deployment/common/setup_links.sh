@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+printf "Started link setup!\n"
+
 VIM_DIR_PATH=~/.vim/
 mkdir -p ${VIM_DIR_PATH}
 
