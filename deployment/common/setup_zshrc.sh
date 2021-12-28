@@ -2,6 +2,9 @@
 
 set -eo pipefail
 
+if [ -d "${HOME}/.oh-my-zsh" ]; then
+    exit 0
+fi
 printf "Started zshrc setup!\n"
 cd ${HOME}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
