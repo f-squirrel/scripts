@@ -4,9 +4,11 @@ set -eo pipefail
 
 mkdir -p ${HOME}/Applications
 cd ${HOME}/Applications
-# apt-get provides a vry old versin of nvim which does not support --listen
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
+if [ ! -f nvim.appimage ]; then
+    # apt-get provides a vry old versin of nvim which does not support --listen
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+fi
 
 #if [[ -n $LOCAL_INSTALLATION ]]; then
     CUSTOM_NVIM_PATH=${HOME}/Applications/nvim.appimage
