@@ -36,7 +36,7 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     wget \
     zsh
 
-echo "Installed main packages!\n"
+echo ">Installed main packages!\n"
 
 # alacritty dependencies
 apt-get update && apt-get -y -q --no-install-recommends install \
@@ -46,12 +46,14 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     libxcb-xfixes0-dev \
     libxcb1-dev
 
+echo ">Installed alacritty dependencies"
 yes | add-apt-repository ppa:mmstick76/alacritty
 
-apt-get update && apt-get -y -q --no-install-recommends install \
+apt-get update
+apt-get -y -q --no-install-recommends install \
     alacritty
 
-echo "Installed alacritty!\n"
+echo ">Installed alacritty!\n"
 
 apt-get install -y --reinstall ca-certificates
 mkdir -p /usr/local/share/ca-certificates/cacert.org
@@ -59,7 +61,7 @@ wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/
 update-ca-certificates --fresh
 export SSL_CERT_DIR=/etc/ssl/certs
 
-echo "Installed certificates!\n"
+echo ">Installed certificates!\n"
 #RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
 # Dirty hack, sometimes base image already has newer cmake installed manually
@@ -68,13 +70,13 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_
 dpkg -i ripgrep_13.0.0_amd64.deb
 rm ripgrep_13.0.0_amd64.deb
 
-echo "Installed ripgrep!\n"
+echo ">Installed ripgrep!\n"
 
 if [ ! -f "/usr/bin/cmake" ]; then
     apt-get update && apt-get -y -q install cmake
 fi
 
-echo "Installed basic tools"
+echo ">Installed basic tools"
 
 cd ${HOME}
 
