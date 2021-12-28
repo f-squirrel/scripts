@@ -47,11 +47,11 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     libxcb1-dev
 
 echo ">Installed alacritty dependencies"
-yes | add-apt-repository ppa:mmstick76/alacritty
+#yes | add-apt-repository ppa:mmstick76/alacritty
 
 apt-get update
-apt-get -y -q --no-install-recommends install \
-    alacritty
+#apt-get -y -q --no-install-recommends install \
+#    alacritty
 
 echo ">Installed alacritty!\n"
 
