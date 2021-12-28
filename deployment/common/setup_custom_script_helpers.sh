@@ -11,5 +11,7 @@ ln -sf ${HOME}/scripts/utils/generate_cmake.sh ${HOME}/.oh-my-zsh/custom/generat
 
 # csshx for tmux
 
-cd ${HOME} && git clone https://github.com/ggarnier/tmux-csshx.git
+if [ ! -d "${HOME}/tmux-csshx" ]; then
+    cd ${HOME} && git clone https://github.com/ggarnier/tmux-csshx.git
+fi
 printf "Finished custom script setup!\n"
