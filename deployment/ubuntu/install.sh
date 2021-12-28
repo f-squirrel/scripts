@@ -120,8 +120,8 @@ echo "Configured compiler"
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
 
 # Set Clang 7 as default compiler
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
+#update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+#update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
 
 wget --quiet --no-check-certificate https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
 dpkg -i bat_0.15.4_amd64.deb
