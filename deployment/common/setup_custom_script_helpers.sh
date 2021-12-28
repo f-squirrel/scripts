@@ -9,4 +9,5 @@ ln -sf ${HOME}/scripts/utils/run_nvim_remotely.zsh ${HOME}/.oh-my-zsh/custom/run
 ln -sf ${HOME}/scripts/utils/generate_cmake.sh ${HOME}/.oh-my-zsh/custom/generate_cmake.zsh
 
 # csshx for tmux
-cd && git clone https://github.com/ggarnier/tmux-csshx.git
+
+cd ${HOME} && git clone https://github.com/ggarnier/tmux-csshx.git

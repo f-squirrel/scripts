@@ -15,10 +15,10 @@ echo "Installed nvim plugins"
 pip3 install certifi
 export PYTHONHTTPSVERIFY=0
 # YouCompleteMe for some reason Vim-PLug returns exit 1 when install automatically
-cd ~/.vim/plugged/YouCompleteMe
+cd ${HOME}/.vim/plugged/YouCompleteMe
 python3 ./install.py --all
 python3 ./install.py --clangd-completer
-cd
+cd ${HOME}
 
 #Command-T - maybe to replace with fzf
 printf "Finished plugin setup!\n"

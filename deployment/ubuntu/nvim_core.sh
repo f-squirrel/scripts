@@ -28,7 +28,7 @@ chmod u+x nvim.appimage
     #rm nvim.appimage
 #fi
 
-cd
+cd ${HOME}
 
 #python-provider
 python3 -m pip install --user --upgrade pynvim

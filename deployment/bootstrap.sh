@@ -75,7 +75,7 @@ echo "$REMOTE_INSTALLATION"
 echo "Source branch:" $TARGET_BRANCH
 echo "Target OS:" $CURRENT_OS
 
-cd
+cd ${HOME}
 export SCRIPT_PATH=${PWD}/scripts
 
 if [[ "$CURRENT_OS" == "ubuntu" ]]; then

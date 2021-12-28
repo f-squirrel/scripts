@@ -15,6 +15,8 @@ set -eo pipefail
 #rm -rf fonts
 
 #TODO(DD): Optimize the download of only one font
+
+cd ${HOME}
 git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
 cd nerd-fonts
 ./install.sh FiraCode

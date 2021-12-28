@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-cd
+cd ${HOME}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "Installed zsh: " $?
 
