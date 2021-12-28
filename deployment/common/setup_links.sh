@@ -31,7 +31,7 @@ printf "Replace the symlink if needed!\n"
 
 # tmux
 
-if [ ! -d "~/.tmux/plugins/tpm" ]; then
+if [ ! -d "${HOME}/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 ln -sf ${HOME}/scripts/dotfiles/.tmux.conf ~/.tmux.conf
