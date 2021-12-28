@@ -4,7 +4,7 @@ set -eo pipefail
 
 printf "Started zshrc setup!\n"
 # Install Vim-Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Installed Vim-Plug"
