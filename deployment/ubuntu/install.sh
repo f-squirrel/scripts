@@ -42,6 +42,11 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     libxcb-xfixes0-dev \
     libxcb1-dev
 
+yes | add-apt-repository ppa:mmstick76/alacritty
+
+apt-get update && apt-get -y -q --no-install-recommends install \
+    alacritty
+
 apt-get install -y --reinstall ca-certificates
 mkdir -p /usr/local/share/ca-certificates/cacert.org
 wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
@@ -72,7 +77,7 @@ git checkout ${TARGET_BRANCH}
 cd ..
 
 #TODO: add condition for GUI!
-bash ${SCRIPT_PATH}/deployment/common/fonts.sh
+#bash ${SCRIPT_PATH}/deployment/common/fonts.sh
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
