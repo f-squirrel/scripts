@@ -27,8 +27,8 @@ echo "alias gdb='gdb --tui'" >> ${HOME}/.zshrc
 
 # To search for hidden files
 
-echo "export FZF_CTRL_T_COMMAND=\"rg --hidden -l -g '!.git/' \"\" \"" >> ${HOME}/.zshrc
-echo "export FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND}" >> ${HOME}/.zshrc
+echo "export FZF_CTRL_T_COMMAND='rg --files --hidden -g \"\!.git\" '" >> ${HOME}/.zshrc
+echo 'export FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND}' >> ${HOME}/.zshrc
 
 echo "export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc" >> ${HOME}/.zshrc
 
