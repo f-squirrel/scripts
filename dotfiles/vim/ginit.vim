@@ -34,5 +34,7 @@ if exists('*GuiClipboard')
     call GuiClipboard()
 endif
 
+
+nnoremap  <F11> :call GuiWindowFullScreen(1)<CR>
 " Enable Mouse
 set mouse=a
