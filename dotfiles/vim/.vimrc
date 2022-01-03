@@ -40,7 +40,9 @@ call plug#begin('~/.vim/plugged')
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
     " It shows which lines have been added, modified, or removed.
-    Plug 'airblade/vim-gitgutter'
+    "Plug 'airblade/vim-gitgutter'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'lewis6991/gitsigns.nvim'
     " Colors devicons
     "Plug 'crusoexia/vim-monokai'
 
@@ -215,11 +217,11 @@ function GrepUnderCursorMapping()
     redraw!
 endfunction
 
-function SetGitGutter()
-    " To show git status fast
-    set updatetime=200
-    autocmd BufWritePost * GitGutter
-endfunction
+"function SetGitGutter()
+"    " To show git status fast
+"    set updatetime=200
+"    autocmd BufWritePost * GitGutter
+"endfunction
 
 function GrepSensitiveUnderCursorMapping()
     grep <cword> ./
@@ -282,7 +284,7 @@ call SetYouCompleteMe()
 call SetSearchMappings()
 call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
-call SetGitGutter()
+"call SetGitGutter()
 call SetupGrepSettings()
 call SetupFzf()
 call SetupVimFugitive()

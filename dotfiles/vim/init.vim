@@ -45,4 +45,6 @@ require('bufferline').setup {
     separator_style = "plant"
   },
 }
+
+require('gitsigns').setup()
 EOF
