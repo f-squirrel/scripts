@@ -1,5 +1,5 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
+"set runtimepath^=~/.vim runtimepath+=~/.vim/after
+"let &packpath = &runtimepath
 
 syntax enable
 set mouse=a " Enable mouse
@@ -38,7 +38,7 @@ function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
