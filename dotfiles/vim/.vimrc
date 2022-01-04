@@ -60,6 +60,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-path'
     "Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'williamboman/nvim-lsp-installer'
 
     " Track the engine. removed since it is incompatible with neovim on macos
     Plug 'SirVer/ultisnips'
