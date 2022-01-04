@@ -87,7 +87,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'schickling/vim-bufonly'
 
     " :SyntasticCheck to run syntax check for scripting languages(python)
-    Plug 'vim-syntastic/syntastic'
+    "Plug 'vim-syntastic/syntastic'
 
     " Comment short cuts
     " <Leader>cl
@@ -184,18 +184,18 @@ function GetDisplayDimension()
     return dimension
 endfunction
 
-function SetSyntastic()
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 1
-    let g:syntastic_python_checkers = ['pyflakes']
-    let g:syntastic_python_python_exec = 'python3'
-endfunction
+"function SetSyntastic()
+"    set statusline+=%#warningmsg#
+"    set statusline+=%{SyntasticStatuslineFlag()}
+"    set statusline+=%*
+"
+"    let g:syntastic_always_populate_loc_list = 1
+"    let g:syntastic_auto_loc_list = 1
+"    let g:syntastic_check_on_open = 1
+"    let g:syntastic_check_on_wq = 1
+"    let g:syntastic_python_checkers = ['pyflakes']
+"    let g:syntastic_python_python_exec = 'python3'
+"endfunction
 
 function SetEasyAlignMappings()
     nnoremap ga <Plug>(EasyAlign)
@@ -290,7 +290,7 @@ call SetColumnGuideLine()
 call SetEasyAlignMappings()
 "call SetYouCompleteMe()
 call SetSearchMappings()
-call SetSyntastic()
+"call SetSyntastic()
 call SetMappingToCloseBufferWithoutClosingWindow()
 "call SetGitGutter()
 call SetupGrepSettings()
