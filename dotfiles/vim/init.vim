@@ -218,9 +218,9 @@ function SetSearchMappings()
     nnoremap <esc><esc> :nohlsearch<return>
 endfunction
 
-function SetMappingToCloseBufferWithoutClosingWindow()
-    map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
-endfunction
+"function SetMappingToCloseBufferWithoutClosingWindow()
+"    map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
+"endfunction
 
 function GrepUnderCursorMapping()
     grep --ignore-case <cword> ./
@@ -294,7 +294,7 @@ call SetEasyAlignMappings()
 "call SetYouCompleteMe()
 call SetSearchMappings()
 "call SetSyntastic()
-call SetMappingToCloseBufferWithoutClosingWindow()
+"call SetMappingToCloseBufferWithoutClosingWindow()
 "call SetGitGutter()
 call SetupGrepSettings()
 call SetupFzf()
@@ -364,16 +364,16 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<2-LeftMouse>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<C-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
@@ -413,8 +413,9 @@ cmp.setup {
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+    -- Leads to error messages
+    --  elseif luasnip.expand_or_jumpable() then
+    --    luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -422,8 +423,9 @@ cmp.setup {
     ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+    -- Leads to error messages
+    --  elseif luasnip.jumpable(-1) then
+    --    luasnip.jump(-1)
       else
         fallback()
       end
