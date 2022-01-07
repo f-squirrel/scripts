@@ -1,6 +1,3 @@
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath = &runtimepath
-
 syntax enable
 set mouse=a " Enable mouse
 set smartcase " Smartcase search
