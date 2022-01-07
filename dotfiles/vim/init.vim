@@ -39,15 +39,15 @@ call plug#begin()
 
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
-    " It shows which lines have been added, modified, or removed.
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
-    " Colors devicons
 
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
     Plug 'kyazdani42/nvim-tree.lua' " file tree
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
+
     Plug 'f-squirrel/monokai.nvim'
+
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -57,7 +57,6 @@ call plug#begin()
     Plug 'hrsh7th/nvim-cmp'
     Plug 'williamboman/nvim-lsp-installer'
 
-    " Track the engine. removed since it is incompatible with neovim on macos
     Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'honza/vim-snippets'
@@ -99,7 +98,6 @@ call plug#begin()
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'ekalinin/Dockerfile.vim'
 
     " :CopyPath and :CopyFileName
     Plug 'f-squirrel/copypath.vim'
@@ -108,9 +106,6 @@ call plug#begin()
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     Plug 'cespare/vim-toml'
-
-    " Used :BD to kill the last buffer and prevent NERDTree from expanding
-    Plug 'qpkorr/vim-bufkill'
 
     Plug 'sainnhe/sonokai'
     " Neovim-Qt runtime
