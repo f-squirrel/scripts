@@ -43,19 +43,14 @@ call plug#begin()
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
     " It shows which lines have been added, modified, or removed.
-    "Plug 'airblade/vim-gitgutter'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
     " Colors devicons
-    "Plug 'crusoexia/vim-monokai'
 
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
     Plug 'kyazdani42/nvim-tree.lua' " file tree
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
     Plug 'f-squirrel/monokai.nvim'
-
-    " for some reasons post install does not work when started here
-    "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer' }
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -68,7 +63,6 @@ call plug#begin()
     " Track the engine. removed since it is incompatible with neovim on macos
     Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
-    " Plugin 'f-squirrel/vim-snippets'
     Plug 'honza/vim-snippets'
 
     " Easily align lines
@@ -89,9 +83,6 @@ call plug#begin()
     " :Bufonly to delete all buffers but this
     Plug 'schickling/vim-bufonly'
 
-    " :SyntasticCheck to run syntax check for scripting languages(python)
-    "Plug 'vim-syntastic/syntastic'
-
     " Comment short cuts
     " <Leader>cl
     " [count]<leader>c<space> |NERDCommenterToggle|
@@ -108,9 +99,7 @@ call plug#begin()
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
 
-    " Plugin outside ~/.vim/plugged with post-update hook
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    "Plug 'junegunn/fzf.vim'
 
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'ekalinin/Dockerfile.vim'
@@ -143,63 +132,8 @@ endfunction
 
 function SetColorScheme()
     set background=dark
-
-    "let g:sonokai_style = 'espresso'
-    "let g:sonokai_enable_italic = 1
-    "let g:sonokai_menu_selection_background = 'yellow'
-    "let g:sonokai_diagnostic_text_highlight = 1
-    "let g:sonokai_diagnostic_line_highlight = 1
-    "colorscheme sonokai
     colorscheme monokai_pro
 endfunction
-
-function SetYouCompleteMe()
-    "Turns off youCompleteMe
-    "let g:loaded_youcompleteme = 1
-    let g:ycm_collect_identifiers_from_tags_files=1
-    let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-    let g:ycm_key_list_select_completion = ['<C-j>']
-    let g:ycm_key_list_previous_completion = ['<C-k>']
-    let g:ycm_use_ultisnips_completer = 1
-    let g:ycm_use_clangd = 1
-    let g:ycm_show_diagnostics_ui = 1
-    let g:ycm_autoclose_preview_window_after_completion = 1
-
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    "let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger='<C-j>'
-    let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-    " If you want :UltiSnipsEdit to split your window.
-    "let g:UltiSnipsEditSplit="vertical"
-
-    nnoremap  <C-G>               :YcmCompleter GoTo<CR>
-    nnoremap <leader>g      :YcmCompleter GoTo<CR>
-    nnoremap <2-LeftMouse>  :YcmCompleter GoTo<CR>
-    nnoremap gd              :YcmCompleter GoTo<CR>
-    nnoremap gD              :YcmCompleter GoToDeclaration<CR>
-    nnoremap <leader>f       :YcmCompleter Format<CR>
-    nnoremap yr             :YcmCompleter GoToReferences<CR>
-endfunction
-
-function GetDisplayDimension()
-    let dimension = system("~/scripts/terminal-configuration/vim/get_display_dimensions.sh")
-    let dimension = split(trim(dimension), 'x')
-    let dimension = [ str2nr(dimension[0]), str2nr(dimension[1]) ]
-    return dimension
-endfunction
-
-"function SetSyntastic()
-"    set statusline+=%#warningmsg#
-"    set statusline+=%{SyntasticStatuslineFlag()}
-"    set statusline+=%*
-"
-"    let g:syntastic_always_populate_loc_list = 1
-"    let g:syntastic_auto_loc_list = 1
-"    let g:syntastic_check_on_open = 1
-"    let g:syntastic_check_on_wq = 1
-"    let g:syntastic_python_checkers = ['pyflakes']
-"    let g:syntastic_python_python_exec = 'python3'
-"endfunction
 
 function SetEasyAlignMappings()
     nnoremap ga <Plug>(EasyAlign)
@@ -219,21 +153,11 @@ function SetSearchMappings()
     nnoremap <esc><esc> :nohlsearch<return>
 endfunction
 
-"function SetMappingToCloseBufferWithoutClosingWindow()
-"    map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
-"endfunction
-
 function GrepUnderCursorMapping()
     grep --ignore-case <cword> ./
     cwindow
     redraw!
 endfunction
-
-"function SetGitGutter()
-"    " To show git status fast
-"    set updatetime=200
-"    autocmd BufWritePost * GitGutter
-"endfunction
 
 function GrepSensitiveUnderCursorMapping()
     grep <cword> ./
@@ -242,37 +166,12 @@ function GrepSensitiveUnderCursorMapping()
     redraw!
 endfunction
 
-function SetupGrepSettings()
-    set grepprg=grep\ --line-number\ --binary-files=without-match\ --recursive\ --exclude=tags\ --exclude-dir=build
-    nnoremap gr :call GrepUnderCursorMapping()<CR>
-    nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
-endfunction
-
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>gr <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').command_history()<cr>
-
-
-function SetupFzf()
-    " Search for file in current directory
-    nnoremap <leader>ff          :Files<CR>
-
-    " Search for a string in files in current directory
-    nnoremap <leader>fg          :Rg<CR>
-    nnoremap <leader>ft          :Rg<CR>
-
-    " Search for a string in current buffer
-    nnoremap <leader>fs          :BLines<CR>
-    nnoremap <leader>fl          :BLines<CR>
-
-    " Search in command history
-    nnoremap <leader>fh          :History:<CR>
-
-    " Rg: to search in content, not filenames
-    command! -bang -nargs=* Rg
-      \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+function SetupTelescopeFind()
+    nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+    nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+    nnoremap <leader>gr <cmd>lua require('telescope.builtin').grep_string()<cr>
+    nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+    nnoremap <leader>fh <cmd>lua require('telescope.builtin').command_history()<cr>
 endfunction
 
 function SetupVimFugitive()
@@ -299,17 +198,12 @@ call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetColumnGuideLine()
 call SetEasyAlignMappings()
-"call SetYouCompleteMe()
 call SetSearchMappings()
-"call SetSyntastic()
-"call SetMappingToCloseBufferWithoutClosingWindow()
-"call SetGitGutter()
-"call SetupGrepSettings()
-"call SetupFzf()
 call SetupVimFugitive()
 call SetupCopyPath()
 call SetupIndentPlug()
 call SetupNvimTree()
+call SetupTelescopeFind()
 
 "highlight NvimTreeFolderIcon guibg=blue
 lua <<EOF
@@ -367,7 +261,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gd', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
@@ -490,4 +384,28 @@ end
         capabilities = capabilities,
          }
  end)
+
+ require('telescope').setup{
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    },
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+        mappings = {
+          i = {
+            ["<esc>"] = require('telescope.actions').close,
+            ["<C-j>"] = require('telescope.actions').move_selection_next,
+            ["<C-k>"] = require('telescope.actions').move_selection_previous,
+          },
+          n = {
+            ["<esc>"] = require('telescope.actions').close,
+            ["<C-j>"] = require('telescope.actions').move_selection_next,
+            ["<C-k>"] = require('telescope.actions').move_selection_previous,
+          },
+    }
+  },
+ }
 EOF
