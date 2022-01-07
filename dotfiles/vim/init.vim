@@ -94,7 +94,7 @@ call plug#begin()
     Plug 'AndrewRadev/linediff.vim'
 
     " ,be to see the list of open buffers
-    Plug 'jlanzarotta/bufexplorer'
+    "Plug 'jlanzarotta/bufexplorer'
 
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -172,6 +172,7 @@ function SetupTelescopeFind()
     nnoremap <leader>gr <cmd>lua require('telescope.builtin').grep_string()<cr>
     nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
     nnoremap <leader>fh <cmd>lua require('telescope.builtin').command_history()<cr>
+    nnoremap <leader>be <cmd>lua require('telescope.builtin').buffers()<cr>
 endfunction
 
 function SetupVimFugitive()
@@ -399,11 +400,13 @@ end
             ["<esc>"] = require('telescope.actions').close,
             ["<C-j>"] = require('telescope.actions').move_selection_next,
             ["<C-k>"] = require('telescope.actions').move_selection_previous,
+            ["<C-d>"] = require('telescope.actions').delete_buffer,
           },
           n = {
             ["<esc>"] = require('telescope.actions').close,
             ["<C-j>"] = require('telescope.actions').move_selection_next,
             ["<C-k>"] = require('telescope.actions').move_selection_previous,
+            ["<C-d>"] = require('telescope.actions').delete_buffer,
           },
     }
   },
