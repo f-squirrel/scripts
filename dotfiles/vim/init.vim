@@ -110,8 +110,9 @@ call plug#begin()
 
     " Plugin outside ~/.vim/plugged with post-update hook
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+    "Plug 'junegunn/fzf.vim'
 
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'ekalinin/Dockerfile.vim'
 
     " :CopyPath and :CopyFileName
@@ -247,6 +248,13 @@ function SetupGrepSettings()
     nnoremap Gr :call GrepSensitiveUnderCursorMapping()<CR>
 endfunction
 
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>gr <cmd>lua require('telescope.builtin').grep_string()<cr>
+nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').command_history()<cr>
+
+
 function SetupFzf()
     " Search for file in current directory
     nnoremap <leader>ff          :Files<CR>
@@ -296,8 +304,8 @@ call SetSearchMappings()
 "call SetSyntastic()
 "call SetMappingToCloseBufferWithoutClosingWindow()
 "call SetGitGutter()
-call SetupGrepSettings()
-call SetupFzf()
+"call SetupGrepSettings()
+"call SetupFzf()
 call SetupVimFugitive()
 call SetupCopyPath()
 call SetupIndentPlug()
@@ -362,13 +370,17 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<2-LeftMouse>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gd', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
+  buf_set_keymap('n', '<2-LeftMouse>', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
   buf_set_keymap('n', '<leader>K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- Original code actions
+  -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+  -- Original references
+  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', 'gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
