@@ -34,7 +34,17 @@ if exists('*GuiClipboard')
     call GuiClipboard()
 endif
 
+let g:gui_full_screen=0
+function GuiToggleFullScreen()
+    if g:gui_full_screen == 0
+        call GuiWindowFullScreen(1)
+        let g:gui_full_screen=1
+    else
+        call GuiWindowFullScreen(0)
+        let g:gui_full_screen=0
+    endif
+endfunction
 
-nnoremap  <F11> :call GuiWindowFullScreen(1)<CR>
+nnoremap  <F11> :call GuiToggleFullScreen()<CR>
 " Enable Mouse
 set mouse=a
