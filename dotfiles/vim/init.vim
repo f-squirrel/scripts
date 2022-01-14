@@ -31,6 +31,8 @@ map q <Nop>
 " current company
 source ~/.vim/.code_style.vim
 
+set shiftround
+
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
@@ -108,6 +110,8 @@ call plug#begin()
     Plug 'cespare/vim-toml'
 
     Plug 'sainnhe/sonokai'
+
+    Plug 'nvim-treesitter/playground'
     " Neovim-Qt runtime
     if has('nvim')
         Plug 'equalsraf/neovim-gui-shim'
@@ -253,7 +257,7 @@ local on_attach = function(client, bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+  vim.lsp.set_log_level('debug')
   -- Mappings.
   local opts = { noremap=true }
 
@@ -404,4 +408,25 @@ end
     }
   },
  }
+
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
 EOF
