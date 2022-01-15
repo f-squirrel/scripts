@@ -45,6 +45,7 @@ int main() {
 EOM
 
 cp ${HOME}/scripts/utils/.clang-format .
+cp ${HOME}/scripts/dotfiles/git/general_gitignore .gitignore
 
 mkdir build && cd build && cmake ..
 cd ..
