@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gvim_helper() {
-    nohup ${NVIM_QT_PATH} "$@" 2> /dev/null # & disown
+    nohup ${NVIM_QT_PATH} "$@" >/dev/null 2>&1 # & disown
 }
 
 alias gvim='gvim_helper "$@"'
