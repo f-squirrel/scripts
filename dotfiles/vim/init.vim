@@ -31,8 +31,6 @@ map q <Nop>
 " current company
 source ~/.vim/.code_style.vim
 
-set shiftround
-
 function GetOperatingSystemName()
     return substitute(system('uname'), "\n", "", "")
 endfunction
