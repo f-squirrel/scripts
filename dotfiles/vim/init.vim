@@ -46,6 +46,7 @@ call plug#begin()
     Plug 'kyazdani42/nvim-tree.lua' " file tree
 
     Plug 'f-squirrel/monokai.nvim'
+    Plug 'navarasu/onedark.nvim'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
 
@@ -155,7 +156,6 @@ endfunction
 
 function GrepSensitiveUnderCursorMapping()
     grep <cword> ./
-    endif
     cwindow
     redraw!
 endfunction
