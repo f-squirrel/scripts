@@ -8,13 +8,33 @@ if exists(':GuiPopupmenu')
     GuiPopupmenu 0
 endif
 
+function GuiIncreaseFont()
+    let l:splitted=split(g:GuiFont, "h")
+    let l:font_num=str2nr(l:splitted[1]) + 1
+    let l:new_font=l:splitted[0] . "h" . font_num
+    execute 'Guifont' l:new_font
+endfunction
+
+function GuiDecreaseFont()
+    let l:splitted=split(g:GuiFont, "h")
+    let l:font_num=str2nr(l:splitted[1]) - 1
+    let l:new_font=l:splitted[0] . "h" . font_num
+    execute 'Guifont' l:new_font
+endfunction
+
+function GuiSetDefaultFont()
+    execute 'Guifont' g:DefaultFont
+endfunction
+
 "This is a good feature but unfortunately it is not good for the YCM
 "Need to check from time to time if it works
 "Guifont Source\ Code\ Pro\ for\ Powerline:h16
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    Guifont JetBrains Mono:h12
+    let g:DefaultFont="JetBrains Mono:h12"
+    call GuiSetDefaultFont()
+    execute 'Guifont' g:DefaultFont
     "Guifont FiraCode\ Nerd\ Font:h12
 endif
 
@@ -33,6 +53,10 @@ endif
 if exists('*GuiClipboard')
     call GuiClipboard()
 endif
+
+nnoremap <silent> <C-+> :call GuiIncreaseFont()<CR>
+nnoremap <silent> <C--> :call GuiDecreaseFont()<CR>
+nnoremap <silent> <C-=> :call GuiSetDefaultFont()<CR>
 
 nnoremap  <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<CR>
 " Enable Mouse
