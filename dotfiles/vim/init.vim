@@ -389,6 +389,12 @@ end
     },
   defaults = {
     -- Default configuration for telescope goes here:
+
+        layout_strategy = 'vertical',
+        layout_config = {
+            vertical = { width = 0.95 }
+            -- other layout configuration here
+        },
     -- config_key = value,
         mappings = {
           i = {
