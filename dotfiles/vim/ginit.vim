@@ -54,9 +54,9 @@ if exists('*GuiClipboard')
     call GuiClipboard()
 endif
 
-nnoremap <silent> <C-+> :call GuiIncreaseFont()<CR>
+nnoremap <silent> <C-=> :call GuiIncreaseFont()<CR>
 nnoremap <silent> <C--> :call GuiDecreaseFont()<CR>
-nnoremap <silent> <C-=> :call GuiSetDefaultFont()<CR>
+nnoremap <silent> <C-+> :call GuiSetDefaultFont()<CR>
 
 nnoremap  <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<CR>
 " Enable Mouse
