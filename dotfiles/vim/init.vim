@@ -117,6 +117,11 @@ call plug#begin()
     endif
 call plug#end()
 
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=100}
+augroup END
+
 function SetColumnGuideLine()
     "Highlight current line
     set cursorline
@@ -229,13 +234,15 @@ require'nvim-tree'.setup {
 
 require'lualine'.setup {
   options = {
-     theme = 'powerline'
+     theme = 'codedark',
+     component_separators = { left = '', right = ''},
+     section_separators = { left = '', right = ''},
    }
 }
 
 require('bufferline').setup {
   options = {
-    offsets = {filetype = "NvimTree", text = "File Explorer", text_align = "left"},
+    offsets = {filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left"},
     separator_style = "plant"
   },
 }
@@ -347,7 +354,6 @@ local servers = {
     "clangd",
     "cmake",
     "grammarly",
-    "pylsp",
     "pyright",
     "rust_analyzer",
 }
@@ -381,13 +387,13 @@ end
          }
  end)
 
- require('telescope').setup{
+require('telescope').setup {
     pickers = {
         find_files = {
             hidden = true
         }
     },
-  defaults = {
+    defaults = {
     -- Default configuration for telescope goes here:
 
         layout_strategy = 'vertical',
@@ -410,8 +416,8 @@ end
             ["<C-d>"] = require('telescope.actions').delete_buffer,
           },
     }
-  },
- }
+    },
+}
 
 require "nvim-treesitter.configs".setup {
   playground = {
