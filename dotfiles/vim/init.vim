@@ -223,7 +223,7 @@ require'nvim-treesitter.configs'.setup {
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 require'nvim-tree'.setup {
-  open_on_setup       = true,
+  open_on_setup       = false, -- Do not launch automatically because then [Noname] buffer stays
   update_focused_file = {
      enable      = true,
    },
