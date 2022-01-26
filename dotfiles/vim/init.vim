@@ -111,10 +111,6 @@ call plug#begin()
     Plug 'sainnhe/sonokai'
 
     Plug 'nvim-treesitter/playground'
-    " Neovim-Qt runtime
-    if has('nvim')
-        Plug 'equalsraf/neovim-gui-shim'
-    endif
 call plug#end()
 
 augroup highlight_yank
