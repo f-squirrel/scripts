@@ -128,7 +128,29 @@ endfunction
 
 function SetColorScheme()
     set background=dark
-    colorscheme monokai_pro
+    " The settings shall be done here, otherwise thery are overriden by other
+    " components. Why? No idea
+lua <<EOF
+    local monokai = require('monokai')
+    local palette = monokai.pro
+    palette.white = '#dbd0d2'
+    monokai.setup {
+        palette = palette,
+        custom_hlgroups = {
+            Function = {
+                fg = palette.green,
+                --style = 'none'
+            },
+            Whitespace = {
+                fg = palette.base5,
+            },
+           TSFunction = {
+                fg = palette.green,
+                --style = 'none'
+            },
+        }
+    }
+EOF
 endfunction
 
 function SetEasyAlignMappings()
@@ -257,7 +279,7 @@ local on_attach = function(client, bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-  vim.lsp.set_log_level('debug')
+  vim.lsp.set_log_level('info')
   -- Mappings.
   local opts = { noremap=true }
 
