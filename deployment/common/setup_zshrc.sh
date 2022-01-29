@@ -12,6 +12,11 @@ echo "Installed zsh: " $?
 
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="miloshadzic"/' ${HOME}/.zshrc
 
+# Make C-P/C-N behave as up/down
+
+echo 'bindkey "^P" up-line-or-beginning-search' >> ${HOME}/.zshrc
+echo 'bindkey "^N" down-line-or-beginning-search' >> ${HOME}/.zshrc
+
 # language setup
 echo 'export LANG=en_US.UTF-8' >> ${HOME}/.zshrc
 echo 'export LC_CTYPE=en_US.UTF-8' >> ${HOME}/.zshrc
