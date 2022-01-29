@@ -32,7 +32,7 @@ endfunction
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    let g:DefaultFont="JetBrains Mono:h12"
+    let g:DefaultFont="JetBrains Mono:h10"
     call GuiSetDefaultFont()
     execute 'Guifont' g:DefaultFont
     "Guifont FiraCode\ Nerd\ Font:h12
@@ -54,9 +54,17 @@ if exists('*GuiClipboard')
     call GuiClipboard()
 endif
 
+if exists('*GuiWindowFrameless')
+    call GuiWindowFrameless(1)
+endif
+
+if exists('*GuiWindowMaximized')
+    call GuiWindowMaximized(1)
+endif
+
 nnoremap <silent> <C-=> :call GuiIncreaseFont()<CR>
 nnoremap <silent> <C--> :call GuiDecreaseFont()<CR>
-nnoremap <silent> <C-+> :call GuiSetDefaultFont()<CR>
+nnoremap <silent> <C-0> :call GuiSetDefaultFont()<CR>
 
 nnoremap  <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<CR>
 " Enable Mouse
