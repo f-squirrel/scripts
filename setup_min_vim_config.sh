@@ -39,7 +39,6 @@ function main {
         CURL_FLAGS="${CURL_FLAGS} --insecure"
     fi
     if [[ "$*" == *"--install"* ]]; then
-        echo "install"
         install_nvim
     fi
 
