@@ -26,15 +26,20 @@ function print_help {
     echo "Options:"
     echo "--help       - Show help"
     echo "--install    - Install Neovim"
+    echo "--insecure   - Tell curl to ignore certificate issues, should not be a problem since the script downloads from Github"
 }
 
 function main {
-    if [[ "${1}" == "--help" ]]; then
+    if [[ "$*" == *"--help"* ]]; then
         print_help
         exit 0
     fi
-
-    if [ "${1}" == "--install" ]; then
+    if [[ "$*" == *"--insecure"* ]]; then
+        echo "insecure"
+        CURL_FLAGS="${CURL_FLAGS} --insecure"
+    fi
+    if [[ "$*" == *"--install"* ]]; then
+        echo "install"
         install_nvim
     fi
 
