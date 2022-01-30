@@ -22,9 +22,6 @@ set noautoread " Vim asks if user wants to reload a changed file
 
 let mapleader=","
 
-" Disable Vim-recording
-map q <Nop>
-
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=100}
@@ -43,6 +40,11 @@ highlight ColorColumn ctermbg=darkgray
 set colorcolumn=120
 
 set listchars+=eol:$,tab:>-,space:·
+
+" Key maps
+" Disable Vim-recording
+map q <Nop>
+
 " Navigation
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
@@ -52,3 +54,11 @@ nnoremap <C-l> :bnext<CR>
 " Search
 vnoremap // y/<C-R>"<CR>
 nnoremap <esc><esc> :nohlsearch<return>
+
+
+" Minimal tab-space setup
+set expandtab " to insert spaces instead of tabs
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
