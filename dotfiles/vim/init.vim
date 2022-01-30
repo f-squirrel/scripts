@@ -1,32 +1,5 @@
-syntax enable
-set mouse=a " Enable mouse
-set smartcase " Smartcase search
-set number " Display line numbers
-set hidden
-set ignorecase " Mostly for wildmenu completion
-set smartindent
-set cindent
-set clipboard+=unnamedplus " to be able to copy-paste from other applications without + and * registers
-
-" NVIM defaults start
-set autoindent
-set backspace=indent,eol,start
-set encoding=utf8
-set hlsearch " highlight search
-set incsearch " Search while typing
-set nocompatible              " Non-compatible with vi
-" NVIM defaults end
-
-" NVIM default changed
-set noautoread " Vim asks if user wants to reload a changed file
-
-set shell=zsh
-let mapleader=","
-set listchars+=eol:$,tab:>-,space:·
-
-" Disable Vim-recording
-map q <Nop>
-
+" Initial settings
+source ~/scripts/dotfiles/vim/minimal.vim
 " This file is usually symbolic link to file with code style relevant for
 " current company
 source ~/.vim/.code_style.vim
@@ -112,19 +85,6 @@ call plug#begin()
 
     Plug 'nvim-treesitter/playground'
 call plug#end()
-
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=100}
-augroup END
-
-function SetColumnGuideLine()
-    "Highlight current line
-    set cursorline
-    highlight ColorColumn ctermbg=darkgray
-    "Highligt max line length
-    set colorcolumn=120
-endfunction
 
 function SetColorScheme()
     set background=dark
@@ -215,7 +175,6 @@ endfunction
 
 call SetBufferSwitchingMappings()
 call SetColorScheme()
-call SetColumnGuideLine()
 call SetEasyAlignMappings()
 call SetSearchMappings()
 call SetupVimFugitive()
