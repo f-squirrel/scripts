@@ -2,7 +2,6 @@ syntax enable
 set mouse=a " Enable mouse
 set smartcase " Smartcase search
 set number " Display line numbers
-set hidden
 set ignorecase " Mostly for wildmenu completion
 set smartindent
 set cindent
@@ -11,14 +10,49 @@ set clipboard+=unnamedplus " to be able to copy-paste from other applications wi
 " NVIM defaults start
 set autoindent
 set backspace=indent,eol,start
+set belloff=all
+set cscopeverbose
+set display=lastline,msgsep
 set encoding=utf8
+set formatoptions=tcqj
+set nofsync
+set hidden
+set history=10000 " max value
 set hlsearch " highlight search
 set incsearch " Search while typing
+set langnoremap
+set nolangremap
+set laststatus=2
 set nocompatible              " Non-compatible with vi
+set nojoinspaces
+set nolangremap
+set nostartofline
+set nrformats=bin,hex
+set ruler
+set showcmd
+set sidescroll=1
+set smarttab
+set tabpagemax=50 " max value
+set ttyfast
+set wildmenu
+set wildmode=full
+set wildoptions=pum,tagfile
+
+nnoremap Y y$
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
 " NVIM defaults end
 
-" NVIM default changed
+" NVIM default changed start
 set noautoread " Vim asks if user wants to reload a changed file
+
+try
+    " NVIM versions before 0.6.0 do not have this mapping
+    unmap <C-L>
+catch /.*/
+endtry
+
+" NVIM default changed end
 
 let mapleader=","
 
@@ -33,7 +67,7 @@ colorscheme default
 
 "Highlight current line
 set cursorline
-highlight ColorColumn ctermbg=darkgray
+highlight ColorColumn ctermbg=darkgray guibg=darkgrey
 "highlight CursorLine cterm=NONE gui=NONE ctermbg=darkgrey
 
 "Highligt max line length
