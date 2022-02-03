@@ -1,4 +1,5 @@
 syntax enable
+filetype plugin indent on
 set mouse=a " Enable mouse
 set smartcase " Smartcase search
 set number " Display line numbers
@@ -12,7 +13,11 @@ set autoindent
 set backspace=indent,eol,start
 set belloff=all
 set cscopeverbose
-set display=lastline,msgsep
+if has("nvim")
+    set display=lastline,msgsep
+else
+    set display=lastline
+endif
 set encoding=utf8
 set formatoptions=tcqj
 set nofsync
@@ -36,7 +41,13 @@ set tabpagemax=50 " max value
 set ttyfast
 set wildmenu
 set wildmode=full
-set wildoptions=pum,tagfile
+if exists("+wildoptions")
+    if has("nvim")
+        set wildoptions=pum,tagfile
+    else
+        set wildoptions=tagfile
+    endif
+endif
 
 nnoremap Y y$
 inoremap <C-U> <C-G>u<C-U>
