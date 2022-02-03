@@ -20,17 +20,18 @@ else
 endif
 set encoding=utf8
 set formatoptions=tcqj
-set nofsync
 set hidden
 set history=10000 " max value
 set hlsearch " highlight search
 set incsearch " Search while typing
-set langnoremap
-set nolangremap
+if has("nvim")
+    set nolangremap
+else
+    set langnoremap
+endif
 set laststatus=2
 set nocompatible              " Non-compatible with vi
 set nojoinspaces
-set nolangremap
 set nostartofline
 set nrformats=bin,hex
 set ruler
@@ -67,10 +68,13 @@ endtry
 
 let mapleader=","
 
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=100}
-augroup END
+if has("nvim")
+    " Unfortunately, TextYankPost is available in Neovim
+    augroup highlight_yank
+        autocmd!
+        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=100}
+    augroup END
+endif
 
 " Colorscheme
 set background=dark
