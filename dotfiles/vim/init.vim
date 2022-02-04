@@ -155,6 +155,7 @@ endfunction
 
 function SetupVimFugitive()
     set diffopt+=vertical
+    nnoremap <leader>gb :Git blame<cr>
 endfunction
 
 function SetupCopyPath()
