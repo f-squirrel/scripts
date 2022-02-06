@@ -84,6 +84,8 @@ call plug#begin()
     Plug 'sainnhe/sonokai'
 
     Plug 'nvim-treesitter/playground'
+
+    Plug 'goolord/alpha-nvim'
 call plug#end()
 
 function SetColorScheme()
@@ -416,4 +418,6 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
+
+require'alpha'.setup(require'alpha.themes.startify'.config)
 EOF
