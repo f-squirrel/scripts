@@ -45,7 +45,8 @@ call plug#begin()
     Plug 'akinsho/bufferline.nvim'
 
     " Insert or delete brackets, parens, quotes in pair.
-    Plug 'jiangmiao/auto-pairs'
+    "Plug 'jiangmiao/auto-pairs'
+    Plug 'windwp/nvim-autopairs'
 
     " :StripWhitespace to delete trailing white spaces
     Plug 'ntpeters/vim-better-whitespace'
@@ -420,4 +421,6 @@ require "nvim-treesitter.configs".setup {
 }
 
 require'alpha'.setup(require'alpha.themes.startify'.config)
+
+require('nvim-autopairs').setup{}
 EOF
