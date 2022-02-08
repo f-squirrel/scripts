@@ -31,6 +31,7 @@ call plug#begin()
     Plug 'hrsh7th/nvim-cmp'
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
     Plug 'williamboman/nvim-lsp-installer'
+    Plug 'ray-x/lsp_signature.nvim'
 
     Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
@@ -252,6 +253,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<2-LeftMouse>', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
   buf_set_keymap('n', '<leader>K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   -- Original code actions
   -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
@@ -265,6 +267,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+  require "lsp_signature".on_attach()
 end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
