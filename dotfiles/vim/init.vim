@@ -9,31 +9,55 @@ function GetOperatingSystemName()
 endfunction
 
 call plug#begin()
-
+"
     " Gblame and all the stuff
     Plug 'tpope/vim-fugitive'
-    Plug 'nvim-lua/plenary.nvim'
+
+    " Git status on the left side
     Plug 'lewis6991/gitsigns.nvim'
 
-    Plug 'kyazdani42/nvim-web-devicons' " for file icons
-    Plug 'kyazdani42/nvim-tree.lua' " file tree
+    " Neovim tools library, used by other plugins
+    Plug 'nvim-lua/plenary.nvim'
 
+    " File icons
+    Plug 'kyazdani42/nvim-web-devicons'
+
+    " File tree
+    Plug 'kyazdani42/nvim-tree.lua'
+
+    " Monokai color scheme
     Plug 'f-squirrel/monokai.nvim'
     Plug 'navarasu/onedark.nvim'
+    Plug 'sainnhe/sonokai'
 
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " cool syntax highlight
+    " Tree-sitter syntax highlight
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+    " Plugin for debugging Tree-sitter
+    Plug 'nvim-treesitter/playground'
+
+    " Smart config for Neovim LSP
     Plug 'neovim/nvim-lspconfig'
+
+    " Autocomplete trigger for Neovim LSP
     Plug 'hrsh7th/cmp-nvim-lsp'
     "Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     "Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+
+    " Integration between LSP and Ultisnips
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+    " Simple installation for LSP servers
     Plug 'williamboman/nvim-lsp-installer'
+
+    " Signature help for methods/functions
     Plug 'ray-x/lsp_signature.nvim'
 
+    " Snippets
     Plug 'SirVer/ultisnips'
+
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'honza/vim-snippets'
 
@@ -72,8 +96,11 @@ call plug#begin()
     " Shows indention level
     Plug 'lukas-reineke/indent-blankline.nvim'
 
+    " Install FZF via Neovim (not sure if it is a good idea because Neovim
+    " does not use it anymore)
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+    " Smart lists and many more
     Plug 'nvim-telescope/telescope.nvim'
 
     " :CopyPath and :CopyFileName
@@ -82,12 +109,10 @@ call plug#begin()
     " Markdown viewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+    " Toml file highlight
     Plug 'cespare/vim-toml'
 
-    Plug 'sainnhe/sonokai'
-
-    Plug 'nvim-treesitter/playground'
-
+    " Greeting window
     Plug 'goolord/alpha-nvim'
 call plug#end()
 
