@@ -33,6 +33,12 @@ include_directories(${CMAKE_SOURCE_DIR})
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Uncomment the following if needed
+#find_package(Boost 1.69 EXACT REQUIRED COMPONENTS system)
+#find_package(OpenSSL REQUIRED)
+#find_package(Threads REQUIRED)
+#target_link_libraries(${PROJECT_NAME} PUBLIC Boost::system OpenSSL::SSL Threads::Threads)
 EOM
 
 RESULT_FILE=main.cpp
