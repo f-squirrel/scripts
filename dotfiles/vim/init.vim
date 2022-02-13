@@ -109,9 +109,6 @@ call plug#begin()
     " Markdown viewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
-    " Toml file highlight
-    Plug 'cespare/vim-toml'
-
     " Greeting window
     Plug 'goolord/alpha-nvim'
 call plug#end()
@@ -134,7 +131,7 @@ lua <<EOF
             Whitespace = {
                 fg = palette.base5,
             },
-           TSFunction = {
+            TSFunction = {
                 fg = palette.green,
                 --style = 'none'
             },
