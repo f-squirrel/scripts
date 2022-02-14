@@ -4,10 +4,6 @@ source ~/scripts/dotfiles/vim/minimal.vim
 " current company
 source ~/.vim/.code_style.vim
 
-function GetOperatingSystemName()
-    return substitute(system('uname'), "\n", "", "")
-endfunction
-
 call plug#begin()
 "
     " Gblame and all the stuff
