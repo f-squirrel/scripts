@@ -109,6 +109,9 @@ call plug#begin()
     " Markdown viewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+    " Highlight all occurances of current word
+    "Plug 'RRethy/vim-illuminate'
+
     " Greeting window
     Plug 'goolord/alpha-nvim'
 call plug#end()
@@ -121,6 +124,9 @@ lua <<EOF
     local monokai = require('monokai')
     local palette = monokai.pro
     palette.white = '#dbd0d2'
+    palette.cursor_line = '#363a45'
+    -- To revert the color uncomment the line below
+    --palette.cursor_line = palette.base3
     monokai.setup {
         palette = palette,
         custom_hlgroups = {
@@ -134,6 +140,9 @@ lua <<EOF
             TSFunction = {
                 fg = palette.green,
                 --style = 'none'
+            },
+            CursorLine = {
+                bg = palette.cursor_line,
             },
         }
     }
