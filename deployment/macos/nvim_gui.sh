@@ -7,7 +7,7 @@ git clone https://github.com/equalsraf/neovim-qt.git && \
     cd neovim-qt && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release .. && \
-    make && \
+    make -j $(nproc) && \
     make install && \
     cd ${HOME} && \
     rm -r neovim-qt

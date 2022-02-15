@@ -4,6 +4,12 @@ source ~/scripts/dotfiles/vim/minimal.vim
 " current company
 source ~/.vim/.code_style.vim
 
+" Either exits or not
+set runtimepath+=${HOME}/neovim-qt/src/gui/runtime
+
+let g:plug_timeout = 120
+let g:plug_retries = 5
+
 call plug#begin()
 "
     " Gblame and all the stuff
@@ -27,6 +33,7 @@ call plug#begin()
     Plug 'sainnhe/sonokai'
 
     " Tree-sitter syntax highlight
+    "Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Plugin for debugging Tree-sitter
@@ -81,7 +88,7 @@ call plug#begin()
     " [count]<leader>c<space> |NERDCommenterToggle|
     " Toggles the comment state of the selected line(s).
     " If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-    Plug 'scrooloose/nerdcommenter'
+    Plug 'preservim/nerdcommenter'
 
     " Select and compare lines in code
     Plug 'AndrewRadev/linediff.vim'

@@ -24,10 +24,6 @@ ln -sf ${HOME}/scripts/dotfiles/vim/code_style/.default_code_style.vim ${VIM_DIR
 printf "Installed default code style to ~/.vim/.code_style.vim\n"
 printf "Replace the symlink if needed!\n"
 
-# YCM extras
-ln -sf ${HOME}/scripts/dotfiles/vim/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
-printf "Installed YCM extras to ${HOME}\n"
-printf "Replace the symlink if needed!\n"
 
 # tmux
 

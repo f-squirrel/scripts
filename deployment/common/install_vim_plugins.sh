@@ -2,23 +2,41 @@
 
 set -eo pipefail
 
-printf "Started zshrc setup!\n"
-# Install Vim-Plug
-curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+echo "Started nvim-plug setup!"
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo "Installed Vim-Plug"
 
-#https://github.com/junegunn/vim-plug/wiki/tips#install-plugins-on-the-command-line
-nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+# Install nodejs to enable LSPs
+curl -sL https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh
+bash nodesource_setup.sh
+apt -y -q --no-install-recommends install nodejs
+rm nodesource_setup.sh
+
+set +e
+npm install uuid@latest
+set -e
+
+echo "Installed NodeJs"
+
+set +e
+nvim -e -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall $(nproc)" -c "qa"
+# Install all Tree-sitter plugins
+nvim -e -u ~/.config/nvim/init.vim -i NONE -c "TSUpdateSync" -c "qa"
+nvim -e -u ~/.config/nvim/init.vim -i NONE \
+    -c ":LspInstall --sync clangd" \
+    -c ":LspInstall --sync cmake" \
+    -c ":LspInstall --sync grammarly" \
+    -c ":LspInstall --sync pyright" \
+    -c ":LspInstall --sync rust_analyzer" \
+    -c ":LspInstall --sync bashls" \
+    -c "qa"
+set -e
+
 echo "Installed nvim plugins"
 
-# Remove later
-#pip3 install certifi
-#export PYTHONHTTPSVERIFY=0
-## YouCompleteMe for some reason Vim-PLug returns exit 1 when install automatically
-#cd ${HOME}/.vim/plugged/YouCompleteMe
-#python3 ./install.py --clangd-completer --rust-completer --force-sudo
 cd ${HOME}
 
-printf "Finished plugin setup!\n"
+echo "Finished plugin setup!\n"

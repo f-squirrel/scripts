@@ -18,10 +18,13 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     clang-7 \
     curl \
     dialog \
+    fontconfig \
     g++ \
     gdb \
     git \
+    gzip \
     iputils-ping \
+    locales \
     net-tools \
     openssh-server \
     pkg-config \
@@ -31,22 +34,33 @@ apt-get update && apt-get -y -q --no-install-recommends install \
     python3 \
     python3-dev \
     python3-pip \
+    python3-venv \
     python3-setuptools \
     tmux \
+    unzip \
     wget \
+    zip \
     zsh
 
 echo ">Installed main packages!\n"
 
-# alacritty dependencies
-apt-get update && apt-get -y -q --no-install-recommends install \
-    libfontconfig1-dev \
-    libxcb-render0-dev \
-    libxcb-shape0-dev \
-    libxcb-xfixes0-dev \
-    libxcb1-dev
+locale-gen en_US en_US.UTF-8
+dpkg-reconfigure locales
+update-locale LANG=en_US.UTF-8
+source /etc/default/locale
+export LANG=en_US.UTF-8
 
-echo ">Installed alacritty dependencies"
+if [[ -n $LOCAL_INSTALLATION ]]; then
+    # alacritty dependencies
+    apt-get update && apt-get -y -q --no-install-recommends install \
+        libfontconfig1-dev \
+        libxcb-render0-dev \
+        libxcb-shape0-dev \
+        libxcb-xfixes0-dev \
+        libxcb1-dev
+    echo ">Installed alacritty dependencies"
+fi
+
 #yes | add-apt-repository ppa:mmstick76/alacritty
 
 apt-get update
@@ -62,7 +76,6 @@ update-ca-certificates --fresh
 export SSL_CERT_DIR=/etc/ssl/certs
 
 echo ">Installed certificates!\n"
-#RUN ln -s /usr/bin/clang-7 /usr/bin/clang
 
 # Dirty hack, sometimes base image already has newer cmake installed manually
 
@@ -87,41 +100,23 @@ cd ${SCRIPT_PATH}
 git checkout ${TARGET_BRANCH}
 cd ..
 
+# Need GH for lsp-installer
+wget --quiet --no-check-certificate https://github.com/cli/cli/releases/download/v2.5.1/gh_2.5.1_linux_amd64.deb
+dpkg -i gh_2.5.1_linux_amd64.deb
+rm gh_2.5.1_linux_amd64.deb
 #TODO: add condition for GUI!
 #bash ${SCRIPT_PATH}/deployment/common/fonts.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
 bash ${SCRIPT_PATH}/deployment/common/setup_links.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_zshrc.sh
 bash ${SCRIPT_PATH}/deployment/common/setup_custom_script_helpers.sh
 
 bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_core.sh
+bash ${SCRIPT_PATH}/deployment/ubuntu/nvim_gui.sh
 # fzf needs to be installed after zsh because it patches .zshrc
 bash ${SCRIPT_PATH}/deployment/ubuntu/build_tools.sh
-
-
-echo "Configure compiler"
-apt-get update && apt-get -y -q --no-install-recommends install \
-    software-properties-common
-
-add-apt-repository -y ppa:ubuntu-toolchain-r/test
-
-apt-get update && apt-get -y -q --no-install-recommends install \
-    gcc-9 g++-9
-
-# Set Clang 10 as default compiler
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
-
-update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 100
-update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 100
-
-echo "Configured compiler"
-
 bash ${SCRIPT_PATH}/deployment/common/install_vim_plugins.sh
-
-# Set Clang 7 as default compiler
-#update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-#update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
 
 wget --quiet --no-check-certificate https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
 dpkg -i bat_0.15.4_amd64.deb
