@@ -22,9 +22,14 @@ set -e
 echo "Installed NodeJs"
 
 set +e
-nvim -e -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall $(nproc)" -c "qa"
+nvim -e -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall $(nproc)" \
+    -c "sleep 120" \
+    -c "qa"
 # Install all Tree-sitter plugins
-nvim -e -u ~/.config/nvim/init.vim -i NONE -c "TSUpdateSync" -c "qa"
+nvim -e -u ~/.config/nvim/init.vim -i NONE -c "TSUpdateSync" \
+    -c "sleep 220" \
+    -c "qa"
+
 nvim -e -u ~/.config/nvim/init.vim -i NONE \
     -c ":LspInstall --sync clangd" \
     -c ":LspInstall --sync cmake" \
@@ -32,6 +37,7 @@ nvim -e -u ~/.config/nvim/init.vim -i NONE \
     -c ":LspInstall --sync pyright" \
     -c ":LspInstall --sync rust_analyzer" \
     -c ":LspInstall --sync bashls" \
+    -c "sleep 120" \
     -c "qa"
 set -e
 
