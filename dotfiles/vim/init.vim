@@ -114,9 +114,6 @@ call plug#begin()
 
     " Highlight all occurances of current word
     "Plug 'RRethy/vim-illuminate'
-
-    " Greeting window
-    Plug 'goolord/alpha-nvim'
 call plug#end()
 
 function SetColorScheme()
@@ -213,6 +210,11 @@ function SetupNvimTree()
     nnoremap <leader>n          :NvimTreeFindFile<CR>
 endfunction
 
+function SetupGitsigns()
+    nnoremap ]c :Gitsigns next_hunk<CR>
+    nnoremap [c :Gitsigns next_hunk<CR>
+endfunction
+
 call SetBufferSwitchingMappings()
 call SetColorScheme()
 call SetEasyAlignMappings()
@@ -222,6 +224,7 @@ call SetupCopyPath()
 call SetupIndentPlug()
 call SetupNvimTree()
 call SetupTelescopeFind()
+call SetupGitsigns()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -456,8 +459,6 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
-
-require'alpha'.setup(require'alpha.themes.startify'.config)
 
 require('nvim-autopairs').setup{}
 EOF
