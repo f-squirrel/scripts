@@ -34,7 +34,7 @@ call plug#begin()
 
     " Tree-sitter syntax highlight
     "Plug 'nvim-treesitter/nvim-treesitter'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter' "", {'do': ':TSUpdate'}
 
     " Plugin for debugging Tree-sitter
     Plug 'nvim-treesitter/playground'
@@ -110,7 +110,7 @@ call plug#begin()
     Plug 'f-squirrel/copypath.vim'
 
     " Markdown viewer
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " Highlight all occurances of current word
     "Plug 'RRethy/vim-illuminate'
@@ -374,7 +374,8 @@ local servers = {
     "clangd",
     "cmake",
     "grammarly",
-    "pyright",
+    --"pyright",
+    "jedi_language_server",
     "rust_analyzer",
 }
 
