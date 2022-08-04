@@ -1,5 +1,13 @@
 " Initial settings
 source ~/scripts/dotfiles/vim/minimal.vim
+
+if exists('g:vscode')
+    " VSCode extension
+    "
+    nnoremap <leader>gb <Cmd>call VSCodeNotify('gitlens.toggleFileBlame')<cr>
+    finish
+endif
+
 " This file is usually symbolic link to file with code style relevant for
 " current company
 source ~/.vim/.code_style.vim
