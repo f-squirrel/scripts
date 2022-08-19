@@ -3,8 +3,26 @@ source ~/scripts/dotfiles/vim/minimal.vim
 
 if exists('g:vscode')
     " VSCode extension
-    "
-    nnoremap <leader>gb <Cmd>call VSCodeNotify('gitlens.toggleFileBlame')<cr>
+    nnoremap <leader>gb     <Cmd>call VSCodeNotify('gitlens.toggleFileBlame')<cr>
+    nnoremap <leader>f      <Cmd>call VSCodeNotify('editor.action.formatDocument')<cr>
+    nnoremap <leader>ff     <Cmd>call VSCodeNotify('workbench.action.quickOpen')<cr>
+    nnoremap <leader>fg     <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<cr>
+    nnoremap <leader>fl     <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>
+    nnoremap <leader>be     <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<cr>
+    nnoremap ]c             <Cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr>
+    nnoremap [c             <Cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr>
+
+    nnoremap <C-l>          <Cmd>call VSCodeNotify('workbench.action.nextEditor')<cr>
+    nnoremap <C-h>          <Cmd>call VSCodeNotify('workbench.action.previousEditor')<cr>
+    nnoremap <leader>rn     <Cmd> call VSCodeNotify('editor.action.rename')<cr>
+    nnoremap <leader>ca     <Cmd> call VSCodeNotify('problems.action.showQuickFixes')<cr>
+    nnoremap <leader>ch     <Cmd> call VSCodeNotify('editor.action.toggleRenderWhitespace')<cr>
+
+    nnoremap ]d             <Cmd> call VSCodeNotify('editor.action.marker.next')<cr>
+    nnoremap [d             <Cmd> call VSCodeNotify('editor.action.marker.prev')<cr>
+    nnoremap z=             <Cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
+
+    cnoreabbrev bd          <Cmd> call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
     finish
 endif
 
