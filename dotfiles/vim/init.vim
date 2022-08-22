@@ -23,6 +23,7 @@ if exists('g:vscode')
     nnoremap z=             <Cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
 
     cnoreabbrev bd          <Cmd> call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
+    cnoreabbrev Gwrite      <Cmd> call VSCodeNotify('git.stage')<cr>
     finish
 endif
 

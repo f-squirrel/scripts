@@ -1,0 +1,82 @@
+BASE_IMAGE:=${DOCKER_DEPS_REPO}${DOCKER_DEPS_IMAGE}
+BASE_IMAGE_VERSION:=${DOCKER_DEPS_VERSION}
+CUSTOM_DOCKER_REPO:=fsquirrel/
+CUSTOM_DOCKER_IMAGE:=nvim-env
+CUSTOM_DOCKER_IMAGE_VERSION:=latest
+CUSTOM_TARGET_SOURCE_PATH:=${DOCKER_SOURCE_PATH}
+CUSTOM_DOCKER_CONTAINER:=nvim-env
+
+PORT_RANGE:=7770
+CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS:=-p ${PORT_RANGE}:7777
+
+#				      --user=$(shell id -u):$(shell id -g) \
+
+CUSTOM_RUN_PARAMS:=-it --rm --privileged=true \
+					  --cap-add NET_ADMIN --cap-add=SYS_PTRACE --ulimit core=-1 \
+					  --name="${CUSTOM_DOCKER_CONTAINER}" \
+					  --workdir=${CUSTOM_TARGET_SOURCE_PATH} \
+					  --mount type=bind,source=${LOCAL_MOUNT_PATH},target=${DOCKER_MOUNT_PATH} \
+					  ${CUSTOM_CONCORD_BFT_ADDITIONAL_RUN_PARAMS} \
+					  ${CUSTOM_ADDITIONAL_RUN_PARAMS} \
+					  ${CUSTOM_DOCKER_REPO}${CUSTOM_DOCKER_IMAGE}:${CUSTOM_DOCKER_IMAGE_VERSION}
+
+.PHONY: vim-login
+vim-login: ## Run vim in dir
+	docker run ${CUSTOM_RUN_PARAMS} \
+			  zsh -l
+
+.PHONY: vim
+vim: ## Run vim in dir
+	docker run ${CUSTOM_RUN_PARAMS} \
+			  zsh -l -c \
+			  "nvim"
+
+.PHONY: gvim
+gvim: ## Run vim in dir
+	docker run -d ${CUSTOM_RUN_PARAMS} \
+			  zsh -l -c \
+			  "nvim --headless --listen 0.0.0.0:7777"
+	NVIM_QT_RUNTIME_PATH=/usr/local/share/nvim-qt/runtime nvim-qt --server 0.0.0.0:7770
+
+.PHONY: env-login
+env-login: ## Run vim in dir
+	docker run ${CUSTOM_RUN_PARAMS} \
+			  bash
+
+#run-c: ## Run container in background
+#	docker run ${CUSTOM_RUN_PARAMS} \
+#			  ${CONCORD_BFT_CONTAINER_SHELL} -c \
+#			  "/usr/bin/tail -f /dev/null"
+#	@echo
+#	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" with the build environment is started as daemon."
+#	@echo "Run \"make stop-c\" to stop or \"make remove-c\" to delete."
+#
+#.PHONY: stop-c
+#stop-c: ## Stop the container
+#	docker container stop -t 1 ${CUSTOM_DOCKER_CONTAINER}
+#	@echo
+#	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" is successfully stopped."
+#
+#.PHONY: login-c
+#login-c: ## Login to the container. Note: if the container is already running, login into existing one
+#	docker exec -it ${CUSTOM_DOCKER_CONTAINER} \
+#		zsh;exit 0; \
+#
+#.PHONY: remove-c
+#remove-c: ## Remove the container
+#	docker container rm -f ${CUSTOM_DOCKER_CONTAINER}
+#	@echo
+#	@echo "The container \"${CUSTOM_DOCKER_CONTAINER}\" is successfully removed."
+#
+#.PHONY: container
+#container: #returns container name
+#	@echo ${CUSTOM_DOCKER_IMAGE}
+#
+#.PHONY: build-env-docker-image
+build-env-docker-image: ## Re-build the container without caching
+	@echo ${BASE_IMAGE}
+	@echo ${CUSTOM_DOCKER_IMAGE}
+	docker build --rm --no-cache=true -t ${CUSTOM_DOCKER_REPO}${CUSTOM_DOCKER_IMAGE}:latest1 \
+		--build-arg "base_image=${BASE_IMAGE}" --build-arg "base_tag=${BASE_IMAGE_VERSION}" \
+		-f ${HOME}/scripts/deployment/Dockerfile ${HOME}/scripts/
+
