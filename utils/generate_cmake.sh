@@ -59,7 +59,12 @@ cd ..
 # Symlink to compilation database
 ln -s ./build/compile_commands.json compile_commands.json
 
-vim main.cpp
+
+if command -v code &> /dev/null ; then
+    code --new-window main.cpp .
+else
+    vim main.cpp
+fi
 }
 
 alias gencppenv=generate_cmake_helper
