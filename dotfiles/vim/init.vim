@@ -19,11 +19,15 @@ if exists('g:vscode')
 
     nnoremap ]d             <Cmd> call VSCodeNotify('editor.action.marker.next')<cr>
     nnoremap [d             <Cmd> call VSCodeNotify('editor.action.marker.prev')<cr>
-    nnoremap z=             <Cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
-    nnoremap <leader>ca     <Cmd> call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
+    "nnoremap z=             <Cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
+    "nnoremap <leader>ca     <Cmd> call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
+
+    nnoremap z=             <Cmd>call VSCodeNotify('editor.action.quickFix')<cr>
+    nnoremap <leader>ca     <Cmd> call VSCodeNotify('editor.action.quickFix')<cr>
 
     cnoreabbrev bd          <Cmd> call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
     cnoreabbrev Gwrite      <Cmd> call VSCodeNotify('git.stage')<cr>
+    cnoreabbrev Gdiff      <Cmd> call VSCodeNotify('git.openChange')<cr>
     finish
 endif
 
@@ -233,7 +237,7 @@ endfunction
 
 function SetupNvimTree()
     highlight NvimTreeFolderIcon guifg=grey
-    nnoremap <C-n>              :NvimTreeToggle<CR>
+    "nnoremap <C-n>              :NvimTreeToggle<CR>
     nnoremap <leader>n          :NvimTreeFindFile<CR>
 endfunction
 

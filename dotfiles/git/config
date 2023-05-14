@@ -32,10 +32,14 @@
 [user]
 	name = f-squirrel
 	email = dmitry.b.danilov@gmail.com
+#[diff]
+#    tool = vimdiff3
+#[difftool "vimdiff3"]
+#    path = nvim
 [diff]
-    tool = vimdiff3
-[difftool "vimdiff3"]
-    path = nvim
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
     tool = vimdiff3
 [mergetool "vimdiff3"]

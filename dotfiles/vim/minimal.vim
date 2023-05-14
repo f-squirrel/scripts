@@ -3,6 +3,7 @@ filetype plugin indent on
 set mouse=a " Enable mouse
 set smartcase " Smartcase search
 set number " Display line numbers
+set relativenumber
 set ignorecase " Mostly for wildmenu completion
 set smartindent
 set cindent
