@@ -87,7 +87,10 @@ highlight ColorColumn ctermbg=darkgray guibg=darkgrey
 "highlight CursorLine cterm=NONE gui=NONE ctermbg=darkgrey
 
 "Highligt max line length
-set colorcolumn=120
+if exists('g:vscode')
+else
+    set colorcolumn=120
+endif
 
 set listchars+=eol:$,tab:>-,space:·
 
