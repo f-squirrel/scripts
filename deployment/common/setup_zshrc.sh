@@ -51,6 +51,6 @@ if [[ -n $LOCAL_INSTALLATION ]]; then
 
     echo "Please fill the env variable added to ${HOME}/.zshrc"
 fi
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"
 
 printf "Finished zshrc setup!\n"
