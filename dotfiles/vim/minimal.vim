@@ -13,7 +13,8 @@ set clipboard+=unnamedplus " to be able to copy-paste from other applications wi
 set autoindent
 set backspace=indent,eol,start
 set belloff=all
-set cscopeverbose
+"set cscopeverbose
+"set verbose
 if has("nvim")
     set display=lastline,msgsep
 else
@@ -62,6 +63,11 @@ set noautoread " Vim asks if user wants to reload a changed file
 try
     " NVIM versions before 0.6.0 do not have this mapping
     unmap <C-L>
+catch /.*/
+endtry
+
+try
+    unmap <C-t>
 catch /.*/
 endtry
 

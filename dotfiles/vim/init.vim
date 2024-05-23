@@ -30,6 +30,7 @@ if exists('g:vscode')
     cnoreabbrev Gdiff      <Cmd> call VSCodeNotify('git.openChange')<cr>
     finish
 endif
+    finish
 
 " This file is usually symbolic link to file with code style relevant for
 " current company

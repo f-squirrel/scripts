@@ -63,7 +63,7 @@ window:
   #     - buttonless: Title bar, transparent background and no title bar buttons
   #decorations: full
   # On Ubuntu to move: Super+Drag, minimize: Super+Arrow Down, maximize: Super+Arrow Up
-  decorations: none
+  # decorations: none
 
   # Startup Mode (changes require restart)
   #
