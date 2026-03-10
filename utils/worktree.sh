@@ -28,6 +28,13 @@ wt() {
     cd "$wt_path"
 }
 
+wtl() {
+    local dir
+    dir="$(git worktree list | fzf --height=~100% | awk '{print $1}')" || return 1
+    [[ -n "$dir" ]] || return 1
+    cd "$dir"
+}
+
 wtr() {
     local git_common
     git_common="$(git rev-parse --git-common-dir 2>/dev/null)" || {
