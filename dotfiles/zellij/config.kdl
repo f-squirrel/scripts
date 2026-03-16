@@ -151,6 +151,12 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt b" {
+            Run "btop" {
+                floating true
+                close_on_exit true
+            }
+        }
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt i" { MoveTab "left"; }
@@ -177,6 +183,11 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" "tab" {
         bind "Ctrl t" { SwitchToMode "tab"; }
+        // bind "Ctrl w" {
+        //     LaunchOrFocusPlugin "https://github.com/sharph/zellij-worktree/releases/latest/download/zellij-worktree.wasm" {
+        //         floating true
+        //     }
+        // }
     }
     shared_except "locked" "pane" {
         bind "Ctrl p" { SwitchToMode "pane"; }
@@ -267,6 +278,11 @@ plugins {
     tab-bar location="zellij:tab-bar"
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
+    }
+    plugins {
+        worktree location="https://github.com/sharph/zellij-worktree/releases/latest/download/zellij-worktree.wasm" {
+            base_path ".git/worktrees"
+        }
     }
 }
 
