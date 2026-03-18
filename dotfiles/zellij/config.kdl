@@ -157,6 +157,32 @@ keybinds clear-defaults=true {
                 close_on_exit true
             }
         }
+        bind "Alt g" {
+            Run "git" "lgc" {
+                floating true
+                close_on_exit true
+            }
+        }
+        bind "Alt d" {
+            Run "/home/dima/scripts/utils/git-diff-view.sh" {
+                floating true
+                close_on_exit true
+                width "100%"
+                height "100%"
+                x "0"
+                y "0"
+                name "diff"
+            }
+        }
+        bind "Alt v" {
+            Run "/home/dima/scripts/utils/vscode-open.sh" {
+                floating true
+                close_on_exit true
+                width "30%"
+                height "15%"
+                name "vscode"
+            }
+        }
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt i" { MoveTab "left"; }
